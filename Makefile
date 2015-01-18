@@ -4,6 +4,7 @@ OUTPUT = Mt
 
 SRCDIR = src
 OBJDIR = build
+ETCDIR = etc
 
 CFLAGS += -I./src/include -fopenmp -Wall -std=c++11 -D 'VERSION="$(VERSION)"'
 
@@ -18,11 +19,15 @@ all: $(OUTPUT)
 
 default: $(OUTPUT)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+$(OBJDIR)/%.o: sml $(SRCDIR)/%.cpp
 	$(CXX) $(CFLAGS) -o $@ -c $<
 
 $(OUTPUT): $(OBJS)
 	$(CXX) $(LDFLAGS) $< -o $(OUTPUT)
+
+sml:
+	bison -d -o $(SRCDIR)/parser.cpp $(ETCDIR)/sml.y
+	lex -o $(SRCDIR)/tokens.cpp $(ETCDIR)/sml.l
 
 clean:
 	rm -f $(OBJDIR)/*.o $(OUTPUT)
