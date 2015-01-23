@@ -36,3 +36,5 @@
 *.suo
 *.sdf
 *.opensdf
+
+*.sublime-workspace

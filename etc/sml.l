@@ -4,7 +4,7 @@
 %{
 	#include <string>
 	#include "core/lang/ASTObjs.hpp"
-	#include "core/lang/parser.hpp"
+	#include "core/lang/Parser.hpp"
 	#define SAVE_TOKEN yylval.string = new std::string(yytext, yyleng)
 	#define TOKEN(t) (yylval.token = t)
 	extern "C" int yywrap() { }

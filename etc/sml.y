@@ -82,18 +82,18 @@ block : TLBRACE stmts TRBRACE { $$ = $2; }
 /*
 	Variable Declarations E.G A = B + C
 */
-var_decl : ident { $$ = new Mt::NVariableDeclaration(*$1, *$2); }
-		 | ident TASSIGN expr { $$ = Mt::NVariableDeclaration(*$1, *$2, *$4); }
+var_decl : ident { $$ = new Mt::NVariableDeclaration(*$1); }
+		 | ident TASSIGN expr { $$ = Mt::NVariableDeclaration(*$1, *$3); }
 		 ;
 
 list_decl : ident TASSIGN TCLT list_decl_args TCGT
-		   { $$ = new Mt::NListDeclaration(*$1, *$2, *$4, *$6); delete $4; }
+		   { $$ = new Mt::NListDeclaration(*$1, *$3, *$5); delete $5; }
 		  ;
 /*
 	Function definition. I.E f := (...) { ... }
 */
 func_decl : ident TASSIGN TLPAREN func_decl_args TRPAREN block
-		 	{ $$ = new NFunctionDeclaration(*$1, *$2, *$4, *$6); delete $4; }
+		 	{ $$ = new NFunctionDeclaration(*$1, *$3, *$5); delete $3; }
 		  ;
 /*
 

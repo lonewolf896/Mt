@@ -56,13 +56,12 @@ namespace Mt {
 
 	class NVariableDeclaration : public NStatement {
 		public:
-		    const NIdentifier& type;
 		    NIdentifier& id;
 		    NExpression *assignmentExpr;
-		    NVariableDeclaration(const NIdentifier& type, NIdentifier& id) :
-		        type(type), id(id) { }
-		    NVariableDeclaration(const NIdentifier& type, NIdentifier& id, NExpression *assignmentExpr) :
-		        type(type), id(id), assignmentExpr(assignmentExpr) { }
+		    NVariableDeclaration(NIdentifier& id) :
+		        id(id) { }
+		    NVariableDeclaration(NIdentifier& id, NExpression *assignmentExpr) :
+		        id(id), assignmentExpr(assignmentExpr) { }
 	};
 
 
@@ -110,23 +109,21 @@ namespace Mt {
 
 	class NFunctionDeclaration : public NStatement {
 		public:
-		    const NIdentifier& type;
 		    const NIdentifier& id;
 		    VariableList arguments;
 		    NBlock& block;
-		    NFunctionDeclaration(const NIdentifier& type, const NIdentifier& id,
+		    NFunctionDeclaration(const NIdentifier& id,
 		            const VariableList& arguments, NBlock& block) :
-		        type(type), id(id), arguments(arguments), block(block) { }
+		        id(id), arguments(arguments), block(block) { }
 	};
 
 	class NListDeclaration : public NStatement {
 		public:
-		    const NIdentifier& type;
 		    const NIdentifier& id;
 		    VariableList arguments;
 		    NBlock& block;
-		    NListDeclaration(const NIdentifier& type, const NIdentifier& id,
+		    NListDeclaration(const NIdentifier& id,
 		            const VariableList& arguments, NBlock& block) :
-		        type(type), id(id), arguments(arguments), block(block) { }
+		        id(id), arguments(arguments), block(block) { }
 	};
 }
