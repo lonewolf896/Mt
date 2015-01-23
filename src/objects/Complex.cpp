@@ -2,7 +2,7 @@
 	Complex.cpp - Implelentation Details for complex number class
 	*/
 
-#include "objects\Complex.hpp"
+#include <objects/Complex.hpp>
 
 namespace Mt {
 
@@ -54,60 +54,62 @@ namespace Mt {
 	}
 
 	// Operator overloads
-	
+
 	Complex& Complex::operator=(Complex& rhs) {
-		
+		this->partReal = rhs.GetReal();
+		this->partImaginary = rhs.GetImaginary();
+		return this;
 	}
 
-	// Basic Arithmatic operations
+	// Basic Arithmetic operations
 	Complex& Complex::operator+(Complex& rhs) {
-	
+
 	}
 
 	Complex& Complex::operator-(Complex& rhs) {
-	
+
 	}
 
 	Complex& Complex::operator+() {
-	
+
 	}
 
 	Complex& Complex::operator-() {
-	
+
 	}
 
 	Complex& Complex::operator*(Complex& rhs) {
-	
+
 	}
 
 	Complex& Complex::operator/(Complex& rhs) {
-	
+
 	}
 
 	Complex& Complex::operator%(Complex& rhs) {
-	
+
 	}
 
 	Complex& Complex::operator++() {
-	
+
 	}
 
 	Complex& Complex::operator++(int) {
-	
+
 	}
 
 	Complex& Complex::operator--() {
-	
+
 	}
 
 	Complex& Complex::operator--(int) {
-	
+
 	}
 
 
-	// Comparason operators
+	// Comparison operators
 	bool Complex::operator==(Complex const& rhs) {
-	
+
 	}
 
 	bool Complex::operator!=(Complex const& rhs) {
@@ -115,7 +117,7 @@ namespace Mt {
 	}
 
 	bool Complex::operator>(Complex const& rhs) {
-	
+
 	}
 
 	bool Complex::operator<(Complex const& rhs) {
@@ -123,19 +125,19 @@ namespace Mt {
 	}
 
 	bool Complex::operator>=(Complex const& rhs) {
-	
+
 	}
 
 	bool Complex::operator<=(Complex const& rhs) {
-	
+
 	}
-	
+
 #if !defined(_MSC_VER)
 	// Allows for 3+5_i to be treated as a complex number
 	// I,E Mt::Complex cmp = 3+5_i;
 	template<char ... Exp>
 	constexpr Complex Complex:operator"" _i() {
-	
+
 }
 
 #endif

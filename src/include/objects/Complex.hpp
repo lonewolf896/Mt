@@ -5,7 +5,7 @@
 #include <utility>
 #include <iostream>
 
-#include "core\INumeric.hpp"
+#include "core/INumeric.hpp"
 
 namespace Mt {
 	class Complex : public INumeric {
@@ -13,7 +13,7 @@ namespace Mt {
 			long long partReal;
 			long long partImaginary;
 		public:
-		
+
 		// Constructors
 		Complex(void);
 		Complex(std::pair<long long, long long> parts);
@@ -55,16 +55,16 @@ namespace Mt {
 		bool operator>=(Complex const& rhs);
 		bool operator<=(Complex const& rhs);
 
+		// Stream overloads
+		friend std::ostream& operator<<(std::ostream& os, const Complex& cplx);
+
+	};
+}
+
 #if !defined(_MSC_VER)
 		// Allows for 3+5_i to be treated as a complex number
 		// I,E Mt::Complex cmp = 3+5_i;
 		template<char ... Exp>
-		constexpr Complex operator"" _i();
+		constexpr Mt::Complex& operator"" _i();
 
 #endif
-
-		// Stream overloads
-		friend std::ostream& operator<<(std::ostream& os, const Complex& cplx);
-		
-	};
-}

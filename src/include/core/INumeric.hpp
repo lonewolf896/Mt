@@ -2,7 +2,7 @@
 	INumeric.hpp - Base class for complex and any other special numbers (I.E Rational numbers, etc)
 */
 #pragma once
-#include "IMtObject.hpp";
+#include "IMtObject.hpp"
 namespace Mt {
 	class INumeric : IMtObject {
 		public:

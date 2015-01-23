@@ -10,8 +10,8 @@
 #include <string>
 #include <iomanip>
 
-#include "core\Config.hpp"
-#include "core\Scope.hpp"
+#include <core/Config.hpp>
+#include "core/Scope.hpp"
 
 #define ERROR_SUCCESS 0
 #define ERROR_FAILURE 1
@@ -24,7 +24,7 @@
 #define COMPILER "MSVC " xstr(_MSC_VER)
 #elif defined(__GNUC__)
 #define COMPILER "GCC " xstr( __GNUC__) "." xstr(__GNUC_MINOR__)  "." xstr(__GNUC_PATCHLEVEL__)
-#endif 
+#endif
 
 #if defined(_DEBUG) || defined(DEBUG)
 #define MODE "DEBUG"

@@ -1,0 +1,962 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"te",
+				"text-transform"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"nth",
+				"nth-of-type"
+			],
+			[
+				"vi",
+				"vertical-align"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"tex",
+				"textarea"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"go",
+				"good_bg_color"
+			],
+			[
+				"wa",
+				"warn_bg_color"
+			],
+			[
+				"error_",
+				"error_bg_color"
+			],
+			[
+				"err",
+				"error_color"
+			],
+			[
+				"warn",
+				"warn_color"
+			],
+			[
+				"borde",
+				"border-top"
+			],
+			[
+				"bor",
+				"border"
+			],
+			[
+				"paddin",
+				"padding"
+			],
+			[
+				"bord",
+				"border"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"font-",
+				"font-weight"
+			],
+			[
+				"Dat",
+				"DataController"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"rou",
+				"Route"
+			],
+			[
+				"min-",
+				"min-height"
+			],
+			[
+				"fi",
+				"first-child"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"W",
+				"WriteBytes(char *buffer, int len)	int"
+			],
+			[
+				"MSR_E",
+				"MSR_EC_TRACK1	macro"
+			],
+			[
+				"MSR_C",
+				"MSR_CHECK_LEAD_ZERO	macro"
+			],
+			[
+				"tup",
+				"tuple<typename>	class"
+			],
+			[
+				"wi",
+				"WriteBytes(char *buffer, int len)	int"
+			],
+			[
+				"Tra",
+				"Track1_3	char"
+			],
+			[
+				"MSR_Set",
+				"MSR_SET_LEAD_ZERO	macro"
+			],
+			[
+				"MSR",
+				"MSR_ESC	macro"
+			],
+			[
+				"MSR_G",
+				"MSR_GET_CO_STAT	macro"
+			],
+			[
+				"Read",
+				"ReadBytes(char *buffer, int len)	int"
+			],
+			[
+				"MSR_SE",
+				"MSR_SET_HI_CO	macro"
+			],
+			[
+				"Rea",
+				"ReadBytes(char *buffer, int len)	int"
+			],
+			[
+				"w",
+				"WriteBytes(char *buffer, int len)	int"
+			],
+			[
+				"Da",
+				"TrackDataLength	int"
+			],
+			[
+				"data",
+				"data_len	int"
+			],
+			[
+				"ge",
+				"GetTrack1()	lib605::Track *"
+			],
+			[
+				"tr",
+				"Track1	lib605::Track *"
+			],
+			[
+				"Track",
+				"Track1	lib605::Track *"
+			],
+			[
+				"r",
+				"Track3	lib605::Track *"
+			],
+			[
+				"MSR_F",
+				"MSR_REQ_FERM_VER	macro"
+			],
+			[
+				"MS",
+				"MSR_ESC	macro"
+			],
+			[
+				"rea",
+				"ReadBytes(char *buffer, int len)	int"
+			],
+			[
+				"MSR_R",
+				"MSR_RAM_TEST	macro"
+			],
+			[
+				"wr",
+				"WriteAutoSize(char *buffer)	int"
+			],
+			[
+				"MSR_",
+				"MSR_COM_TEST	macro"
+			],
+			[
+				"MSR_LE",
+				"MSR_ALL_LED_ON	macro"
+			],
+			[
+				"opt",
+				"options	struct termios"
+			],
+			[
+				"con",
+				"Connect()	bool"
+			],
+			[
+				"s",
+				"SetLED(lib605::MSR::MSR_LED LED)	void"
+			],
+			[
+				"LE",
+				"LED_OFF	lib605::MSR::MSR_LED"
+			],
+			[
+				"LED",
+				"LED_ALL	lib605::MSR::MSR_LED"
+			],
+			[
+				"LED_",
+				"LED_YELLOW	lib605::MSR::MSR_LED"
+			],
+			[
+				"Tes",
+				"TestSensor()	bool"
+			],
+			[
+				"L",
+				"MSR_LED	enum"
+			],
+			[
+				"MSR_EC",
+				"MSR_EC_TRACK_4	macro"
+			],
+			[
+				"OBJ",
+				"OBJDIR"
+			],
+			[
+				"C",
+				"CFLAGS"
+			],
+			[
+				"end",
+				"endpointt"
+			],
+			[
+				"Out",
+				"OutputChennel"
+			],
+			[
+				"In",
+				"InputChannel"
+			],
+			[
+				"Que",
+				"QueryQueue"
+			],
+			[
+				"j",
+				"json"
+			],
+			[
+				"f",
+				"float64"
+			],
+			[
+				"Result",
+				"ResultItemCount"
+			],
+			[
+				"Resul",
+				"ResultData"
+			],
+			[
+				"Resu",
+				"ResultID"
+			],
+			[
+				"Re",
+				"Result"
+			],
+			[
+				"ResultData",
+				"ResultDataItemCount"
+			],
+			[
+				"ran",
+				"ResultRank"
+			],
+			[
+				"Res",
+				"ResultItem"
+			],
+			[
+				"Item",
+				"ItemValue"
+			],
+			[
+				"Resut",
+				"ResultDataItem"
+			],
+			[
+				"ResultDa",
+				"ResultDataItem"
+			],
+			[
+				"Lim",
+				"Limit"
+			],
+			[
+				"mo",
+				"Modifiers"
+			],
+			[
+				"Q",
+				"QueryType"
+			],
+			[
+				"Qu",
+				"QueryStatus"
+			],
+			[
+				"Quer",
+				"QueryName"
+			],
+			[
+				"Query",
+				"QueryModifier"
+			],
+			[
+				"lo",
+				"Lock"
+			],
+			[
+				"un",
+				"Unlock"
+			],
+			[
+				"queue",
+				"queuenode"
+			],
+			[
+				"Conten",
+				"Content-Type"
+			],
+			[
+				"re",
+				"Request"
+			],
+			[
+				"arg",
+				"argc	int"
+			],
+			[
+				"Python",
+				"PythonREPL"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"TEX",
+				"text-decoration"
+			],
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"modu",
+				"module_args"
+			],
+			[
+				"ANSI",
+				"ANSI_COLOR_RESET"
+			],
+			[
+				"mod",
+				"module_path"
+			],
+			[
+				"_A",
+				"_ARPCurrentPlace"
+			],
+			[
+				"Creat",
+				"Creating"
+			],
+			[
+				"null",
+				"NULL"
+			],
+			[
+				"iop",
+				"iop_addr"
+			],
+			[
+				"io",
+				"iopaddr"
+			],
+			[
+				"Iop",
+				"IOPHeapPtr"
+			],
+			[
+				"Const",
+				"constructor"
+			],
+			[
+				"ANS",
+				"ANSI_COLOR_RED"
+			],
+			[
+				"modul",
+				"module_path"
+			],
+			[
+				"Load",
+				"LoadModule"
+			],
+			[
+				"ee",
+				"EEMemPtr"
+			],
+			[
+				"Fre",
+				"FreeModule"
+			],
+			[
+				"_a",
+				"_AutoReleasePool"
+			],
+			[
+				"IOH",
+				"IOPHeapPtr"
+			],
+			[
+				"Ee",
+				"EEMemPtr"
+			],
+			[
+				"_",
+				"_ARPCurrentPlace"
+			],
+			[
+				"Prin",
+				"printf"
+			],
+			[
+				"IOP",
+				"IOPHeapPtr"
+			],
+			[
+				"EE",
+				"EEMemPtr"
+			],
+			[
+				"IO",
+				"IOPHeapPtr"
+			],
+			[
+				"AR",
+				"ARP_DATA"
+			],
+			[
+				"string",
+				"strings"
+			],
+			[
+				"_dm",
+				"_dma_timer_start"
+			],
+			[
+				"Set",
+				"SetDMATimer"
+			],
+			[
+				"AN",
+				"ANSI_COLOR_RESET"
+			],
+			[
+				"ANsi",
+				"ANSI_COLOR_GREEN"
+			],
+			[
+				"initi",
+				"Initialize"
+			],
+			[
+				"Init",
+				"InitIOP"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/home/xampp/Projects/Mt/etc/sml.l",
+			"settings":
+			{
+				"buffer_size": 1478,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/xampp/Projects/Mt/etc/sml.y",
+			"settings":
+			{
+				"buffer_size": 3762,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/xampp/Projects/Mt/src/objects/Complex.cpp",
+			"settings":
+			{
+				"buffer_size": 2515,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 123.0,
+		"selected_items":
+		[
+			[
+				"sscss",
+				"Set Syntax: CSS"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ssgo",
+				"Set Syntax: Go"
+			],
+			[
+				"ssm",
+				"Set Syntax: Markdown"
+			],
+			[
+				"ssmar",
+				"Set Syntax: Markdown"
+			],
+			[
+				"ssmark",
+				"Set Syntax: Markdown"
+			],
+			[
+				"pac",
+				"Package Control: Remove Package"
+			],
+			[
+				"up",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"package",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"word",
+				"Word Wrap: Toggle"
+			],
+			[
+				"sshtm",
+				"Set Syntax: HTML"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ss c++",
+				"Set Syntax: C++"
+			]
+		],
+		"width": 417.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/views/ppolicy.blade.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/views/license.blade.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/controllers/MainController.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/routes.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/controllers/DataController.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/views/LiveQuery.blade.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/views/error.blade.php",
+		"/home/xampp/Projects/lib605/lib605.3",
+		"/home/xampp/Projects/lib605/Makefile",
+		"/home/xampp/Projects/lib605/src/include/lib605.hpp",
+		"/home/xampp/Projects/lib605/src/lib605.cpp",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/Gruntfile.js",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/assets/scss/icono.min.scss",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/views/placeholder.blade.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/controllers/AuthenticationController.php",
+		"/home/xampp/Projects/bad_alloc/website/index.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/controllers/BaseController.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/bootstrap/compiled.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/controllers/HomeController.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/app/config/app.php",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/assets/scss/lib/normalize.scss",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/.gitignore",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Standards/README.md",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Web/README.md",
+		"/home/xampp/Projects/papaya-project/open-anime-data/OAD-Standards/LICENSE",
+		"/home/xampp/Projects/papaya-project/papaya/README.md",
+		"/home/xampp/Projects/papaya-project/open-anime-data/README.md",
+		"/home/xampp/Projects/papaya-project/papaya/LICENSE",
+		"/home/xampp/Projects/papaya-project/open-anime-data/LICENSE",
+		"/home/xampp/Projects/lib605/.travis.yml",
+		"/home/xampp/Projects/lib605/README.md",
+		"/home/xampp/Projects/lib605/.gitignore",
+		"/home/xampp/Projects/bad_alloc/auto_peter/Makefile",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/IRCBot.cpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/include/Module.hpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/include/ModuleCore.hpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/include/IRCBot.hpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/ModuleCore.cpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/main.cpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/configuration.json",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/include/IRCModule.hpp",
+		"/home/xampp/Projects/UST/Makefile",
+		"/home/xampp/Projects/untitled.sublime-project",
+		"/home/xampp/.config/openbox/rc.xml",
+		"/home/xampp/Projects/UST/src/usb.cpp",
+		"/home/xampp/Projects/UST/src/include/usb.hpp",
+		"/home/xampp/Projects/UST/src/include/ust.hpp",
+		"/home/xampp/Projects/UST/src/ust.cpp",
+		"/home/xampp/Projects/UST/README.md",
+		"/home/xampp/Projects/UST/LICENSE",
+		"/home/xampp/Projects/Reaper/Makefile",
+		"/home/xampp/.config/sublime-text-2/Packages/SublimeClang/Default.sublime-keymap",
+		"/home/xampp/Projects/UST/.gitignore.",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/queryservice.go",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/utility.go",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/status.go",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/result.go",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/queue.go",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/apiclient.go",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/query.go",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/server.go",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/README.md",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/yggdrasil",
+		"/home/xampp/Projects/go-projects/src/bitbucket.org/Kobuyashi/csc453-backend/app.yml",
+		"/home/xampp/Projects/Reaper/src/reaper/reaper.cpp",
+		"/home/xampp/Projects/Reaper/src/include/reaper.hpp",
+		"/home/xampp/Projects/Reaper/src/include/Config.hpp",
+		"/home/xampp/Projects/Reaper/src/include/Core/Shim/Endian.hpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/include/Event.hpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/ArgumentParser.cpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/include/ArgumentParser.hpp",
+		"/home/xampp/.themes/sink/xfce-notify-4.0/gtkrc",
+		"/home/xampp/Projects/bad_alloc/auto_peter/src/include/Common.hpp",
+		"/home/xampp/Projects/bad_alloc/auto_peter/README.md",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/IRCBot.cpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/include/IRCModule.hpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/include/IRCBot.hpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/main.cpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/configuration.json",
+		"/home/xampp/rapidjson/example/pretty/pretty.cpp",
+		"/home/xampp/rapidjson/example/simplereader/simplereader.cpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/.gitignore",
+		"/home/xampp/rapidjson/.gitmodules",
+		"/home/xampp/tst.cpp",
+		"/home/xampp/Projects/go-projects/src/github.com/xampp/go-parse/parse.go",
+		"/home/xampp/index.php",
+		"/home/xampp/todo.txt",
+		"/home/xampp/.config/sublime-text-2/Packages/SublimeClang/clang/include/emmintrin.h",
+		"/home/xampp/.config/sublime-text-2/Packages/SublimeClang/SublimeClang.sublime-settings",
+		"/home/xampp/git-tmp/boost/libs/asio/include/boost/asio.hpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/include/asio.hpp",
+		"/home/xampp/.config/openbox/autostart",
+		"/home/xampp/.config/sublime-text-2/Packages/completion/completion.sublime-settings",
+		"/home/xampp/.config/sublime-text-2/Packages/completion/Default.sublime-keymap",
+		"/home/xampp/.config/sublime-text-2/Packages/Package Control/Package Control.sublime-settings",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/doc/rfc1459.txt",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/doc/rfc2812.txt",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/README.md",
+		"/home/xampp/Projects/bad_alloc/website/index.html",
+		"/home/xampp/Projects/bad_alloc/blog/public/index.php",
+		"/mnt/WIN_2/Documents/AriNotes.txt",
+		"/mnt/WIN_2/Documents/bitonicSort.cpp",
+		"/home/xampp/Projects/bad_alloc/blog/public/css/screen.css",
+		"/home/xampp/Projects/bad_alloc/blog/posts/Hello World.md",
+		"/home/xampp/Projects/bad_alloc/blog/public/js/application.js",
+		"/home/xampp/Projects/bad_alloc/website/js/application.js",
+		"/home/xampp/Projects/bad_alloc/website/css/screen.css",
+		"/home/xampp/Projects/bad_alloc/blog/core/Parsedown.php",
+		"/home/xampp/Projects/bad_alloc/blog/sitemap.xml",
+		"/home/xampp/Projects/bad_alloc/website/sitemap.xml",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/IRCModule.cpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/include/Mod.hpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/include/Common.hpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/Modules/PythonREPL.hpp",
+		"/home/xampp/Projects/bad_alloc/IRC-bot/src/Modules/PythonREPL.cpp",
+		"/home/xampp/.config/obmenu-generator/config.pl",
+		"/home/xampp/.config/obmenu-generator/schema.pl",
+		"/home/xampp/.config/openbox/menu.xml",
+		"/home/xampp/Projects/bad_alloc/website/humans.txt",
+		"/home/xampp/.ssh/id_rsa.pub",
+		"/home/xampp/Projects/csc453-web-application/208.204.80.59",
+		"/home/xampp/Projects/csc453-web-application/ftpsync.settings",
+		"/home/xampp/Projects/csc453-web-application/app/config/database.php",
+		"/home/xampp/Projects/csc453-web-application/bootstrap/start.php",
+		"/home/xampp/Projects/csc453-web-application/app/config/app.php",
+		"/usr/local/sce/ee/sample/bad_alloc/SYSTEM.CNF",
+		"/usr/local/sce/ee/sample/bad_alloc/README.md",
+		"/usr/local/sce/ee/sample/bad_alloc/Makefile"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			";\n",
+			"}\n",
+			"right",
+			" {",
+			"header",
+			"W-p",
+			"qs",
+			"value",
+			"TODO",
+			"dlopen",
+			"/*",
+			"W-l",
+			"imacon",
+			".\n",
+			"sceSifLoadModule",
+			"mem_add"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/xampp/Projects/Mt/etc/sml.l",
+					"settings":
+					{
+						"buffer_size": 1478,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lisp/Lisp.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/xampp/Projects/Mt/etc/sml.y",
+					"settings":
+					{
+						"buffer_size": 3762,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1845.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "/home/xampp/Projects/Mt/src/objects/Complex.cpp",
+					"settings":
+					{
+						"buffer_size": 2515,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1246,
+								1246
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 32.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.clang":
+	{
+		"height": 23.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}

@@ -1,0 +1,15 @@
+{
+	"folders":
+	[
+		{
+			"path": "/home/xampp/Projects/Mt"
+		}
+	],
+	"settings":
+	{
+		"sublimeclang_options":
+		[
+			"-I/home/xampp/Projects/Mt/src/include/"
+		]
+	}
+}
