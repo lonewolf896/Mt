@@ -14,7 +14,7 @@
     <ProjectGuid>{49EB3E2E-8F99-4839-B0D8-C8BB79EF097A}</ProjectGuid>
     <RootNamespace>Mt</RootNamespace>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.cc.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -28,14 +28,14 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.cc.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.cc.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.cc.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -79,19 +79,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\core\Config.cpp" />
-    <ClCompile Include="..\src\Mt.cpp" />
-    <ClCompile Include="..\src\objects\Complex.cpp" />
+    <ClCompile Include="..\src\core\Config.cc" />
+    <ClCompile Include="..\src\Mt.cc" />
+    <ClCompile Include="..\src\objects\Complex.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\include\core\Config.hpp" />
-    <ClInclude Include="..\src\include\core\IMtObject.hpp" />
-    <ClInclude Include="..\src\include\core\INumeric.hpp" />
-    <ClInclude Include="..\src\include\core\Scope.hpp" />
-    <ClInclude Include="..\src\include\Mt.hpp" />
-    <ClInclude Include="..\src\include\objects\Complex.hpp" />
+    <ClInclude Include="..\src\include\core\Config.hh" />
+    <ClInclude Include="..\src\include\core\IMtObject.hh" />
+    <ClInclude Include="..\src\include\core\INumeric.hh" />
+    <ClInclude Include="..\src\include\core\Scope.hh" />
+    <ClInclude Include="..\src\include\Mt.hh" />
+    <ClInclude Include="..\src\include\objects\Complex.hh" />
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(VCTargetsPath)\Microsoft.cc.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>

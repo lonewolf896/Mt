@@ -6,6 +6,7 @@ LIGHT_GREEN := "\033[1;32m"
 NO_COLOUR := "\033[0m"
 WHITE := "\033[1;37m"
 
+ETCDIR := etc
 SRCDIR := src
 OBJDIR := build
 OUTDIR := bin
@@ -46,6 +47,14 @@ $(OBJS): $(SRCS)
 $(OBJDIR)/%.o: $(SRCDIR)/%.cc
 	@echo -e Building $(CYAN)$@$(WHITE) from $(CYAN)$<$(WHITE)
 	@$(CXX) $(CFLAGS) -o $@ -c $<
+
+bison:
+	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.yy
+
+lex: bison
+	@lex -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.l
+
+grammar: lex bison
 
 .PHONY: clean
 clean:

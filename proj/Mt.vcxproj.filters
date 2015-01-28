@@ -3,11 +3,11 @@
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>.cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <Extensions>h;hh.hh;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -27,33 +27,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Mt.cpp">
+    <ClCompile Include="..\src\Mt.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\objects\Complex.cpp">
+    <ClCompile Include="..\src\objects\Complex.cc">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\core\Config.cpp">
+    <ClCompile Include="..\src\core\Config.cc">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\include\Mt.hpp">
+    <ClInclude Include="..\src\include\Mt.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\include\core\INumeric.hpp">
+    <ClInclude Include="..\src\include\core\INumeric.hh">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\include\objects\Complex.hpp">
+    <ClInclude Include="..\src\include\objects\Complex.hh">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\include\core\Config.hpp">
+    <ClInclude Include="..\src\include\core\Config.hh">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\include\core\Scope.hpp">
+    <ClInclude Include="..\src\include\core\Scope.hh">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\include\core\IMtObject.hpp">
+    <ClInclude Include="..\src\include\core\IMtObject.hh">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>

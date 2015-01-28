@@ -1,15 +1,16 @@
 /*
-	sml.y - Simple Math Language (SML) bison parser grammar
+	sml.yy - Simple Math Language (SML) bison parser grammar
 
 	TODO (Before I forget)
 		Array Access Grammar ([N])
 		Proper List and Matrix grammar (Dont rely on the lexer regex)
 */
+%language "C++"
 %{
 	#include <iostream>
-	#include "core/lang/ASTObjs.hpp"
+	#include "core/lang/ASTObjs.hh"
 
-	NBlock *rootScope;
+	Mt::NBlock *rootScope;
 
 	extern int yylex();
 	void yyerror(const char* s) { std::cout << "ERROR: " << s << std::endl; }

@@ -3,8 +3,8 @@
 */
 %{
 	#include <string>
-	#include "core/lang/ASTObjs.hpp"
-	#include "core/lang/Parser.hpp"
+	#include "core/lang/ASTObjs.hh"
+	#include "core/lang/Parser.hh"
 	#define SAVE_TOKEN yylval.string = new std::string(yytext, yyleng)
 	#define TOKEN(t) (yylval.token = t)
 	extern "C" int yywrap() { }
@@ -19,8 +19,6 @@
 \<.+\>					SAVE_TOKEN;	return TLIST;
 [0-9]+[+-][0-9]+i 		SAVE_TOKEN; return TCOMPLEX;
 
-"true"					return TOKEN(TTRUE);
-"false"					return TOKEN(TFALSE);
 "="						return TOKEN(TEQUAL);
 ":="					return TOKEN(TASSIGN);
 "=="                    return TOKEN(TCEQ);
