@@ -1,8 +1,8 @@
 /*
-	INumeric.hpp - Base class for complex and any other special numbers (I.E Rational numbers, etc)
+	INumeric.hh - Base class for complex and any other special numbers (I.E Rational numbers, etc)
 */
 #pragma once
-#include "IMtObject.hpp"
+#include "IMtObject.hh"
 namespace Mt {
 	class INumeric : IMtObject {
 		public:
@@ -10,7 +10,7 @@ namespace Mt {
 		INumeric(void) { }
 		INumeric(INumeric& inum) { };
 		INumeric(INumeric&& inum) { };
-
+/*
 		virtual INumeric& operator=(INumeric& rhs) = 0;
 
 		// Basic Arithmatic operations
@@ -33,7 +33,7 @@ namespace Mt {
 		virtual bool operator<(INumeric const& rhs) = 0;
 		virtual bool operator>=(INumeric const& rhs) = 0;
 		virtual bool operator<=(INumeric const& rhs) = 0;
-
+*/
 		// Virtual Destructor
 		virtual ~INumeric(void) {}
 	};

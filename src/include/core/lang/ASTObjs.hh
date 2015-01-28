@@ -1,14 +1,14 @@
 /*
-	ASTObjs.hpp - Objects that are represented in the Abstract syntax tree
+	ASTObjs.hh - Objects that are represented in the Abstract syntax tree
 */
 #pragma once
 
-#include "core/INumeric.hpp"
-#include "core/IScalar.hpp"
+#include "core/INumeric.hh"
+#include "core/IScalar.hh"
 
-#include "objects/Complex.hpp"
-#include "objects/Integer.hpp"
-#include "objects/Double.hpp"
+#include "objects/Complex.hh"
+#include "objects/Integer.hh"
+#include "objects/Double.hh"
 
 #include <vector>
 #include <map>

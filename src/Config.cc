@@ -1,7 +1,7 @@
 /*
-	Config.cpp global configuration manager implementation
+	Config.cc global configuration manager implementation
 */
-#include "core\Config.hpp"
+#include "core/Config.hh"
 
 namespace Mt {
 	Config* Config::instance = nullptr;

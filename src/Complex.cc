@@ -1,8 +1,8 @@
 /*
-	Complex.cpp - Implelentation Details for complex number class
-	*/
+	Complex.cc - Implelentation Details for complex number class
+*/
 
-#include <objects/Complex.hpp>
+#include <objects/Complex.hh>
 
 namespace Mt {
 
@@ -45,7 +45,7 @@ namespace Mt {
 		return this->partReal;
 	}
 
-	long long Complex::GetImaginartPart(void) {
+	long long Complex::GetImaginaryPart(void) {
 		return this->partImaginary;
 	}
 
@@ -56,11 +56,11 @@ namespace Mt {
 	// Operator overloads
 
 	Complex& Complex::operator=(Complex& rhs) {
-		this->partReal = rhs.GetReal();
-		this->partImaginary = rhs.GetImaginary();
-		return this;
+		this->partReal = rhs.GetRealPart();
+		this->partImaginary = rhs.GetImaginaryPart();
+		return *this;
 	}
-
+/*
 	// Basic Arithmetic operations
 	Complex& Complex::operator+(Complex& rhs) {
 
@@ -141,7 +141,7 @@ namespace Mt {
 }
 
 #endif
-
+*/
 	std::ostream& operator<<(std::ostream& os, const Complex& cplx) {
 		return (os << cplx.partReal << " " << cplx.partImaginary << "i");
 	}

@@ -4,11 +4,13 @@
 	Authors: 
 */
 
-#include "Mt.hpp"
+#include "Mt.hh"
 
 
 auto main(int argc, char* argv[], char* env[]) -> int {
-	// Banner
+	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
+    
+    // Banner
 	std::cout << VERSION_STRING << std::endl << std::endl;
 	std::cout << QUOTE << std::endl << std::endl;
 
@@ -19,7 +21,6 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 	std::cout << "Environment settings:" << std::endl << (*Mt::Config::GetInstance()) << std::endl;
 
 	// Etc
-	Mt::Scope rootScope;
 	unsigned long long InterpLineNum = 1ULL;
 
 	// REPL

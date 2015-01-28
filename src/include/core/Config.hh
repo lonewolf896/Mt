@@ -1,12 +1,13 @@
 /*
-	Config.hpp - Base configuration class
-	*/
+	Config.hh - Base configuration class
+*/
 #pragma once
 // Configuration defaults
 #define CFG_DEF_NUM_ALG "left"
 #define CFG_DEF_NUM_FMT "scientific"
 #define CFG_DEF_MAX_SCP_DEP 10
 #define CFG_DEF_MAX_ITTER 5000000000
+
 #include <map>
 #include <fstream>
 #include <string>

@@ -1,11 +1,11 @@
 /*
-	Complex.hpp - Complex number implementation
+	Complex.hh - Complex number implementation
 */
 #pragma once
 #include <utility>
 #include <iostream>
 
-#include "core/INumeric.hpp"
+#include "core/INumeric.hh"
 
 namespace Mt {
 	class Complex : public INumeric {
@@ -27,7 +27,7 @@ namespace Mt {
 		void SetPair(std::pair<long long, long long> cmplxPair);
 
 		long long GetRealPart(void);
-		long long GetImaginartPart(void);
+		long long GetImaginaryPart(void);
 		std::pair<long long, long long> GetPair(void);
 
 		// Operator overloads
@@ -61,10 +61,3 @@ namespace Mt {
 	};
 }
 
-#if !defined(_MSC_VER)
-		// Allows for 3+5_i to be treated as a complex number
-		// I,E Mt::Complex cmp = 3+5_i;
-		template<char ... Exp>
-		constexpr Mt::Complex& operator"" _i();
-
-#endif

@@ -1,5 +1,5 @@
 /*
-	Mt.hpp - Generic and core includes and definitions
+	Mt.hh - Generic and core includes and definitions
 */
 #pragma once
 
@@ -10,8 +10,7 @@
 #include <string>
 #include <iomanip>
 
-#include <core/Config.hpp>
-#include "core/Scope.hpp"
+#include <core/Config.hh>
 
 #define ERROR_SUCCESS 0
 #define ERROR_FAILURE 1
@@ -36,3 +35,5 @@
 #define VERSION_STRING "Mt: Simple math and linear algebra environment. " << std::endl << "\tVer " VERSION " (" COMPILER ") " MODE " Build"
 
 #define QUOTE "\"I'm so clever that even I don't understand myself sometimes.\""
+
+#include <immintrin.h>

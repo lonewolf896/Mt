@@ -1,9 +1,9 @@
 /*
-	IScalar.hpp - Scalar interface
+	IScalar.hh - Scalar interface
 */
 #pragma once
 
-#include "INumeric.hpp"
+#include "INumeric.hh"
 namespace Mt {
 	class IScalar : INumeric {
 

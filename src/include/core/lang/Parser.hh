@@ -100,7 +100,7 @@ union YYSTYPE
 	std::string *string;
 	int token;
 
-#line 104 "Parser.hpp" /* yacc.c:1909  */
+#line 104 "Parser.hh" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
