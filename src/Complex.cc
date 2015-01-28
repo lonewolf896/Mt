@@ -60,7 +60,7 @@ namespace Mt {
 		this->partImaginary = rhs.GetImaginaryPart();
 		return *this;
 	}
-/*
+
 	// Basic Arithmetic operations
 	Complex& Complex::operator+(Complex& rhs) {
 
@@ -132,16 +132,6 @@ namespace Mt {
 
 	}
 
-#if !defined(_MSC_VER)
-	// Allows for 3+5_i to be treated as a complex number
-	// I,E Mt::Complex cmp = 3+5_i;
-	template<char ... Exp>
-	constexpr Complex Complex:operator"" _i() {
-
-}
-
-#endif
-*/
 	std::ostream& operator<<(std::ostream& os, const Complex& cplx) {
 		return (os << cplx.partReal << " " << cplx.partImaginary << "i");
 	}
