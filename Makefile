@@ -25,8 +25,6 @@ CFLAGS += -D'VERSION="$(VERSION)"'
 
 
 LDFLAGS :=  -lc++abi -lpthread
-LDFLAGS += `pkg-config --libs ncurses`
-LDFLAGS += `pkg-config --libs libzmq`
 
 SRCS := $(shell ls $(SRCDIR)/*.cc)
 _OBJS := $(SRCS:.cc=.o)
