@@ -8,6 +8,6 @@ before_install:
 install:
    - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
    - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
-   - sudo apt-get install -qq libc++ libc++abi 
+   - sudo apt-get install -qq libc++ libc++abi1 
 
 script: make
