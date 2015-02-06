@@ -30,6 +30,9 @@ OBJS := $(subst $(SRCDIR),$(OBJDIR),$(_OBJS))
 
 all: debug
 
+verbose: CFLAGS += -v
+verbose: debug
+
 debug: CFLAGS += -DDEBUG
 debug: CXX=$(CXX_DBG)
 debug: release

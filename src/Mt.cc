@@ -8,9 +8,10 @@
 
 
 auto main(int argc, char* argv[], char* env[]) -> int {
+#if defined(__SSE__) 
     // Fix flush mode, gives us just a little bit better floating points
     _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
-
+#endif
     signal(SIGINT, Term);
 
     // Banner

@@ -7,8 +7,8 @@ namespace Mt {
     class Module {
         private:
         public:
-            Module(void) { }
-            virtual ~Module(void);
+            Module(void);
+            virtual ~Module() = 0;
     };
     
 
