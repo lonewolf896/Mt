@@ -37,3 +37,6 @@
 #define QUOTE "\"I'm so clever that even I don't understand myself sometimes.\""
 
 #include <immintrin.h>
+#include <csignal>
+
+void Term(int Signal);

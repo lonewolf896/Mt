@@ -17,7 +17,7 @@
 %}
 
 %union {
-	Mt::Node *node;
+	Mt::NRoot *node;
     Mt::NBlock *block;
     Mt::NExpression *expr;
     Mt::NStatement *stmt;
@@ -94,14 +94,14 @@ list_decl : ident TASSIGN TCLT list_decl_args TCGT
 	Function definition. I.E f := (...) { ... }
 */
 func_decl : ident TASSIGN TLPAREN func_decl_args TRPAREN block
-		 	{ $$ = new NFunctionDeclaration(*$1, *$3, *$5); delete $3; }
+		 	{ $$ = new Mt::NFunctionDeclaration(*$1, *$3, *$5); delete $3; }
 		  ;
 /*
 
 	List Arguments E.G <> <1,2,...N>
 */
-list_decl_args : /* Empty */ { $$ = new VariableList(); }
-			   | numeric { $$ = new VariableList(); $$->push_back$($<numeric>1); }
+list_decl_args : /* Empty */ { $$ = new Mt::VariableList(); }
+			   | numeric { $$ = new Mt::VariableList(); $$->push_back$($<numeric>1); }
 			   | list_decl_args TCOMMA numeric { $1->push_back($<numeric>3); }
 			   ;
 /*

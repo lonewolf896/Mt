@@ -126,7 +126,7 @@ namespace yy {
     {
     #line 19 "etc/sml.yy" // lalr1.cc:377
 
-	Mt::Node *node;
+	Mt::NRoot *node;
     Mt::NBlock *block;
     Mt::NExpression *expr;
     Mt::NStatement *stmt;

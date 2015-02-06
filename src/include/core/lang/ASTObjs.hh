@@ -65,9 +65,9 @@ namespace Mt {
 	};
 
 
-	typedef std::vector<NStatement*> StatementList;
-	typedef std::vector<NExpression*> ExpressionList;
-	typedef std::vector<NVariableDeclaration*> VariableList;
+	typedef std::vector<Mt::NStatement*> StatementList;
+	typedef std::vector<Mt::NExpression*> ExpressionList;
+	typedef std::vector<Mt::NVariableDeclaration*> VariableList;
 
 	class NMethodCall : NExpression {
 		public:
