@@ -49,9 +49,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cc
 	@$(CXX) $(CFLAGS) -o $@ -c $<
 
 bison:
+	@echo -e Generating bison grammar
 	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.yy
+	@echo -e Moving misplaced file
+	@mv $(SRCDIR)/stack.hh $(SRCDIR)/include/core/lang/stack.hh
 
 lex: bison
+	@echo -e Generating lexical tokens
 	@lex -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.l
 
 grammar: lex bison
