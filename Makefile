@@ -19,8 +19,6 @@ CXX_DBG := clang++ -g -stdlib=libc++
 CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
 	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -I$(SRCDIR)/include
 
-CFLAGS += `pkg-config --cflags ncurses`
-CFLAGS += `pkg-config --cflags libzmq`
 CFLAGS += -D'VERSION="$(VERSION)"'
 
 
