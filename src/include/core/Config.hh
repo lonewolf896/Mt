@@ -29,6 +29,7 @@ namespace Mt {
 		void SetValue(std::string setting, std::string value);
 
 		void LoadFromFile(void);
+        void ReadEnvForConfig(char* env[]);
 
 		void SaveToFile(void);
 

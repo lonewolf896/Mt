@@ -22,7 +22,7 @@ CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-
 CFLAGS += -D'VERSION="$(VERSION)"'
 
 
-LDFLAGS :=  -lc++abi -lpthread
+LDFLAGS := -ltcmalloc -lc++abi -lpthread
 
 SRCS := $(shell ls $(SRCDIR)/*.cc)
 _OBJS := $(SRCS:.cc=.o)
@@ -32,6 +32,9 @@ all: debug
 
 verbose: CFLAGS += -v
 verbose: debug
+
+perf: LDFLAGS += -lprofiler
+perf: debug
 
 debug: CFLAGS += -DDEBUG
 debug: CXX=$(CXX_DBG)

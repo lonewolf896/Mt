@@ -7,10 +7,24 @@ namespace Mt {
 	class INumeric : IMtObject {
 		public:
 		// Disable default move and copy constructors for the interface
-		INumeric(void) { }
+	    INumeric(void) { }
+        // This glob of pragmas is to stop the compiler from complaining about our
+        // unused inum in the copy and move constructors, prevents the release build
+        // from failing
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#elif defined(__GCC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
 		INumeric(INumeric& inum) { };
 		INumeric(INumeric&& inum) { };
-
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GCC__)
+#pragma GCC diagnostics pop
+#endif
 		virtual INumeric& operator=(INumeric& rhs) = 0;
 
 		// Basic Arithmatic operations

@@ -1,11 +1,8 @@
 /*
-	Mt - MAT342 Application
-
-	Authors: Vijay Atwater-Van Ness, ... That's it so far. 
+	Mt - MAT342 Application 
 */
 
 #include "Mt.hh"
-
 
 auto main(int argc, char* argv[], char* env[]) -> int {
 #if defined(__SSE__) 
@@ -14,16 +11,23 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 #endif
     signal(SIGINT, Term);
 
+    // Argument Parsing
+    if(argc < 1) {
+        // Pass off the the argument parser.
+        std::cout << argv[0] << std::endl;
+    }
+
     // Banner
 	std::cout << VERSION_STRING << std::endl << std::endl;
 	std::cout << QUOTE << std::endl << std::endl;
 
 	// Configuration bits and bobs
 	Mt::Config::GetInstance()->OpenFile("mt.cfg");
+    Mt::Config::GetInstance()->ReadEnvForConfig(env);
 	Mt::Config::GetInstance()->LoadFromFile();
 
     // Print out the config settings
-    if((*Mt::Config::GetInstance()).GetValue("show_env") == "yes")
+    if(Mt::Config::GetInstance()->GetValue("show_env") == "yes")
 	    std::cout << "Environment settings:" << std::endl << (*Mt::Config::GetInstance()) << std::endl;
 
 	// Etc
@@ -31,11 +35,15 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 
 	// REPL
 	std::string strBuffLine;
+
+    // Init the parser
+    Mt::SParser::GetInstance();
 	while (true) {
 		std::cout << "mt:" << InterpLineNum++ << "> ";
 		std::getline(std::cin, strBuffLine);
 #if defined(_DEBUG) || defined(DEBUG)
 		std::cout << " " << strBuffLine << std::endl;
+        Mt::SParser::GetInstance()->Eval(strBuffLine);
 #endif
 	}	
 	return ERROR_SUCCESS;
@@ -43,7 +51,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 
 
 void Term(int Signal) {
-    
-    std::cout << std::endl;
+    if(Signal == SIGTERM); // Nop out, removes the warning...
+    std::cout << std::endl << "SIGTERM Caught, releasing resources" << std::endl;
     exit(0);
 }

@@ -44,7 +44,7 @@
 "/"						return TOKEN(TDIV);
 "%"						return TOKEN(TMOD);
 "^"						return TOKEN(TPOW);
-
+"~"                     return TOKEN(TROOT);
 .						std::cout << "Unknown Token" << std::endl; yyterminate();
 
 %%

@@ -4,6 +4,23 @@ Mt is an environment for interacting with the Simple[Sane] Math Language (SML)
 It was built for linear algebra MAT342 at UAT
 
 
+## Requierd Bits
+In order to build Mt, you need a few things, first off is both clang and GCC, we use clang for the debug build, as it provides decent output for errors and such, GCC is used in the release build to it having slightly better native code generation and optimization.
+
+On the clang side, libc++ and libc++abi are needed, other than that what GCC ships with should be fine.
+
+The next thing that is needed would be gperftools, we use the tcmalloc as a malloc replacement and as a wrapper to our object allocation. In addition to that it has built-in heap profiling.
+
+We also use the CPU profiler so thats in there as well.
+
+You can find gperftools over at https://code.google.com/p/gperftools/
+
+## Building
+
+In order to build Mt, ensure that you have all of the needed bits installed, then a simple `make` in the Mt directory will make it in debug mode, if you want better optimized code, `make release` is what you want.
+
+To enable the CPU profiler, `make prof`
+
 ## Simple[Sane] Math Language (SML)
 The language that is used by Mt is called SML, it takes a bit from C style languages in addition to attempting to honer mathematic notation.
 

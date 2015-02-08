@@ -17,6 +17,7 @@ namespace Mt {
     ModuleEngine* ModuleEngine::GetInstance(void) {
         if (ModuleEngine::instance == nullptr)
             return (ModuleEngine::instance = new ModuleEngine());
+        return ModuleEngine::instance;
     }
 
 
