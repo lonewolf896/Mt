@@ -35,7 +35,7 @@ namespace Mt {
         bool OperandSwitch = false;
         Expression exp;
         for(auto _m : MutableExpression) {
-            const char * m = const_cast<const char*>(_m);
+            const char * m = &_m;
              if(!OperandSwitch) {
                 if(strncmp(m, "+", 1)) {
                     exp.Oper = ADD;
