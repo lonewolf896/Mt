@@ -33,13 +33,13 @@ namespace Mt {
     class Module {
         private:
             static Module* instance;
-            Module(void) { } 
+            Module(void);
         public:
             static Module* GetInstance(void) {
                 if(Module::instance == nullptr)
                     Module::instance = new Module();
                 return Module::instance;
             }
-            virtual ~Module() = 0;
+            ~Module();
     };
 }
