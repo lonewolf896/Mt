@@ -4,6 +4,18 @@
 
 #include "Mt.hh"
 
+
+/*! \mainpage Mt - Mathematics Envrioment
+
+    This documentation details the working of Mt at a mid-level for understanding.
+
+    This provides a means for anyone who is new on the project, or that wants to know
+    how the project works, to get aquanted with some of the in-s and outs.
+
+    Each member and class will have it's own documentation on it's finite details and it's
+    internal workings, allowing for an in-depth look at explicit functionality.
+
+ */
 auto main(int argc, char* argv[], char* env[]) -> int {
 #if defined(__SSE__) 
     // Fix flush mode, gives us just a little bit better floating points

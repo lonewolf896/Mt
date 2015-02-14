@@ -4,6 +4,13 @@
 #pragma once
 #include "IMtObject.hh"
 namespace Mt {
+    /*! \class INumeric
+        \brief Core numeric implementation
+
+        This abstract class is the base for all Mt numeric implementations, such as Mt::Complex, Mt::Integer, and Mt::Double,
+        this allows for all of those types to be operated on by each other, and also allows for uniformity amoung the internal
+        system.
+    */
 	class INumeric : IMtObject {
 		public:
 		// Disable default move and copy constructors for the interface
@@ -25,6 +32,9 @@ namespace Mt {
 #elif defined(__GCC__)
 #pragma GCC diagnostics pop
 #endif
+        /*!
+            The assigment operator, this should check for type so you cant assign a Mt::Complex to an Mt::Integer
+        */
 		virtual INumeric& operator=(INumeric& rhs) = 0;
 
 		// Basic Arithmatic operations

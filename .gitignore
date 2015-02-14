@@ -32,6 +32,7 @@
 [Bb]uild/
 [Dd]ebug/
 [Rr]elease/
+[Dd]ocs/
 
 *.suo
 *.sdf

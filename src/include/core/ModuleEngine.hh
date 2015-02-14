@@ -6,6 +6,8 @@
 #include "Module.hh"
 
 namespace Mt {
+    typedef Mt::Module* create_t;
+    typedef void destroy_t(Mt::Module*);
     class ModuleEngine {
         private:
             typedef struct module_t {

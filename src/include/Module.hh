@@ -17,7 +17,9 @@
 */
 
 #pragma once
-// Macro to make the module a visable module,
+/*!
+    This macro addes the needed external C calls that Mt needs for loading the module
+*/
 #define MODULE(MODULE_NAME)                            \
 extern "C" Mt::Module* InitializeModule() {            \
     return Mt::Module::GetInstance;                    \
@@ -30,16 +32,41 @@ extern "C" const char * ModuleName(void)               \
 }
 
 namespace Mt { 
+    /*! \class Module
+        \brief Module for Mt extensability
+
+        This class contains the header that all Mt modules need to implement in order
+        to be considered modules.
+
+        Once a module implements this class, it is requiered that they call the MODULE macro at 
+        the bottom of the implementation source file, as to allow for Mt to properly load the C++ class
+
+    */
     class Module {
         private:
+            /*!
+                Pointer for holding a pointer of the current instance of this class as to alow for ease of
+                module calling
+            */
             static Module* instance;
+            /*!
+                Module constructor, only used when Module::GetInstance() is called and should not be used
+                mannualy.
+            */
             Module(void);
         public:
+            /*!
+                Gets an instance of a module if it is already in memory, if not it constructs one
+                and then returns a pointer to the newly constructed instance.
+            */
             static Module* GetInstance(void) {
                 if(Module::instance == nullptr)
                     Module::instance = new Module();
                 return Module::instance;
             }
+            /*!
+                Module distructor, called prior to module unloading to distroy the created instance 
+            */
             ~Module();
     };
 }

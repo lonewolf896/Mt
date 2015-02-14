@@ -65,10 +65,15 @@ grammar: lex bison
 .PHONY: clean
 clean:
 	@echo -e Cleaning...
-	@rm -f $(OBJS) $(TARGET)
+	@rm -rf $(OBJS) $(TARGET) ./docs
 
 .PHONY: directories
 directories:
 	if [ ! -d $(OBJDIR) -a ! -d $(OUTDIR) ]; then \
 		mkdir -p $(OBJDIR) $(OUTDIR); \
 	fi
+
+.PHONY: docs
+docs:
+	@echo -e Generating documentation
+	@(cat Doxyfile ; echo "PROJECT_NUMBER=$(VERSION)") | doxygen - 
