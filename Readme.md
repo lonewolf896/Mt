@@ -15,6 +15,8 @@ We also use the CPU profiler so thats in there as well.
 
 You can find gperftools over at https://code.google.com/p/gperftools/
 
+doxygen is also needed if you wish to build the docs, but a normal make wont do that anyway so if you just want to build from source and have no interest in documentation then you dont need it.
+
 ## Building
 
 In order to build Mt, ensure that you have all of the needed bits installed, then a simple `make` in the Mt directory will make it in debug mode, if you want better optimized code, `make release` is what you want.
