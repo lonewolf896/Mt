@@ -6,7 +6,7 @@
 
 /*! \mainpage Mt - Mathematics Environment
 
-    \section Introduction
+    \section intro Introduction
 
     This documentation details the working of Mt at a mid-level for understanding.
 
@@ -16,7 +16,7 @@
     Each member and class will have it's own documentation on it's finite details and it's
     internal workings, allowing for an in-depth look at explicit functionality.
 
-    \section Overview
+    \section overview Overview
 
     Mt is developed as a part of MAT342 - Linear Algebra as a free, cross-platform student made 
     replacement for MathWorks MatLab. Mt uses a new language called SML, or Simple[Sane] Math Language.
@@ -25,7 +25,7 @@
     Mt is also built to be extensible and open, anyone can build a module that can expand Mt or SML and have it
     work with any other Mt setup.
 
-    \section SML
+    \section sml SML
 
     Simple[Sane] Math Language is the language that is used by Mt. It allows for the user to express mathematical
     constructs in a way that seems as natural as possible. Disbanding all of the forced pragmatic constructs such
@@ -47,7 +47,7 @@
 
     For more information see the SML.md document
 
-    \section Modules
+    \section modules Modules
 
     Mt is modular by default, allowing for anyone to build extensions onto the core Mt engine,
     to do so, all one needs to do is implement the Mt::Module class in their module and call the
@@ -70,15 +70,15 @@
 
     And that is all there is to it.
 
-    \section Building From Source
+    \section build Building From Source
 
     In order to build MT from source, you need a few things
 
-    * clang ( >= 3.5 ), g++ ( >= 4.9 )
-    * libc++, libc++abi
-    * gperftools (https://code.google.com/p/gperftools/)
-    * doxygen
-    * latex, pdflatex
+    - clang ( >= 3.5 ), g++ ( >= 4.9 )
+    - libc++, libc++abi
+    - gperftools (https://code.google.com/p/gperftools/)
+    - doxygen
+    - latex, pdflatex
 
     Once you have everything, you can issue a `make` and it should build a
     debug build for you. If you wish for a release build `make release` is what you want.
@@ -86,6 +86,31 @@
     To build the documentation, issue a `make docs` and it will build the docs for you.
 
     If you wish to enable CPU profiling, `make prof` will build the profiling library into the binary.
+    
+    \section license License
+
+    The MIT License (MIT)
+
+    Copyright (c) 2014 Vijay Atwater-Van Ness, Trevor Berninger
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
  */
 auto main(int argc, char* argv[], char* env[]) -> int {
 #if defined(__SSE__) 
