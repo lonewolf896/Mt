@@ -3,8 +3,7 @@ Mt is an environment for interacting with the Simple[Sane] Math Language (SML)
 
 It was built for linear algebra MAT342 at UAT
 
-
-## Requierd Bits
+## Required Bits
 In order to build Mt, you need a few things, first off is both clang and GCC, we use clang for the debug build, as it provides decent output for errors and such, GCC is used in the release build to it having slightly better native code generation and optimization.
 
 On the clang side, libc++ and libc++abi are needed, other than that what GCC ships with should be fine.
@@ -16,6 +15,8 @@ We also use the CPU profiler so thats in there as well.
 You can find gperftools over at https://code.google.com/p/gperftools/
 
 doxygen is also needed if you wish to build the docs, but a normal make wont do that anyway so if you just want to build from source and have no interest in documentation then you dont need it.
+
+If you do use doxygen then latex and pdflatex are needed to build the PDF manual.
 
 ## Building
 

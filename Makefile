@@ -77,3 +77,4 @@ directories:
 docs:
 	@echo -e Generating documentation
 	@(cat Doxyfile ; echo "PROJECT_NUMBER=$(VERSION)") | doxygen - 
+	@(pushd ./docs/latex ; make ; popd)

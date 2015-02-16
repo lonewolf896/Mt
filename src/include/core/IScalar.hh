@@ -5,8 +5,15 @@
 
 #include "INumeric.hh"
 namespace Mt {
-	class IScalar : INumeric {
+	namespace core {
+		/*! \class IScalar
+			\brief Scalar Numeric Type
 
-	};
+			This abstract class is the base of all non-complex and non-intricate numerical types
 
+		*/
+		class IScalar : INumeric {
+
+		};
+	}
 }

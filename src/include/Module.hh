@@ -7,7 +7,7 @@
 
     To implement an Mt Module, all you need to do is include this header
     after that, implement the module class, and call the MODULE macro, this
-    will make the module visable, there is a disparity between using the built
+    will make the module visible, there is a disparity between using the built
     in class headers within the module, meaning that there could be an issue with
     resolving the proper methods and such within Mt itself when referencing internal
     types such as Mt::Complex, Mt::Integer, Mt::Double, Mt::Vector, and Mt::Matrix, this
@@ -18,7 +18,7 @@
 
 #pragma once
 /*!
-    This macro addes the needed external C calls that Mt needs for loading the module
+    This macro adds the needed external C calls that Mt needs for loading the module
 */
 #define MODULE(MODULE_NAME)                            \
 extern "C" Mt::Module* InitializeModule() {            \
@@ -33,12 +33,12 @@ extern "C" const char * ModuleName(void)               \
 
 namespace Mt { 
     /*! \class Module
-        \brief Module for Mt extensability
+        \brief Module for Mt extensibility
 
         This class contains the header that all Mt modules need to implement in order
         to be considered modules.
 
-        Once a module implements this class, it is requiered that they call the MODULE macro at 
+        Once a module implements this class, it is required that they call the MODULE macro at 
         the bottom of the implementation source file, as to allow for Mt to properly load the C++ class
 
     */
@@ -51,7 +51,7 @@ namespace Mt {
             static Module* instance;
             /*!
                 Module constructor, only used when Module::GetInstance() is called and should not be used
-                mannualy.
+                manually.
             */
             Module(void);
         public:
@@ -65,8 +65,8 @@ namespace Mt {
                 return Module::instance;
             }
             /*!
-                Module distructor, called prior to module unloading to distroy the created instance 
+                Module destructor, called prior to module unloading to distroy the created instance 
             */
-            ~Module();
+            ~Module(void);
     };
 }

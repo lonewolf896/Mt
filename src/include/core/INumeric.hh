@@ -4,20 +4,21 @@
 #pragma once
 #include "IMtObject.hh"
 namespace Mt {
-    /*! \class INumeric
-        \brief Core numeric implementation
+	namespace core {
+	    /*! \class INumeric
+	        \brief Core numeric implementation
 
-        This abstract class is the base for all Mt numeric implementations, such as Mt::Complex, Mt::Integer, and Mt::Double,
-        this allows for all of those types to be operated on by each other, and also allows for uniformity amoung the internal
-        system.
-    */
-	class INumeric : IMtObject {
-		public:
-		// Disable default move and copy constructors for the interface
-	    INumeric(void) { }
-        // This glob of pragmas is to stop the compiler from complaining about our
-        // unused inum in the copy and move constructors, prevents the release build
-        // from failing
+	        This abstract class is the base for all Mt numeric implementations, such as Mt::Complex, Mt::Integer, and Mt::Double,
+	        this allows for all of those types to be operated on by each other, and also allows for uniformity amoung the internal
+	        system.
+	    */
+		class INumeric : IMtObject {
+			public:
+			// Disable default move and copy constructors for the interface
+		    INumeric(void) { }
+	        // This glob of pragmas is to stop the compiler from complaining about our
+	        // unused inum in the copy and move constructors, prevents the release build
+	        // from failing
 #if defined(__clang__)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -25,40 +26,41 @@ namespace Mt {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #endif
-		INumeric(INumeric& inum) { };
-		INumeric(INumeric&& inum) { };
+			INumeric(INumeric& inum) { };
+			INumeric(INumeric&& inum) { };
 #if defined(__clang__)
 #pragma clang diagnostic pop
 #elif defined(__GCC__)
 #pragma GCC diagnostics pop
 #endif
-        /*!
-            The assigment operator, this should check for type so you cant assign a Mt::Complex to an Mt::Integer
-        */
-		virtual INumeric& operator=(INumeric& rhs) = 0;
+	        /*!
+	            The assigment operator, this should check for type so you cant assign a Mt::Complex to an Mt::Integer
+	        */
+			virtual INumeric& operator=(INumeric& rhs) = 0;
 
-		// Basic Arithmatic operations
-		virtual INumeric& operator+(INumeric& rhs) = 0;
-		virtual INumeric& operator-(INumeric& rhs) = 0;
-		virtual INumeric& operator+() = 0;
-		virtual INumeric& operator-() = 0;
-		virtual INumeric& operator*(INumeric& rhs) = 0;
-		virtual INumeric& operator/(INumeric& rhs) = 0;
-		virtual INumeric& operator%(INumeric& rhs) = 0;
-		virtual INumeric& operator++() = 0;
-		virtual INumeric& operator++(int) = 0;
-		virtual INumeric& operator--() = 0;
-		virtual INumeric& operator--(int) = 0;
+			// Basic Arithmatic operations
+			virtual INumeric& operator+(INumeric& rhs) = 0;
+			virtual INumeric& operator-(INumeric& rhs) = 0;
+			virtual INumeric& operator+() = 0;
+			virtual INumeric& operator-() = 0;
+			virtual INumeric& operator*(INumeric& rhs) = 0;
+			virtual INumeric& operator/(INumeric& rhs) = 0;
+			virtual INumeric& operator%(INumeric& rhs) = 0;
+			virtual INumeric& operator++() = 0;
+			virtual INumeric& operator++(int) = 0;
+			virtual INumeric& operator--() = 0;
+			virtual INumeric& operator--(int) = 0;
 
-		// Comparason operators
-		virtual bool operator==(INumeric const& rhs) = 0;
-		virtual bool operator!=(INumeric const& rhs) = 0;
-		virtual bool operator>(INumeric const& rhs) = 0;
-		virtual bool operator<(INumeric const& rhs) = 0;
-		virtual bool operator>=(INumeric const& rhs) = 0;
-		virtual bool operator<=(INumeric const& rhs) = 0;
+			// Comparason operators
+			virtual bool operator==(INumeric const& rhs) = 0;
+			virtual bool operator!=(INumeric const& rhs) = 0;
+			virtual bool operator>(INumeric const& rhs) = 0;
+			virtual bool operator<(INumeric const& rhs) = 0;
+			virtual bool operator>=(INumeric const& rhs) = 0;
+			virtual bool operator<=(INumeric const& rhs) = 0;
 
-		// Virtual Destructor
-		virtual ~INumeric(void) {}
-	};
+			// Virtual Destructor
+			virtual ~INumeric(void) {}
+		}; 
+	}
 }

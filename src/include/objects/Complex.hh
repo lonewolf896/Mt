@@ -8,7 +8,15 @@
 #include "core/INumeric.hh"
 
 namespace Mt {
-	class Complex : public INumeric {
+	namespace objects {
+		/*! \class Complex
+			\brief Mt Complex Number
+
+			This class allows the representation of complex numbers 
+
+			\todo Replace long long with Mt::core::IScalar
+		*/
+		class Complex : public Mt::core::INumeric {
 		private:
 			long long partReal;
 			long long partImaginary;
@@ -59,5 +67,5 @@ namespace Mt {
 		friend std::ostream& operator<<(std::ostream& os, const Complex& cplx);
 
 	};
+	}
 }
-
