@@ -1,80 +1,61 @@
 # Mt [![Build Status](https://travis-ci.org/XAMPP/Mt.svg)](https://travis-ci.org/XAMPP/Mt)
-Mt is an environment for interacting with the Simple[Sane] Math Language (SML)
+Mt is developed as a part of MAT342 - Linear Algebra as a free, cross-platform student made replacement for MathWorks MatLab. Mt uses a new language called SML, or Simple[Sane] Math Language. SML allows for one to describe mathematical problems in a simple, succinct way.
 
-It was built for linear algebra MAT342 at UAT
+Mt is also built to be extensible and open, anyone can build a module that can expand Mt or SML and have it work with any other Mt setup.
 
-## Required Bits
-In order to build Mt, you need a few things, first off is both clang and GCC, we use clang for the debug build, as it provides decent output for errors and such, GCC is used in the release build to it having slightly better native code generation and optimization.
+## Building from source
 
-On the clang side, libc++ and libc++abi are needed, other than that what GCC ships with should be fine.
+In order to build MT from source, you need a few things
 
-The next thing that is needed would be gperftools, we use the tcmalloc as a malloc replacement and as a wrapper to our object allocation. In addition to that it has built-in heap profiling.
+ * clang ( >= 3.5 ), g++ ( >= 4.9 )
+ * libc++, libc++abi
+ * gperftools (https://code.google.com/p/gperftools/)
+ * doxygen
+ * latex, pdflatex
 
-We also use the CPU profiler so thats in there as well.
+Once you have everything, you can issue a `make` and it should build a debug build for you. If you wish for a release build `make release` is what you want.
 
-You can find gperftools over at https://code.google.com/p/gperftools/
+To build the documentation, issue a `make docs` and it will build the docs for you.
 
-doxygen is also needed if you wish to build the docs, but a normal make wont do that anyway so if you just want to build from source and have no interest in documentation then you dont need it.
+If you wish to enable CPU profiling, `make prof` will build the profiling library into the binary.
 
-If you do use doxygen then latex and pdflatex are needed to build the PDF manual.
+## Modules
 
-## Building
+Mt is modular by default, allowing for anyone to build extensions onto the core Mt engine, to do so, all one needs to do is implement the Mt::Module class in their module and call the MODULE macro to make it a module, a simple module will look like this.
 
-In order to build Mt, ensure that you have all of the needed bits installed, then a simple `make` in the Mt directory will make it in debug mode, if you want better optimized code, `make release` is what you want.
+~~~{.cpp}
+#include <Module.hh>
 
-To enable the CPU profiler, `make prof`
-
-## Simple[Sane] Math Language (SML)
-The language that is used by Mt is called SML, it takes a bit from C style languages in addition to attempting to honer mathematic notation.
-
-SML has one core type `IMtObject` this is the basis for all other items in the language, it is then broken out into the complex types such as the `StaticMatrix` and the `DynamicMatrix` and then all the `INumeric` types.
-
-Everything under `INumeric` consists of the operable types, `double`, `Complex`, `Rational`, and `Integer`
-
-Any `INumeric` type can be mathematically manipulated by any other `INumeric` type. Meaning you can multiply complex and rational numbers together to get a result.
-
-
-Functions also inherit from `IMtObject` Meaning that just like an `INumeric` They can be passed to any method that takes a `IMtObject`, In this case the function will attempt to be solved prior to the method that is invoking the function, as to resolve to an `INumeric`
-
-
-### Examples
-
-To perform a basic evaluation
-
-```
-1+4
-```
-
-To assign the result of an evaluation to a variable
-
-```
-A := 1+4
-```
-
-To define a function
-
-```
-F := (x,y) {
-	z = cos(y)*x
-
-	ret z
+Mt::Module::Module(void) {
+    // Initialization Code
 }
 
-A := F(1,6)*5
-
-```
-
-Just like numerics, functions can be passed into other functions
-
-```
-A := (B, C) {
-	ret B(C+6)*7
+Mt::Module::~Module(void) {
+    // Teardown Code
 }
 
-B := (C) {
-	ret C * cos(-C)
+MODULE("SuperMath")
+
+~~~
+
+And that is all there is to it.
+
+## SML
+
+Simple[Sane] Math Language is the language that is used by Mt. It allows for the user to express mathematical constructs in a way that seems as natural as possible. Disbanding all of the forced pragmatic constructs such as for loops, allowing one to express even things like summations in a succinct way.
+
+A mathematic expression written in SML looks just like it would on paper
+
+~~~
+1+2-sin(4)
+~~~
+
+More complex examples can be expressed as well, like functions
+
+~~~
+F := (x) {
+    ret sin(x)+x/1
 }
+~~~
 
-C := A(B, 7)
-
-```
+For more information see the SML.md document

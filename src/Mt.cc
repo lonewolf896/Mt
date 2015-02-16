@@ -69,6 +69,23 @@
     ~~~
 
     And that is all there is to it.
+
+    \section Building From Source
+
+    In order to build MT from source, you need a few things
+
+    * clang ( >= 3.5 ), g++ ( >= 4.9 )
+    * libc++, libc++abi
+    * gperftools (https://code.google.com/p/gperftools/)
+    * doxygen
+    * latex, pdflatex
+
+    Once you have everything, you can issue a `make` and it should build a
+    debug build for you. If you wish for a release build `make release` is what you want.
+
+    To build the documentation, issue a `make docs` and it will build the docs for you.
+
+    If you wish to enable CPU profiling, `make prof` will build the profiling library into the binary.
  */
 auto main(int argc, char* argv[], char* env[]) -> int {
 #if defined(__SSE__) 
