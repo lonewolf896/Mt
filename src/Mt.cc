@@ -75,6 +75,7 @@
     In order to build MT from source, you need a few things
 
     - clang ( >= 3.5 ), g++ ( >= 4.9 )
+    - flex ( >= 2.5 ), bison ( >= 3.4 )
     - libc++, libc++abi
     - gperftools (https://code.google.com/p/gperftools/)
     - doxygen

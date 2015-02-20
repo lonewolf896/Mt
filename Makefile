@@ -58,7 +58,7 @@ bison:
 
 lex: bison
 	@echo -e Generating lexical tokens
-	@lex -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.l
+	@flex -+ -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.l
 
 grammar: lex bison
 

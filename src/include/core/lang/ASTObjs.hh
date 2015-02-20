@@ -61,7 +61,7 @@ namespace Mt {
 			class NDouble : NExpression{
 				public:
 					Mt::objects::Double d;
-					NDouble(int val) : d(val) {}
+					NDouble(double val) : d(val) {}
 			};
 			/*! \class NComplex
 				\brief SML Complex Representation

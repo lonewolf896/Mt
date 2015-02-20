@@ -1,6 +1,8 @@
 /*
 	sml.l - Simple Math Language (SML) flex lexer grammar
+
 */
+
 %{
 	#include <string>
 	#include "core/lang/ASTObjs.hh"
@@ -45,6 +47,6 @@
 "%"						return TOKEN(TMOD);
 "^"						return TOKEN(TPOW);
 "~"                     return TOKEN(TROOT);
-.						std::cout << "Unknown Token" << std::endl; yyterminate();
+.						std::cout << "Error: Unknown Token" << std::endl; yyterminate();
 
 %%
