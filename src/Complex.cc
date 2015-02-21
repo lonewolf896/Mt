@@ -1,5 +1,5 @@
 /*
-	Complex.cc - Implelentation Details for complex number class
+	Complex.cc - Implementation Details for complex number class
 */
 
 #include <objects/Complex.hh>
@@ -8,15 +8,15 @@ namespace Mt {
 	namespace objects {
 		// Constructors
 		Complex::Complex(void) {
-			this->partReal = (this->partImaginary = 0LL);
+			this->partReal = (this->partImaginary = 0.0);
 		}
 
-		Complex::Complex(std::pair<long long, long long> parts) {
+		Complex::Complex(std::pair<mtfloat_t, mtfloat_t> parts) {
 			this->partReal = parts.first;
 			this->partImaginary = parts.second;
 		}
 
-		Complex::Complex(long long real, long long i) {
+		Complex::Complex(mtfloat_t real, mtfloat_t i) {
 			this->partReal = real;
 			this->partImaginary = i;
 
@@ -28,28 +28,28 @@ namespace Mt {
 		}
 
 		// Misc methods
-		void Complex::SetRealPart(long long real) {
+		void Complex::SetRealPart(mtfloat_t real) {
 			this->partReal = real;
 		}
 
-		void Complex::SetImaginaryPart(long long i) {
+		void Complex::SetImaginaryPart(mtfloat_t i) {
 			this->partImaginary = i;
 		}
 
-		void Complex::SetPair(std::pair<long long, long long> cmplxPair) {
+		void Complex::SetPair(std::pair<mtfloat_t, mtfloat_t> cmplxPair) {
 			this->partReal = cmplxPair.first;
 			this->partImaginary = cmplxPair.second;
 		}
 
-		long long Complex::GetRealPart(void) {
+		mtfloat_t Complex::GetRealPart(void) {
 			return this->partReal;
 		}
 
-		long long Complex::GetImaginaryPart(void) {
+		mtfloat_t Complex::GetImaginaryPart(void) {
 			return this->partImaginary;
 		}
 
-		std::pair<long long, long long> Complex::GetPair(void) {
+		std::pair<mtfloat_t, mtfloat_t> Complex::GetPair(void) {
 			return std::make_pair(this->partReal, this->partImaginary);
 		}
 

@@ -4,11 +4,9 @@
 #pragma once
 
 #include "core/INumeric.hh"
-#include "core/IScalar.hh"
 
+#include "objects/Scalar.hh"
 #include "objects/Complex.hh"
-#include "objects/Integer.hh"
-#include "objects/Double.hh"
 
 #include <vector>
 #include <map>
@@ -50,7 +48,7 @@ namespace Mt {
 			*/
 			class NInteger : NExpression {
 				public:
-					Mt::objects::Integer i;
+					Mt::objects::Scalar i;
 					NInteger(int val) : i(val) {}
 			};
 			/*! \class NDouble
@@ -60,7 +58,7 @@ namespace Mt {
 			*/
 			class NDouble : NExpression{
 				public:
-					Mt::objects::Double d;
+					Mt::objects::Scalar d;
 					NDouble(double val) : d(val) {}
 			};
 			/*! \class NComplex

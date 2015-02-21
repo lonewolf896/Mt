@@ -3,6 +3,7 @@
 */
 #pragma once
 #include "IMtObject.hh"
+#include "Types.hh"
 namespace Mt {
 	namespace core {
 	    /*! \class INumeric

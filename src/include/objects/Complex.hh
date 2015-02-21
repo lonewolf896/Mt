@@ -18,31 +18,31 @@ namespace Mt {
 		*/
 		class Complex : public Mt::core::INumeric {
 		private:
-			long long partReal;
-			long long partImaginary;
+			mtfloat_t partReal;
+			mtfloat_t partImaginary;
 		public:
 
 		// Constructors
 		Complex(void);
-		Complex(std::pair<long long, long long> parts);
-		Complex(long long real, long long i);
+		Complex(std::pair<mtfloat_t, mtfloat_t> parts);
+		Complex(mtfloat_t real, mtfloat_t i);
 
 		~Complex(void);
 
 		// Misc functions
-		void SetRealPart(long long real);
-		void SetImaginaryPart(long long i);
-		void SetPair(std::pair<long long, long long> cmplxPair);
+		void SetRealPart(mtfloat_t real);
+		void SetImaginaryPart(mtfloat_t i);
+		void SetPair(std::pair<mtfloat_t, mtfloat_t> cmplxPair);
 
-		long long GetRealPart(void);
-		long long GetImaginaryPart(void);
-		std::pair<long long, long long> GetPair(void);
+		mtfloat_t GetRealPart(void);
+		mtfloat_t GetImaginaryPart(void);
+		std::pair<mtfloat_t, mtfloat_t> GetPair(void);
 
 		// Operator overloads
 
 		Complex& operator=(Complex& rhs);
 
-		// Basic Arithmatic operations
+		// Basic Arithmetic operations
 		Complex& operator+(Complex& rhs);
 		Complex& operator-(Complex& rhs);
 		Complex& operator+();
@@ -55,7 +55,7 @@ namespace Mt {
 		Complex& operator--();
 		Complex& operator--(int);
 
-		// Comparason operators
+		// Comparison operators
 		bool operator==(Complex const& rhs);
 		bool operator!=(Complex const& rhs);
 		bool operator>(Complex const& rhs);

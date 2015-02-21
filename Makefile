@@ -33,6 +33,10 @@ all: debug
 verbose: CFLAGS += -v
 verbose: debug
 
+qmath: LDFLAGS += -lquadmath
+qmath: CFLAGS += -D'_MT_USE_LIB_QUADMATH_'
+qmath: debug 
+
 perf: LDFLAGS += -lprofiler
 perf: debug
 
