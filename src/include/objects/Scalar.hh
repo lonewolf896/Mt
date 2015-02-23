@@ -1,5 +1,5 @@
 /*
-	IScalar.hh - Scalar interface
+	Scalar.hh - Scalar
 */
 #pragma once
 
@@ -13,9 +13,39 @@ namespace Mt {
 			This abstract class is the base of all non-complex and non-intricate numerical types
 
 		*/
-		class Scalar : INumeric {
+		class Scalar : core::INumeric {
 		private:
 			mtfloat_t Internal;
+		public:
+			Scalar();
+			Scalar(mtfloat_t num);
+			Scalar(Scalar& s);
+			Scalar(Scalar&& s);
+			~Scalar();
+			Scalar& operator=(Scalar& rhs);
+			Scalar& operator=(mtfloat_t& rhs);
+			Scalar& operator+(Scalar& rhs);
+			Scalar& operator+(mtfloat_t& rhs);
+			Scalar& operator-(Scalar& rhs);
+			Scalar& operator-(mtfloat_t& rhs);
+			Scalar& operator*(Scalar& rhs);
+			Scalar& operator*(mtfloat_t& rhs);
+			Scalar& operator/(Scalar& rhs);
+			Scalar& operator/(mtfloat_t& rhs);
+			Scalar& operator++(int);
+			Scalar& operator--(int);
+			bool operator==(Scalar const& rhs);
+			bool operator==(mtfloat_t const& rhs);
+			bool operator!=(Scalar const& rhs);
+			bool operator!=(mtfloat_t const& rhs);
+			bool operator>(Scalar const& rhs);
+			bool operator>(mtfloat_t const& rhs);
+			bool operator<(Scalar const& rhs);
+			bool operator<(mtfloat_t const& rhs);
+			bool operator>=(Scalar const& rhs);
+			bool operator>=(mtfloat_t const& rhs);
+			bool operator<=(Scalar const& rhs);
+			bool operator<=(mtfloat_t const& rhs);
 		};
 	}
 }
