@@ -24,7 +24,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 
     // Banner
 	std::cout << VERSION_STRING << std::endl << std::endl;
-	    // Enable the rotating banner, if _NOFUN is not defined
+	// Enable the rotating banner, if _NOFUN is not defined
 #if !defined(_NOFUN)
     std::default_random_engine generator;
     std::uniform_int_distribution<int> distribution(0,4);
@@ -41,6 +41,8 @@ auto main(int argc, char* argv[], char* env[]) -> int {
     if(Mt::core::Config::GetInstance()->GetValue("show_env") == "yes")
 	    std::cout << "Environment settings:" << std::endl << (*Mt::core::Config::GetInstance()) << std::endl;
 
+    // Load modules and such
+    Mt::core::ModuleEngine::GetInstance()->LoadAll(Mt::core::Config::GetInstance()->GetValue("module_dir"));
 	// Etc
 	unsigned long long InterpLineNum = 1ULL;
 

@@ -27,6 +27,7 @@
 
 #include <core/Config.hh>
 #include <core/lang/SParser.hh>
+#include <core/ModuleEngine.hh>
 
 #define ERROR_SUCCESS 0
 #define ERROR_FAILURE 1

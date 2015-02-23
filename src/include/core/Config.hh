@@ -11,6 +11,7 @@
 #include <map>
 #include <fstream>
 #include <string>
+#include <algorithm>
 #include <iostream>
 namespace Mt {
     namespace core {

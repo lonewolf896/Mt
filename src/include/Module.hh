@@ -31,6 +31,10 @@ extern "C" const char * ModuleName(void)               \
     return MODULE_NAME;                                \
 }
 
+
+#include <functional>
+#include <map>
+
 namespace Mt { 
     /*! \class Module
         \brief Module for Mt extensibility
@@ -65,8 +69,10 @@ namespace Mt {
                 return Module::instance;
             }
             /*!
-                Module destructor, called prior to module unloading to distroy the created instance 
+                Module destructor, called prior to module unloading to destroy the created instance 
             */
             ~Module(void);
+
+            void RegisterCommands(std::map<std::string, std::function<void(void *, va_list)>>* FunctionMap);
     };
 }

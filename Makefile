@@ -84,5 +84,5 @@ docs:
 	@(pushd ./docs/latex ; make ; popd)
 
 .PHONY: rungdb
-rungdb: debug
+rungdb:
 	gdb -tui $(TARGET)

@@ -2,8 +2,6 @@
 	Scalar.cc - Scalar
 */
 
-// Change :)
-
 #include "objects/Scalar.hh"
 
 namespace Mt {
@@ -29,7 +27,7 @@ namespace Mt {
 		}
 
         /*!
-        	The assigment operator, this should check for type so you cant assign a Mt::Complex to an Mt::Integer
+        	The assignment operator, this should check for type so you cant assign a Mt::Complex to an Mt::Integer
         */
 		Scalar& Scalar::operator=(Scalar& rhs){
 			Internal = rhs.Internal;
@@ -40,7 +38,7 @@ namespace Mt {
 			return *this;
 		}
 
-		// Basic Arithmatic operations
+		// Basic Arithmetic operations
 		Scalar& Scalar::operator+(Scalar& rhs){
 			Scalar s(Internal + rhs.Internal);
 			return s;
@@ -66,7 +64,7 @@ namespace Mt {
 			return *this;
 		}
 
-		// Basic Arithmatic operations mtfloat_t
+		// Basic Arithmetic operations mtfloat_t
 		Scalar& Scalar::operator+(mtfloat_t& rhs){
 			Scalar s(Internal + rhs);
 			return s;
@@ -84,7 +82,7 @@ namespace Mt {
 			return s;
 		}
 
-		// Comparason Scalar::operators
+		// Comparison Scalar::operators
 		bool Scalar::operator==(Scalar const& rhs){
 			return Internal == rhs.Internal;
 		}
@@ -103,7 +101,7 @@ namespace Mt {
 		bool Scalar::operator<=(Scalar const& rhs){
 			return Internal <= rhs.Internal;
 		}
-		// Comparason mtfloat_t
+		// Comparison mtfloat_t
 		bool Scalar::operator==(mtfloat_t const& rhs){
 			return Internal == rhs;
 		}

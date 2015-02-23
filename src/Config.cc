@@ -41,9 +41,10 @@ namespace Mt {
 				std::string cline;
 				while (std::getline(this->fileHndl, cline)) {
 					if (cline[0] != '#') {
+						cline.erase(std::remove_if(cline.begin(), cline.end(),  (int(*)(int))isspace), cline.end());
 						std::size_t pos = cline.find("=");
 						if (pos != std::string::npos) {
-							std::string key = cline.substr(0, pos - 1);
+							std::string key = cline.substr(0, pos);
 							std::string value = cline.substr(pos + 1);
 							this->settings[key] = value;
 						}
@@ -69,7 +70,7 @@ namespace Mt {
 
 		std::ostream& operator<<(std::ostream& os, const Config& cfg) {
 			for (std::pair<const std::string, std::string> setting : cfg.settings) {
-				os << "\t" << setting.first << ":" << setting.second << std::endl;
+				os << "\t" << setting.first << ": " << setting.second << std::endl;
 			}
 			return os;
 		}

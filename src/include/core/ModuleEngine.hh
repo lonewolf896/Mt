@@ -4,9 +4,23 @@
 #pragma once
 
 #include "Module.hh"
+
+#if defined(__linux__)
+#include <dlfcn.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <errno.h>
+#define M_HANDLE void *
+#elif defined(_WIN32)
+#include <Windows.h>
+#define M_HANDLE HINSTANCE
+#endif
+
+#include <iostream>
 #include <functional>
 #include <vector>
 #include <map>
+
 namespace Mt {
     namespace core {
         typedef Mt::Module* create_t;
@@ -16,10 +30,12 @@ namespace Mt {
 
             This class manages the loading, unloading, and references to all Mt::Module instances
             that are loaded.
+
+            \todo Windows Implementation of module loading etc
         */
         class ModuleEngine {
             private:
-                /*! \struct mheodule_t
+                /*! \struct module_t
                     \brief Internal Module Type
 
                     This structure holds the information needed to interact with the loaded module
@@ -30,8 +46,8 @@ namespace Mt {
                     // Module destructor
                     void (*ModuleDtor)(Module*);
                     // Module handle (for loading / unloading)
-                    void * ModuleHandle;
-                    std::map<std::string, std::function<void(void *, ...)>> Functions;
+                    M_HANDLE ModuleHandle;
+                    std::map<std::string, std::function<void(void *, va_list)>> Functions;
                 } ModulePackage, *PModulePackage;
                 /*!
                     Internal Constructor, used to setup memory and loading bits
@@ -46,11 +62,43 @@ namespace Mt {
                 */
                 static ModuleEngine* instance;
 
+                /*!
+                    Collection of currently loaded modules
+                */
+                std::map<std::string, ModulePackage*> Modules;
+
+#if defined(__linux__)
+                /*!
+                    Internal Linux implementation to get all files in a given directory
+                */
+                bool __LX_GetDirContent(const char *directory, std::vector<std::string> &files);
+#endif
+
             public:
                 /*!
                     Returns an instance of the module engine
                 */
                 static ModuleEngine* GetInstance(void);
+
+                /*!
+                    Loads a module by path and name
+                */
+                bool LoadModule(std::string module);
+
+                /*!
+                    Unloads a module with the given name if found.
+                */
+                bool UnloadModule(std::string module);
+
+                /*!
+                    Loads all modules found in a given directory
+                */
+                bool LoadAll(std::string directory);
+
+                /*!
+                    Unloads all loaded modules
+                */
+                bool UnloadAll(void);
         };
     }
 }
