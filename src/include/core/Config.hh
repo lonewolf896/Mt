@@ -33,7 +33,7 @@ namespace Mt {
             /*!
                 Destructor for the configuration class
                 
-                \TODO Possibly move this to the public: tag
+                \todo Possibly move this to the public: tag
             */
     		~Config(void);
             /*!

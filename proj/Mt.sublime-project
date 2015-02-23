@@ -2,14 +2,17 @@
 	"folders":
 	[
 		{
-			"path": "/home/xampp/Projects/Mt"
+			"path": "../"
 		}
 	],
 	"settings":
 	{
 		"sublimeclang_options":
 		[
-			"-I/home/xampp/Projects/Mt/src/include/"
-		]
+			"-I../src/include/"
+		],
+		"sublimegdb_workingdir": "/tmp",
+		"sublimegdb_commandline": "gdb --interpreter=mi ${project_path:./bin/Mt}"
+
 	}
 }

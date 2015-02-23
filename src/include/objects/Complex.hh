@@ -14,7 +14,7 @@ namespace Mt {
 
 			This class allows the representation of complex numbers 
 
-			\todo Replace long long with Mt::core::IScalar
+			\todo Replace mtfloat_t with Mt::core::Scalar
 		*/
 		class Complex : public Mt::core::INumeric {
 		private:

@@ -35,11 +35,11 @@ namespace Mt {
 #pragma GCC diagnostics pop
 #endif
 	        /*!
-	            The assigment operator, this should check for type so you cant assign a Mt::Complex to an Mt::Integer
+	            The assignment operator, this should check for type so you cant assign a Mt::Complex to an Mt::Integer
 	        */
 			virtual INumeric& operator=(INumeric& rhs) = 0;
 
-			// Basic Arithmatic operations
+			// Basic Arithmetic operations
 			virtual INumeric& operator+(INumeric& rhs) = 0;
 			virtual INumeric& operator-(INumeric& rhs) = 0;
 			virtual INumeric& operator+() = 0;
@@ -52,7 +52,7 @@ namespace Mt {
 			virtual INumeric& operator--() = 0;
 			virtual INumeric& operator--(int) = 0;
 
-			// Comparason operators
+			// Comparison operators
 			virtual bool operator==(INumeric const& rhs) = 0;
 			virtual bool operator!=(INumeric const& rhs) = 0;
 			virtual bool operator>(INumeric const& rhs) = 0;

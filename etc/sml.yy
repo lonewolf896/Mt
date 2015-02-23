@@ -5,7 +5,10 @@
 		Array Access Grammar ([N])
 		Proper List and Matrix grammar (Dont rely on the lexer regex)
 */
+%skeleton "lalr1.cc"
+%require "3.0.4"
 %language "C++"
+
 %{
 	#include <iostream>
 	#include "core/lang/ASTObjs.hh"
@@ -31,7 +34,14 @@
 	int token;
 }
 
+%defines
+%define parser_class_name {sml_parser}
+%define api.token.constructor
+%define api.value.type variant
+%define parse.assert
 
+%define parse.trace
+%define parse.error verbose
 
 %token <boolean> TTRUE TFALSE
 %token <string> TIDENTIFIER TDOUBLE TINTEGER TLIST TCOMPLEX
