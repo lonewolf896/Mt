@@ -1,9 +1,7 @@
 /*
 	Scalar.cc - Scalar
 */
-#pragma once
 
-#include "core/INumeric.hh"
 #include "objects/Scalar.hh"
 
 namespace Mt {
