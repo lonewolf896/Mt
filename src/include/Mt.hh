@@ -19,7 +19,8 @@
         "\"I think Computation is destined to be the defining idea of our future.\"\n\t- Stephen Wolfram",
         "\"The essence of mathematics lies in its freedom.\" - Georg Cantor",
         "Math problems? Call 1-800-[(10x)(13i)^2]-[sin(xy)/2.362x].",
-        "Mathematics teachers call retirement 'the aftermath'."
+        "Mathematics teachers call retirement 'the aftermath'.",
+        "Required Hardware: ~200 TB RAM\nRecommended Hardware: ~666 TB RAM"
     };
 #endif
 

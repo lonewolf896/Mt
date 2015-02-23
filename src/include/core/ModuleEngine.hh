@@ -71,7 +71,7 @@ namespace Mt {
                 /*!
                     Internal Linux implementation to get all files in a given directory
                 */
-                bool __LX_GetDirContent(const char *directory, std::vector<std::string> &files);
+                bool __LX_GetDirContent(std::string directory, std::vector<std::string> &files);
 #endif
 
             public:

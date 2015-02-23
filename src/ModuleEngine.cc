@@ -23,7 +23,8 @@ namespace Mt {
         // Linux implementation
 #if defined(__linux__)
         bool ModuleEngine::LoadModule(std::string module) {
-            ModulePackage *mdl = new  ModulePackage;
+            //ModulePackage *mdl = new  ModulePackage;
+            return true;
         }
 
         bool ModuleEngine::UnloadModule(std::string module) {
@@ -32,13 +33,23 @@ namespace Mt {
         }
 
         bool ModuleEngine::LoadAll(std::string directory) {
+#if defined(DEBUG) | defined(_DEBUG)
+            std::cout << "Attempting to load modules from '" << directory << "'" << std::endl;
+#endif
             std::vector<std::string> files;
             // If we get an error, pop out.
-            if(!this->__LX_GetDirContent(directory.c_str(), files)) return false;
+            if(!this->__LX_GetDirContent(directory, files)) return false;
             // Iterate over all of the files
-            for(std::string module : files){
+#if defined(DEBUG) | defined(_DEBUG)
+            std::cout << "Found " << files.size() << " modules" << std::endl << std::endl;
+#endif
+
+            // Ungodly amount of allocation happens here
+            // ~140 TB of ram was attempted to be allocated.
+            for(auto module : files){
                 // Try to load the module, if not bail out.
                 if(!this->LoadModule(module)) return false;
+                std::cout << module << std::endl;
             }
             return true;
         }
@@ -72,19 +83,16 @@ namespace Mt {
 
 
 #if defined(__linux__)
-        bool ModuleEngine::__LX_GetDirContent(const char * directory, std::vector<std::string> &files) {
-#if defined(_DEBUG) | defined(DEBUG)
-            std::cout << "Attempting to load modules from '" << directory << "'" << std::endl;
-#endif
+        bool ModuleEngine::__LX_GetDirContent(std::string directory, std::vector<std::string> &files) {
             DIR *dp;
             struct dirent *dirp;
-            if((dp  = opendir(directory)) == NULL) {
+            if((dp  = opendir(directory.c_str())) == NULL) {
                 std::cout << "Error: Unable to open '" << directory << "'. Does it exist? (" << errno << ") " << strerror(errno) << std::endl;
                 return false;
             }
 
             while ((dirp = readdir(dp)) != NULL) {
-                if(dirp->d_name != "." && dirp->d_name != "..")
+                if(!strncmp(dirp->d_name,".",1) || !strncmp(dirp->d_name, "..", 2))
                     files.push_back(std::string(dirp->d_name));
             }
             closedir(dp);
