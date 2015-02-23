@@ -13,6 +13,37 @@
 		],
 		"sublimegdb_workingdir": "/tmp",
 		"sublimegdb_commandline": "gdb --interpreter=mi ${project_path:./bin/Mt}"
-
-	}
+	},
+	"build_systems": [
+        {
+            "name": "Make Debug",
+            "working_dir": "../",
+            "cmd": ["make"]
+        },
+        {
+            "name": "Clean",
+            "working_dir": "../",
+            "cmd": ["make", "clean"]
+        },
+        {
+            "name": "Make Docs",
+            "working_dir": "../",
+            "cmd": ["make", "docs"]
+        },
+        {
+            "name": "Make Release",
+            "working_dir": "../",
+            "cmd": ["make", "release"]
+        },
+        {
+            "name": "Make Profiled",
+            "working_dir": "../",
+            "cmd": ["make", "pref"]
+        },
+        {
+            "name": "Make Qmath",
+            "working_dir": "../",
+            "cmd": ["make", "qmath"]
+        },
+    ]
 }
