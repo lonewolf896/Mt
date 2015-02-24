@@ -22,7 +22,7 @@ CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-
 CFLAGS += -D'VERSION="$(VERSION)"'
 
 
-LDFLAGS := -ltcmalloc -lc++abi -lpthread
+LDFLAGS := -ltcmalloc -lc++abi -lpthread -ldl
 
 SRCS := $(shell ls $(SRCDIR)/*.cc)
 _OBJS := $(SRCS:.cc=.o)

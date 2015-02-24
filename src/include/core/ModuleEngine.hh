@@ -23,8 +23,12 @@
 
 namespace Mt {
 	namespace core {
+		// Constructor type
 		typedef Mt::Module* create_t;
+		// Destructor type
 		typedef void destroy_t(Mt::Module*);
+		// Type to get module name
+		typedef const char * modulename_t;
 		/*! \class ModuleEngine
 			\brief Mt Module Management
 
@@ -41,12 +45,17 @@ namespace Mt {
 					This structure holds the information needed to interact with the loaded module
 				*/
 				typedef struct module_t {
-					// Pointer to the module in memory
-					Module* modulePtr;
-					// Module destructor
-					void (*ModuleDtor)(Module*);
+					// Constructor Handle
+					create_t* mdlCtor;
+					// Destructor Handle
+					destroy_t* mdlDtor;
 					// Module handle (for loading / unloading)
 					M_HANDLE ModuleHandle;
+					// Module name handle
+					modulename_t* mdlName;
+					// Pointer to the module in memory
+					Module* modulePtr;
+					// Function Map
 					std::map<std::string, std::function<void(void *, va_list)>> Functions;
 				} ModulePackage, *PModulePackage;
 				/*!
@@ -90,21 +99,29 @@ namespace Mt {
 
 				/*!
 					Loads a module by path and name
+
+					\todo Windows Implementation
 				*/
 				bool LoadModule(std::string module);
 
 				/*!
 					Unloads a module with the given name if found.
+
+					\todo Windows Implementation
 				*/
 				bool UnloadModule(std::string module);
 
 				/*!
 					Loads all modules found in a given directory
+
+					\todo Windows Implementation
 				*/
 				bool LoadAll(std::string directory);
 
 				/*!
 					Unloads all loaded modules
+
+					\todo Windows Implementation
 				*/
 				bool UnloadAll(void);
 		};

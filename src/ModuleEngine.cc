@@ -28,13 +28,38 @@ namespace Mt {
 #if defined(DEBUG) | defined(_DEBUG)
 			std::cout << "Attempting to load module '" << module << "'" << std::endl;
 #endif
-			//ModulePackage *mdl = new  ModulePackage;
+			ModulePackage *mdl = new  ModulePackage;
+			mdl->ModuleHandle = dlopen(module.c_str(), RTLD_LAZY);
+			if(!mdl->ModuleHandle) {
+				std::cout << "Error loading module '" << module << "'. " << dlerror() << std::endl;
+				delete mdl;
+				return false;
+			}
+			// Attempt to get the handle of the module constructor C interface
+			mdl->mdlCtor =  (create_t*)dlsym(mdl->ModuleHandle, "InitializeModule");
+			// Attempt to get the handle for the module destructor C interface
+			mdl->mdlDtor = (destroy_t*)dlsym(mdl->ModuleHandle, "DeallocateModule");
+			// Attempt to get the handle for the raw name used for namespacing modules
+			mdl->mdlName = (modulename_t*)dlsym(mdl->ModuleHandle, "ModuleName");
+			if(mdl->mdlDtor == nullptr || mdl->mdlCtor == nullptr || mdl->mdlName == nullptr) {
+				// Close the module
+				dlclose(mdl->ModuleHandle);
+				std::cout << "Error loading module '" << module << "'. I don't have the needed function pointers... " << dlerror() << std::endl;
+				delete mdl;
+				return false;
+			}
+			// That should do it.
 			return true;
 		}
-
+		// Unloads the module
 		bool ModuleEngine::UnloadModule(std::string module) {
-
-
+			// Unload the module and reclaim the memory from the module_t
+			dlclose(this->Modules[module]->ModuleHandle);
+			delete this->Modules[module];
+			// Pop the module out of the map
+			this->Modules.erase(module);
+			// Should have some error catching I suppose but w/e
+			return true;
 		}
 
 		bool ModuleEngine::LoadAll(std::string directory) {
@@ -53,7 +78,7 @@ namespace Mt {
 			// Ungodly amount of allocation happens here
 			// ~140 TB of ram was attempted to be allocated.
 			// Iterate over all of the files
-			for(auto module : files){
+			for(auto& module : files){
 				// Try to load the module, if not bail out.
 				if(!this->LoadModule(module)) return false;
 			}
@@ -62,8 +87,9 @@ namespace Mt {
 
 		bool ModuleEngine::UnloadAll(void) {
 			// Perform unloading
-			for(auto mod : this->Modules) {
-
+			for(auto& mod : this->Modules) {
+				// Tell us to unload the module by name
+				this->UnloadModule(mod.first);
 			}
 		}
 #elif defined(_WIN32) // Windows implementation
