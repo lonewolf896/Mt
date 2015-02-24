@@ -66,6 +66,12 @@ lex: bison
 
 grammar: lex bison
 
+.PHONY: faux_module
+faux_module:
+	@echo -e Building faux_module
+	@$(CXX_DBG) $(CFLAGS) -c $(ETCDIR)/faux_module.cc -o $(OBJDIR)/faux_module.o -fpic
+	@$(CXX_DBG) $(CFLAGS) $(LDFLAGS) -shared $(OBJDIR)/faux_module.o -o $(OUTDIR)/modules/faux_module.moe
+
 .PHONY: clean
 clean:
 	@echo -e Cleaning...

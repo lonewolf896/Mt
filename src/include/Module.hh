@@ -20,15 +20,15 @@
 /*!
 	This macro adds the needed external C calls that Mt needs for loading the module
 */
-#define MODULE(MODULE_NAME)                            \
-extern "C" Mt::Module* InitializeModule(void) {            \
-	return Mt::Module::GetInstance;                    \
-}                                                      \
-extern "C" void DeallocateModule(Mt::Module* module) { \
-	delete module;                                     \
-}                                                      \
-extern "C" const char * ModuleName(void)               \
-	return MODULE_NAME;                                \
+#define MODULE(MODULE_NAME)								\
+extern "C" Mt::Module* InitializeModule(void) {			\
+	return Mt::Module::GetInstance();					\
+}														\
+extern "C" void DeallocateModule(Mt::Module* module) {	\
+	delete module;										\
+}														\
+extern "C" const char * ModuleName(void) {				\
+	return MODULE_NAME;									\
 }
 
 
