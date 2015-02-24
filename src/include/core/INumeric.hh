@@ -6,20 +6,20 @@
 #include "Types.hh"
 namespace Mt {
 	namespace core {
-	    /*! \class INumeric
-	        \brief Core numeric implementation
+		/*! \class INumeric
+			\brief Core numeric implementation
 
-	        This abstract class is the base for all Mt numeric implementations, such as Mt::Complex, Mt::Integer, and Mt::Double,
-	        this allows for all of those types to be operated on by each other, and also allows for uniformity amoung the internal
-	        system.
-	    */
+			This abstract class is the base for all Mt numeric implementations, such as Mt::Complex, Mt::Integer, and Mt::Double,
+			this allows for all of those types to be operated on by each other, and also allows for uniformity amoung the internal
+			system.
+		*/
 		class INumeric : IMtObject {
 			public:
 			// Disable default move and copy constructors for the interface
-		    INumeric(void) { }
-	        // This glob of pragmas is to stop the compiler from complaining about our
-	        // unused inum in the copy and move constructors, prevents the release build
-	        // from failing
+			INumeric(void) { }
+			// This glob of pragmas is to stop the compiler from complaining about our
+			// unused inum in the copy and move constructors, prevents the release build
+			// from failing
 #if defined(__clang__)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-parameter"

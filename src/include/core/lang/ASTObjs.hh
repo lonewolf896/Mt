@@ -96,12 +96,12 @@ namespace Mt {
 			*/
 			class NVariableDeclaration : public NStatement {
 				public:
-				    NIdentifier& id;
-				    NExpression *assignmentExpr;
-				    NVariableDeclaration(NIdentifier& id) :
-				        id(id) { }
-				    NVariableDeclaration(NIdentifier& id, NExpression *assignmentExpr) :
-				        id(id), assignmentExpr(assignmentExpr) { }
+					NIdentifier& id;
+					NExpression *assignmentExpr;
+					NVariableDeclaration(NIdentifier& id) :
+						id(id) { }
+					NVariableDeclaration(NIdentifier& id, NExpression *assignmentExpr) :
+						id(id), assignmentExpr(assignmentExpr) { }
 			};
 
 
@@ -123,9 +123,9 @@ namespace Mt {
 			class NMethodCall : NExpression {
 				public:
 					const NIdentifier& id;
-				    ExpressionList arguments;
-				    NMethodCall(const NIdentifier& id, ExpressionList& arguments) : id(id), arguments(arguments) { }
-				    NMethodCall(const NIdentifier& id) : id(id) { }
+					ExpressionList arguments;
+					NMethodCall(const NIdentifier& id, ExpressionList& arguments) : id(id), arguments(arguments) { }
+					NMethodCall(const NIdentifier& id) : id(id) { }
 			};
 			/*! \class NBinaryOperator
 				\brief SML Binary Operator Representation
@@ -138,11 +138,11 @@ namespace Mt {
 			*/
 			class NBinaryOperator : public NExpression {
 				public:
-				    int op;
-				    NExpression& lhs;
-				    NExpression& rhs;
-				    NBinaryOperator(NExpression& lhs, int op, NExpression& rhs) :
-				        lhs(lhs), rhs(rhs), op(op) { }
+					int op;
+					NExpression& lhs;
+					NExpression& rhs;
+					NBinaryOperator(NExpression& lhs, int op, NExpression& rhs) :
+						lhs(lhs), rhs(rhs), op(op) { }
 			};
 			/*! \class NAssigmnet 
 				\brief SML Assignment Operation Representation
@@ -156,10 +156,10 @@ namespace Mt {
 			*/
 			class NAssignment : public NExpression {
 				public:
-				    NIdentifier& lhs;
-				    NExpression& rhs;
-				    NAssignment(NIdentifier& lhs, NExpression& rhs) :
-				        lhs(lhs), rhs(rhs) { }
+					NIdentifier& lhs;
+					NExpression& rhs;
+					NAssignment(NIdentifier& lhs, NExpression& rhs) :
+						lhs(lhs), rhs(rhs) { }
 			};
 			/*! \class NBlock
 				\brief SML Scope Representation
@@ -168,8 +168,8 @@ namespace Mt {
 			*/
 			class NBlock : public NExpression {
 				public:
-				    StatementList statements;
-				    NBlock() { }
+					StatementList statements;
+					NBlock() { }
 			};
 			/*! \class NExpressionStatement
 				\brief SML Expression Statement Representation
@@ -179,9 +179,9 @@ namespace Mt {
 			*/
 			class NExpressionStatement : public NStatement {
 				public:
-				    NExpression& expression;
-				    NExpressionStatement(NExpression& expression) :
-				        expression(expression) { }
+					NExpression& expression;
+					NExpressionStatement(NExpression& expression) :
+						expression(expression) { }
 			};
 			/*! \class NFunctionDeclaration
 				\brief SML Function Declaration Representation
@@ -196,22 +196,22 @@ namespace Mt {
 			*/
 			class NFunctionDeclaration : public NStatement {
 				public:
-				    const NIdentifier& id;
-				    VariableList arguments;
-				    NBlock& block;
-				    NFunctionDeclaration(const NIdentifier& id,
-				            const VariableList& arguments, NBlock& block) :
-				        id(id), arguments(arguments), block(block) { }
+					const NIdentifier& id;
+					VariableList arguments;
+					NBlock& block;
+					NFunctionDeclaration(const NIdentifier& id,
+							const VariableList& arguments, NBlock& block) :
+						id(id), arguments(arguments), block(block) { }
 			};
 
 			class NListDeclaration : public NStatement {
 				public:
-				    const NIdentifier& id;
-				    VariableList arguments;
-				    NBlock& block;
-				    NListDeclaration(const NIdentifier& id,
-				            const VariableList& arguments, NBlock& block) :
-				        id(id), arguments(arguments), block(block) { }
+					const NIdentifier& id;
+					VariableList arguments;
+					NBlock& block;
+					NListDeclaration(const NIdentifier& id,
+							const VariableList& arguments, NBlock& block) :
+						id(id), arguments(arguments), block(block) { }
 			};
 		}
 	}

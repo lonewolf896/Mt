@@ -21,13 +21,13 @@
 
 %union {
 	Mt::core::lang::NRoot *node;
-   	Mt::core::lang::NBlock *block;
-    Mt::core::lang::NExpression *expr;
-    Mt::core::lang::NStatement *stmt;
-    Mt::core::lang::NIdentifier *ident;
-    Mt::core::lang::NVariableDeclaration *var_decl;
-    std::vector<Mt::core::lang::NVariableDeclaration*> *varvec;
-    std::vector<Mt::core::lang::NExpression*> *exprvec;
+	Mt::core::lang::NBlock *block;
+	Mt::core::lang::NExpression *expr;
+	Mt::core::lang::NStatement *stmt;
+	Mt::core::lang::NIdentifier *ident;
+	Mt::core::lang::NVariableDeclaration *var_decl;
+	std::vector<Mt::core::lang::NVariableDeclaration*> *varvec;
+	std::vector<Mt::core::lang::NExpression*> *exprvec;
 	Mt::Complex *cmplx;
 	bool boolean;
 	std::string *string;
@@ -104,7 +104,7 @@ list_decl : ident TASSIGN TCLT list_decl_args TCGT
 	Function definition. I.E f := (...) { ... }
 */
 func_decl : ident TASSIGN TLPAREN func_decl_args TRPAREN block
-		 	{ $$ = new Mt::core::lang::NFunctionDeclaration(*$1, *$3, *$5); delete $3; }
+			{ $$ = new Mt::core::lang::NFunctionDeclaration(*$1, *$3, *$5); delete $3; }
 		  ;
 /*
 
@@ -154,9 +154,9 @@ expr : ident TASSIGN expr { $$ = new Mt::core::lang::NAssignment(*$<ident>1, *3)
 	function call arguments, I.E () or (1,2,3,...,N)
 */
 call_args : /* Empty */ { $$ = new Mt::core::lang::ExpressionList(); }
-	 	  | expr {$$ = new Mt::core::lang::ExpressionList(); $$->push_back($1); }
-	 	  | call_args TCOMMA expr { $1->push_back($3); }
-	 	  ;
+		  | expr {$$ = new Mt::core::lang::ExpressionList(); $$->push_back($1); }
+		  | call_args TCOMMA expr { $1->push_back($3); }
+		  ;
 
 /*
 	All binary operators ( + - * / ^ > < += -= *= /= >= <=)
@@ -164,7 +164,7 @@ call_args : /* Empty */ { $$ = new Mt::core::lang::ExpressionList(); }
 comparison : TCEQ | TNEQUAL | TCLT | TCGT | TCLE | TCGE
 		   | TPLUS | TMINUS | TMUL | TDIV | TMOD | TPOW
 		   | TPEQUAL | TMEQUAL | TDEQUAL | TMUEQUAL | TMOEQUAL
-           | TROOT
+		   | TROOT
 		   ;
 
 %%

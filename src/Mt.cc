@@ -5,58 +5,58 @@
 #include "Mt.hh"
 
 /*!
-    Main entry-point of the application
+	Main entry-point of the application
 */
 auto main(int argc, char* argv[], char* env[]) -> int {
-    // Check to see if the machine we are building on supports SSE
+	// Check to see if the machine we are building on supports SSE
 #if defined(__SSE__) 
-    // Fix flush mode, gives us just a little bit better floating points
-    _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
+	// Fix flush mode, gives us just a little bit better floating points
+	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 #endif
-    // Hook the Interrupt signal
-    signal(SIGINT, Term);
+	// Hook the Interrupt signal
+	signal(SIGINT, Term);
 
-    // Argument Parsing
-    if(argc > 1) {
-        // Pass off the the argument parser.
-        std::cout << argv[0] << std::endl;
-    }
+	// Argument Parsing
+	if(argc > 1) {
+		// Pass off the the argument parser.
+		std::cout << argv[0] << std::endl;
+	}
 
-    // Banner
+	// Banner
 	std::cout << VERSION_STRING << std::endl << std::endl;
 	// Enable the rotating banner, if _NOFUN is not defined
 #if !defined(_NOFUN)
-    std::default_random_engine generator;
-    std::uniform_int_distribution<int> distribution(0,4);
-    std::cout << quotes[distribution(generator)] << std::endl << std::endl;
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(0,4);
+	std::cout << quotes[distribution(generator)] << std::endl << std::endl;
 #else
-    std::cout << QUOTE << std::endl << std::endl;
+	std::cout << QUOTE << std::endl << std::endl;
 #endif
 	// Configuration bits and bobs
 	Mt::core::Config::GetInstance()->OpenFile("mt.cfg");
-    Mt::core::Config::GetInstance()->ReadEnvForConfig(env);
+	Mt::core::Config::GetInstance()->ReadEnvForConfig(env);
 	Mt::core::Config::GetInstance()->LoadFromFile();
 
-    // Print out the config settings
-    if(Mt::core::Config::GetInstance()->GetValue("show_env") == "yes")
-	    std::cout << "Environment settings:" << std::endl << (*Mt::core::Config::GetInstance()) << std::endl;
+	// Print out the config settings
+	if(Mt::core::Config::GetInstance()->GetValue("show_env") == "yes")
+		std::cout << "Environment settings:" << std::endl << (*Mt::core::Config::GetInstance()) << std::endl;
 
-    // Load modules and such
-    Mt::core::ModuleEngine::GetInstance()->LoadAll(Mt::core::Config::GetInstance()->GetValue("module_dir"));
+	// Load modules and such
+	Mt::core::ModuleEngine::GetInstance()->LoadAll(Mt::core::Config::GetInstance()->GetValue("module_dir"));
 	// Etc
 	unsigned long long InterpLineNum = 1ULL;
 
 	// REPL
 	std::string strBuffLine;
 
-    // Init the parser
-    Mt::SParser::GetInstance();
+	// Init the parser
+	Mt::SParser::GetInstance();
 	while (true) {
 		std::cout << "mt:" << InterpLineNum++ << "> ";
 		std::getline(std::cin, strBuffLine);
 #if defined(_DEBUG) || defined(DEBUG)
 		std::cout << " " << strBuffLine << std::endl;
-        Mt::SParser::GetInstance()->Eval(strBuffLine);
+		Mt::SParser::GetInstance()->Eval(strBuffLine);
 #endif
 	}	
 	return ERROR_SUCCESS;
@@ -64,7 +64,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 
 
 void Term(int Signal) {
-    if(Signal == SIGTERM); // Nop out, removes the warning...
-    std::cout << std::endl << "SIGTERM Caught, releasing resources" << std::endl;
-    exit(0);
+	if(Signal == SIGTERM); // Nop out, removes the warning...
+	std::cout << std::endl << "SIGTERM Caught, releasing resources" << std::endl;
+	exit(0);
 }

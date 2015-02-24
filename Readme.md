@@ -27,11 +27,11 @@ Mt is modular by default, allowing for anyone to build extensions onto the core 
 #include <Module.hh>
 
 Mt::Module::Module(void) {
-    // Initialization Code
+	// Initialization Code
 }
 
 Mt::Module::~Module(void) {
-    // Teardown Code
+	// Teardown Code
 }
 
 MODULE("SuperMath")
@@ -54,7 +54,7 @@ More complex examples can be expressed as well, like functions
 
 ~~~
 F := (x) {
-    ret sin(x)+x/1
+	ret sin(x)+x/1
 }
 ~~~
 

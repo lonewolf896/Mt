@@ -53,14 +53,14 @@ namespace Mt {
 			}
 		}
 
-	    void Config::ReadEnvForConfig(char* env[]) {
-	        char **envcpy;
-	        for(envcpy = env; envcpy != nullptr; envcpy++) {
-	            if(strncmp(*envcpy, "MTCFG", 4)) {
-	                 
-	            }
-	        }
-	    }
+		void Config::ReadEnvForConfig(char* env[]) {
+			char **envcpy;
+			for(envcpy = env; envcpy != nullptr; envcpy++) {
+				if(strncmp(*envcpy, "MTCFG", 4)) {
+					 
+				}
+			}
+		}
 
 		void Config::SaveToFile(void) {
 			for (std::pair<const std::string, std::string>& setting : this->settings) {
