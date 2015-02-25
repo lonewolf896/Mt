@@ -185,7 +185,7 @@ namespace yy {}
 
 	The MIT License (MIT)
 
-	Copyright (c) 2014 Vijay Atwater-Van Ness, Trevor Berninger
+	Copyright (c) 2015- by the contributors listed in the CREDITS file
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
