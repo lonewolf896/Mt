@@ -12,6 +12,7 @@
 %{
 	#include <iostream>
 	#include "core/lang/ASTObjs.hh"
+	#include "core/Types.hh"
 
 	Mt::core::lang::NBlock *rootScope;
 

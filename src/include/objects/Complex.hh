@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "core/INumeric.hh"
+#include "Scalar.hh"
 
 namespace Mt {
 	namespace objects {
@@ -14,29 +15,29 @@ namespace Mt {
 
 			This class allows the representation of complex numbers 
 
-			\todo Replace mtfloat_t with Mt::core::Scalar
+			\todo Replace Mt::core::Scalar with Mt::core::Scalar
 		*/
 		class Complex : public Mt::core::INumeric {
 			private:
-				mtfloat_t partReal;
-				mtfloat_t partImaginary;
+				Mt::core::Scalar partReal;
+				Mt::core::Scalar partImaginary;
 			public:
 
 			// Constructors
 			Complex(void);
-			Complex(std::pair<mtfloat_t, mtfloat_t> parts);
-			Complex(mtfloat_t real, mtfloat_t i);
+			Complex(std::pair<Mt::core::Scalar, Mt::core::Scalar> parts);
+			Complex(Mt::core::Scalar real, Mt::core::Scalar i);
 
 			~Complex(void);
 
 			// Misc functions
-			void SetRealPart(mtfloat_t real);
-			void SetImaginaryPart(mtfloat_t i);
-			void SetPair(std::pair<mtfloat_t, mtfloat_t> cmplxPair);
+			void SetRealPart(Mt::core::Scalar real);
+			void SetImaginaryPart(Mt::core::Scalar i);
+			void SetPair(std::pair<Mt::core::Scalar, Mt::core::Scalar> cmplxPair);
 
-			mtfloat_t GetRealPart(void);
-			mtfloat_t GetImaginaryPart(void);
-			std::pair<mtfloat_t, mtfloat_t> GetPair(void);
+			Mt::core::Scalar GetRealPart(void);
+			Mt::core::Scalar GetImaginaryPart(void);
+			std::pair<Mt::core::Scalar, Mt::core::Scalar> GetPair(void);
 
 			// Operator overloads
 

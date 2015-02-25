@@ -8,6 +8,8 @@
 #include "objects/Scalar.hh"
 #include "objects/Complex.hh"
 
+#include "core/Types.hh"
+
 #include <vector>
 #include <map>
 #include <string>
@@ -49,7 +51,7 @@ namespace Mt {
 			class NInteger : NExpression {
 				public:
 					Mt::objects::Scalar i;
-					NInteger(int val) : i(val) {}
+					NInteger(int val) : i((mtfloat_t)val) {}
 			};
 			/*! \class NDouble
 				\brief SML Double Representation
@@ -59,7 +61,7 @@ namespace Mt {
 			class NDouble : NExpression{
 				public:
 					Mt::objects::Scalar d;
-					NDouble(double val) : d(val) {}
+					NDouble(double val) : d((mtfloat_t)val) {}
 			};
 			/*! \class NComplex
 				\brief SML Complex Representation

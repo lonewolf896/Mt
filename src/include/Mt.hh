@@ -79,6 +79,12 @@ namespace Mt {
 			This also includes the bison generated code, however that is under the yy namespace.
 		*/
 		namespace lang {}
+		/*! \namespace Mt::core::symbolic
+			\brief Symbolic operations
+
+			All operations and methods to deal with symbolic operations such as solving on unknowns
+		*/
+		namespace symbolic {}
 	}
 	/*! \namespace Mt::objects
 		\brief Mt Operable Objects

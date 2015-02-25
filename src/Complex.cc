@@ -11,12 +11,12 @@ namespace Mt {
 			this->partReal = (this->partImaginary = 0.0);
 		}
 
-		Complex::Complex(std::pair<mtfloat_t, mtfloat_t> parts) {
+		Complex::Complex(std::pair<Mt::core::Scalar, Mt::core::Scalar> parts) {
 			this->partReal = parts.first;
 			this->partImaginary = parts.second;
 		}
 
-		Complex::Complex(mtfloat_t real, mtfloat_t i) {
+		Complex::Complex(Mt::core::Scalar real, Mt::core::Scalar i) {
 			this->partReal = real;
 			this->partImaginary = i;
 
@@ -28,28 +28,28 @@ namespace Mt {
 		}
 
 		// Misc methods
-		void Complex::SetRealPart(mtfloat_t real) {
+		void Complex::SetRealPart(Mt::core::Scalar real) {
 			this->partReal = real;
 		}
 
-		void Complex::SetImaginaryPart(mtfloat_t i) {
+		void Complex::SetImaginaryPart(Mt::core::Scalar i) {
 			this->partImaginary = i;
 		}
 
-		void Complex::SetPair(std::pair<mtfloat_t, mtfloat_t> cmplxPair) {
+		void Complex::SetPair(std::pair<Mt::core::Scalar, Mt::core::Scalar> cmplxPair) {
 			this->partReal = cmplxPair.first;
 			this->partImaginary = cmplxPair.second;
 		}
 
-		mtfloat_t Complex::GetRealPart(void) {
+		Mt::core::Scalar Complex::GetRealPart(void) {
 			return this->partReal;
 		}
 
-		mtfloat_t Complex::GetImaginaryPart(void) {
+		Mt::core::Scalar Complex::GetImaginaryPart(void) {
 			return this->partImaginary;
 		}
 
-		std::pair<mtfloat_t, mtfloat_t> Complex::GetPair(void) {
+		std::pair<Mt::core::Scalar, Mt::core::Scalar> Complex::GetPair(void) {
 			return std::make_pair(this->partReal, this->partImaginary);
 		}
 
