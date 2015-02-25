@@ -65,7 +65,11 @@ namespace Mt {
 		}
 		// Unloads the module
 		bool ModuleEngine::UnloadModule(std::string module) {
+#if defined(DEBUG) | defined(_DEBUG)
+			std::cout << "Unloading '" << module << "'" << std::endl;
+#endif
 			// Unload the module and reclaim the memory from the module_t
+			this->Modules[module]->mdlDtor(this->Modules[module]->modulePtr);
 			dlclose(this->Modules[module]->ModuleHandle);
 			delete this->Modules[module];
 			// Pop the module out of the map
@@ -101,11 +105,15 @@ namespace Mt {
 		}
 
 		bool ModuleEngine::UnloadAll(void) {
+#if defined(_DEBUG) || defined(DEBUG)
+			std::cout << std::endl << "Unloading Modules..." << std::endl;
+#endif
 			// Perform unloading
 			for(auto& mod : this->Modules) {
 				// Tell us to unload the module by name
 				this->UnloadModule(mod.first);
 			}
+			return true;
 		}
 #elif defined(_WIN32) // Windows implementation
 		bool ModuleEngine::LoadModule(std::string module) {

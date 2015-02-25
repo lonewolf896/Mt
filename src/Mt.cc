@@ -27,7 +27,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 	// Enable the rotating banner, if _NOFUN is not defined
 #if !defined(_NOFUN)
 	std::random_device rd;
-	std::cout << quotes[rd() % 10 + 1] << std::endl << std::endl;
+	std::cout << quotes[rd() % 10] << std::endl << std::endl;
 #endif
 	// Configuration bits and bobs
 	Mt::core::Config::GetInstance()->OpenFile("mt.cfg");
@@ -64,6 +64,6 @@ void Term(int Signal) {
 	if(Signal == SIGTERM); // Nop out, removes the warning...
 	std::cout << std::endl << "SIGTERM Caught, releasing resources" << std::endl;
 	// Unload the modules
-	//Mt::core::ModuleEngine::GetInstance()->UnloadAll();
+	Mt::core::ModuleEngine::GetInstance()->UnloadAll();
 	exit(0);
 }
