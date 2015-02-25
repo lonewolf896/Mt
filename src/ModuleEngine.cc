@@ -11,7 +11,7 @@ namespace Mt {
 		std::string ModuleEngine::ending = ".moe";
 
 		ModuleEngine::ModuleEngine(void) {
-			
+			// Nothing to do really...
 		}
 
 		ModuleEngine::~ModuleEngine(void) {
