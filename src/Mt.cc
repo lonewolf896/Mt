@@ -26,11 +26,8 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 	std::cout << VERSION_STRING << std::endl << std::endl;
 	// Enable the rotating banner, if _NOFUN is not defined
 #if !defined(_NOFUN)
-	std::default_random_engine generator;
-	std::uniform_int_distribution<int> distribution(0,4);
-	std::cout << quotes[distribution(generator)] << std::endl << std::endl;
-#else
-	std::cout << QUOTE << std::endl << std::endl;
+	std::random_device rd;
+	std::cout << quotes[rd() % 10 + 1] << std::endl << std::endl;
 #endif
 	// Configuration bits and bobs
 	Mt::core::Config::GetInstance()->OpenFile("mt.cfg");

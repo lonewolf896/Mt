@@ -15,12 +15,16 @@
 #if !defined(_NOFUN)
 #include <random>
 	std::string quotes[] = {
+		"\"If you don't make mistakes, you're not working on hard enough problems. And that is a big mistake.\"\n\t - Frank Wilczek",
 		"Gliiv likes colons.",
 		"\"I think Computation is destined to be the defining idea of our future.\"\n\t- Stephen Wolfram",
-		"\"The essence of mathematics lies in its freedom.\" - Georg Cantor",
+		"\"The essence of mathematics lies in its freedom.\"\n\t - Georg Cantor",
 		"Math problems? Call 1-800-[(10x)(13i)^2]-[sin(xy)/2.362x].",
 		"Mathematics teachers call retirement 'the aftermath'.",
-		"Required Hardware: ~200 TB RAM\nRecommended Hardware: ~666 TB RAM"
+		"Required Hardware: ~200 TB of RAM\nRecommended Hardware: ~666 TB of RAM",
+		"\"Nothing brings fear to my heart more than a floating point number.\"\n\t - Gerald Jay Sussman",
+		"\"Computer science is the continuation of logic by other means.\"\n\t - Georg Gottlob",
+		"First make it work. Then make it work better."
 	};
 #endif
 
@@ -51,11 +55,7 @@
 #define MODE "RELEASE"
 #endif
 
-
 #define VERSION_STRING "Mt: Simple math and linear algebra environment. " << std::endl << "\tVer " VERSION " (" COMPILER ") " MODE " Build"
-
-#define QUOTE "\"I'm so clever that even I don't understand myself sometimes.\""
-
 
 void Term(int Signal);
 
