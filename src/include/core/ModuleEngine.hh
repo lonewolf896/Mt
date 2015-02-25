@@ -24,11 +24,11 @@
 namespace Mt {
 	namespace core {
 		// Constructor type
-		typedef Mt::Module* create_t;
+		typedef Mt::Module* create_t();
 		// Destructor type
 		typedef void destroy_t(Mt::Module*);
 		// Type to get module name
-		typedef const char * modulename_t;
+		typedef const char * modulename_t();
 		/*! \class ModuleEngine
 			\brief Mt Module Management
 

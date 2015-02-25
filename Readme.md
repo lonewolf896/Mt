@@ -8,7 +8,7 @@ Mt is also built to be extensible and open, anyone can build a module that can e
 In order to build MT from source, you need a few things
 
  * clang ( >= 3.5 ), g++ ( >= 4.9 )
- * libc++, libc++abi
+ * libc++, libc++abi (http://libcxx.llvm.org/ , http://libcxxabi.llvm.org/)
  * gperftools (https://code.google.com/p/gperftools/)
  * doxygen
  * latex, pdflatex

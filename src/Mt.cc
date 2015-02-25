@@ -66,5 +66,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 void Term(int Signal) {
 	if(Signal == SIGTERM); // Nop out, removes the warning...
 	std::cout << std::endl << "SIGTERM Caught, releasing resources" << std::endl;
+	// Unload the modules
+	//Mt::core::ModuleEngine::GetInstance()->UnloadAll();
 	exit(0);
 }

@@ -29,7 +29,7 @@ namespace Mt {
 			std::cout << "Attempting to load module '" << module << "'" << std::endl;
 #endif
 			ModulePackage *mdl = new  ModulePackage;
-			mdl->ModuleHandle = dlopen(module.c_str(), RTLD_LAZY);
+			mdl->ModuleHandle = dlopen(("./"+module).c_str(), RTLD_LAZY);
 			if(!mdl->ModuleHandle) {
 				std::cout << "Error loading module '" << module << "'. " << dlerror() << std::endl;
 				delete mdl;
@@ -48,6 +48,18 @@ namespace Mt {
 				delete mdl;
 				return false;
 			}
+			// Attempt to create the module
+			mdl->modulePtr = mdl->mdlCtor();
+			if(mdl->modulePtr == nullptr) {
+				dlclose(mdl->ModuleHandle);
+				std::cout << "Error: unable to construct module '" << module << "'" << std::endl;
+				delete mdl;
+				return false;
+			}
+
+#if defined(DEBUG) | defined(_DEBUG)
+			std::cout << "Loaded '" << module << "'" << std::endl;
+#endif
 			// That should do it.
 			return true;
 		}
@@ -80,7 +92,10 @@ namespace Mt {
 			// Iterate over all of the files
 			for(auto& module : files){
 				// Try to load the module, if not bail out.
-				if(!this->LoadModule(module)) return false;
+				if(!this->LoadModule(module)) {
+					std::cout << "Loading of the module '" << module << "' failed." << std::endl;
+					return false;
+				}
 			}
 			return true;
 		}
