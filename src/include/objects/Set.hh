@@ -2,6 +2,8 @@
 	Set.hh - A structure that contains an unordered collection of unique items
 */
 
+#pragma once
+
 #include "core/INumeric.hh"
 
 #include <vector>

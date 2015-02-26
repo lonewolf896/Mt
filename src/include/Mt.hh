@@ -24,7 +24,12 @@
 		"Required Hardware: ~200 TB of RAM\nRecommended Hardware: ~666 TB of RAM",
 		"\"Nothing brings fear to my heart more than a floating point number.\"\n\t - Gerald Jay Sussman",
 		"\"Computer science is the continuation of logic by other means.\"\n\t - Georg Gottlob",
-		"First make it work. Then make it work better."
+		"First make it work. Then make it work better.",
+		"For science, fudge the numbers so that everything fits.",
+		"Ooh and our gods and heroes, are only ones and zeroes",
+		"Buy your tickets, have a good time\nBring your friends, dear boys and girls\nBuy my toys, they make you happy\nFund my plan to rule the world",
+		"We were building rocket ships, while you were carrying boulders on your shoulders.",
+		"Features tend to be added, spontaneously."
 	};
 #endif
 
@@ -86,6 +91,13 @@ namespace Mt {
 		*/
 		namespace symbolic {}
 	}
+	/*! \namespace Mt::frontend
+		\brief User-intractable features
+
+		This namespace contains things such as the REPL and anything the user will interact with whilst using Mt
+		
+	*/
+	namespace frontend {}
 	/*! \namespace Mt::objects
 		\brief Mt Operable Objects
 

@@ -2,24 +2,31 @@
 	Complex.cc - Implementation Details for complex number class
 */
 
-#include <objects/Complex.hh>
+#include "objects/Complex.hh"
 
 namespace Mt {
 	namespace objects {
 		// Constructors
 		Complex::Complex(void) {
-			this->partReal = (this->partImaginary = 0.0);
+			//this->partReal = (this->partImaginary = 0.0l);
 		}
 
-		Complex::Complex(std::pair<Mt::core::Scalar, Mt::core::Scalar> parts) {
+		Complex::Complex(const std::pair<Mt::objects::Scalar, Mt::objects::Scalar>& parts) {
 			this->partReal = parts.first;
 			this->partImaginary = parts.second;
 		}
 
-		Complex::Complex(Mt::core::Scalar real, Mt::core::Scalar i) {
+		Complex::Complex(Mt::objects::Scalar real, Mt::objects::Scalar i) {
 			this->partReal = real;
 			this->partImaginary = i;
+		}
 
+		Complex::Complex(Complex& cplx){
+			this->SetPair(cplx.GetPair());
+		}
+
+		Complex::Complex(Complex&& cplx) {
+			this->SetPair(cplx.GetPair());
 		}
 
 		// Destructor
@@ -28,54 +35,48 @@ namespace Mt {
 		}
 
 		// Misc methods
-		void Complex::SetRealPart(Mt::core::Scalar real) {
+		void Complex::SetRealPart(Mt::objects::Scalar real) {
 			this->partReal = real;
 		}
 
-		void Complex::SetImaginaryPart(Mt::core::Scalar i) {
+		void Complex::SetImaginaryPart(Mt::objects::Scalar i) {
 			this->partImaginary = i;
 		}
 
-		void Complex::SetPair(std::pair<Mt::core::Scalar, Mt::core::Scalar> cmplxPair) {
+		void Complex::SetPair(std::pair<Mt::objects::Scalar, Mt::objects::Scalar> cmplxPair) {
 			this->partReal = cmplxPair.first;
 			this->partImaginary = cmplxPair.second;
 		}
 
-		Mt::core::Scalar Complex::GetRealPart(void) {
+		Mt::objects::Scalar Complex::GetRealPart(void) {
 			return this->partReal;
 		}
 
-		Mt::core::Scalar Complex::GetImaginaryPart(void) {
+		Mt::objects::Scalar Complex::GetImaginaryPart(void) {
 			return this->partImaginary;
 		}
 
-		std::pair<Mt::core::Scalar, Mt::core::Scalar> Complex::GetPair(void) {
+		std::pair<Mt::objects::Scalar, Mt::objects::Scalar> Complex::GetPair(void) {
 			return std::make_pair(this->partReal, this->partImaginary);
 		}
 
 		// Operator overloads
 
 		Complex& Complex::operator=(Complex& rhs) {
-			this->partReal = rhs.GetRealPart();
-			this->partImaginary = rhs.GetImaginaryPart();
+			this->partReal = rhs.partReal;
+			this->partImaginary = rhs.partImaginary;
 			return *this;
 		}
 
 		// Basic Arithmetic operations
 		Complex& Complex::operator+(Complex& rhs) {
-
+			Complex c((this->partReal + rhs.partReal), (this->partImaginary + rhs.partImaginary));
+			return c;
 		}
 
 		Complex& Complex::operator-(Complex& rhs) {
-
-		}
-
-		Complex& Complex::operator+() {
-
-		}
-
-		Complex& Complex::operator-() {
-
+			Complex c((this->partReal + rhs.partReal), (this->partImaginary + rhs.partImaginary));
+			return c;
 		}
 
 		Complex& Complex::operator*(Complex& rhs) {
@@ -83,33 +84,39 @@ namespace Mt {
 		}
 
 		Complex& Complex::operator/(Complex& rhs) {
-
+			
 		}
 
 		Complex& Complex::operator%(Complex& rhs) {
-
+			Complex c((this->partReal % rhs.partReal), (this->partImaginary % rhs.partImaginary));
+			return c;
 		}
 
 		Complex& Complex::operator++() {
-
+			this->partImaginary++;
+			return *this;
 		}
 
 		Complex& Complex::operator++(int) {
-
+			this->partReal++;
+			return *this;
 		}
 
 		Complex& Complex::operator--() {
-
+			this->partImaginary--;
+			return *this;
 		}
 
 		Complex& Complex::operator--(int) {
-
+			this->partReal--;
+			return *this;
 		}
 
 
 		// Comparison operators
 		bool Complex::operator==(Complex const& rhs) {
-
+			return ((this->partReal == rhs.partReal) &&
+				    (this->partImaginary == rhs.partImaginary));
 		}
 
 		bool Complex::operator!=(Complex const& rhs) {
@@ -117,7 +124,8 @@ namespace Mt {
 		}
 
 		bool Complex::operator>(Complex const& rhs) {
-
+			return ((this->partReal > rhs.partReal) &&
+				    (this->partImaginary > rhs.partImaginary));
 		}
 
 		bool Complex::operator<(Complex const& rhs) {
@@ -125,11 +133,13 @@ namespace Mt {
 		}
 
 		bool Complex::operator>=(Complex const& rhs) {
-
+			return ((this->partReal >= rhs.partReal) &&
+				    (this->partImaginary >= rhs.partImaginary));
 		}
 
 		bool Complex::operator<=(Complex const& rhs) {
-
+			return ((this->partReal <= rhs.partReal) &&
+				    (this->partImaginary <= rhs.partImaginary));
 		}
 
 		std::ostream& operator<<(std::ostream& os, const Complex& cplx) {

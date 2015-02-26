@@ -22,7 +22,6 @@ namespace Mt {
 				\brief Lexical Expression Base
 
 				This is an empty class that serves as the base for all SML lexical objects
-
 			*/
 			class NRoot {
 

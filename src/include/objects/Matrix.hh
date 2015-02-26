@@ -1,6 +1,7 @@
 /*
 	Matrix.hh - MxN matrix
 */
+#pragma once
 
 #include "core/INumeric.hh"
 

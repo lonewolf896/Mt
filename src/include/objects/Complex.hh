@@ -14,30 +14,31 @@ namespace Mt {
 			\brief Mt Complex Number
 
 			This class allows the representation of complex numbers 
-
-			\todo Replace Mt::core::Scalar with Mt::core::Scalar
 		*/
 		class Complex : public Mt::core::INumeric {
 			private:
-				Mt::core::Scalar partReal;
-				Mt::core::Scalar partImaginary;
+				Mt::objects::Scalar partReal;
+				Mt::objects::Scalar partImaginary;
 			public:
 
 			// Constructors
 			Complex(void);
-			Complex(std::pair<Mt::core::Scalar, Mt::core::Scalar> parts);
-			Complex(Mt::core::Scalar real, Mt::core::Scalar i);
+			Complex(const std::pair<Mt::objects::Scalar, Mt::objects::Scalar>& parts);
+			Complex(Mt::objects::Scalar real, Mt::objects::Scalar i);
+
+			Complex(Complex& cplx);
+			Complex(Complex&& cplx);
 
 			~Complex(void);
 
 			// Misc functions
-			void SetRealPart(Mt::core::Scalar real);
-			void SetImaginaryPart(Mt::core::Scalar i);
-			void SetPair(std::pair<Mt::core::Scalar, Mt::core::Scalar> cmplxPair);
+			void SetRealPart(Mt::objects::Scalar real);
+			void SetImaginaryPart(Mt::objects::Scalar i);
+			void SetPair(std::pair<Mt::objects::Scalar, Mt::objects::Scalar> cmplxPair);
 
-			Mt::core::Scalar GetRealPart(void);
-			Mt::core::Scalar GetImaginaryPart(void);
-			std::pair<Mt::core::Scalar, Mt::core::Scalar> GetPair(void);
+			Mt::objects::Scalar GetRealPart(void);
+			Mt::objects::Scalar GetImaginaryPart(void);
+			std::pair<Mt::objects::Scalar, Mt::objects::Scalar> GetPair(void);
 
 			// Operator overloads
 
@@ -66,7 +67,6 @@ namespace Mt {
 
 			// Stream overloads
 			friend std::ostream& operator<<(std::ostream& os, const Complex& cplx);
-
 		};
 	}
 }

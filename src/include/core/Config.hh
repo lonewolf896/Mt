@@ -28,6 +28,10 @@ namespace Mt {
 			*/
 			std::map<std::string, std::string> settings;
 			/*!
+				The map that holds the command line options
+			*/
+			std::map<std::string, std::string> arguments;
+			/*!
 				The constructor for the configuration class, this should not be called manually, instad use Mt::Config::GetInstance() to get an instance of this class for use
 			*/
 			Config(void);
@@ -52,19 +56,30 @@ namespace Mt {
 			static Config* GetInstance(void);
 
 			/*!
-				Opens the given file for configuration reading, returns true oppon success
+				Opens the given file for configuration reading, returns true upon success
 			*/
 			bool OpenFile(std::string file);
-
+			/*!
+				Takes an array of C strings and the count from the main application entrypoint and parses them
+				into an easy to query collection.
+			*/
+			void ParseArguments(int argc, char* argv[]);
+			/*!
+				Checks to see if there is an argument with the given name in the collection
+			*/
+			bool ArgHasValue(std::string argument);
+			/*!
+				Returns the value (if any) that is related to the argument (if any)
+			*/
+			std::string GetArgValue(std::string argument);
 			/*!
 				Queries the known configuration settings for one with the given name, if it has a value, that is returned if found
 			*/
-			std::string GetValue(std::string setting);
+			std::string GetCfgValue(std::string setting);
 			/*!
 				Sets a given configuration setting with the provided value
 			*/
-			void SetValue(std::string setting, std::string value);
-
+			void SetCfgValue(std::string setting, std::string value);
 			/*!
 				Loads configuration settings from a file on disk
 			*/
@@ -73,7 +88,6 @@ namespace Mt {
 				Reads the given envrioment for a MT_CONFIG value and loads settings from that
 			*/
 			void ReadEnvForConfig(char* env[]);
-
 			/*!
 			   Saves any changed configuration from memory to disk  
 			*/

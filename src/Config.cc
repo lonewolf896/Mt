@@ -28,11 +28,27 @@ namespace Mt {
 			return this->fileHndl.is_open();
 		}
 
-		std::string Config::GetValue(std::string setting) {
+		void Config::ParseArguments(int argc, char* argv[]) {
+			// Iterate through the arguments, always ignore the first, as that's our path
+			for(int i = 1; i < argc; i++) {
+
+			}
+		}
+
+
+		bool Config::ArgHasValue(std::string argument) {
+
+		}
+
+		std::string Config::GetArgValue(std::string argument) {
+			return this->arguments[argument];
+		}
+
+		std::string Config::GetCfgValue(std::string setting) {
 			return this->settings[setting];
 		}
 
-		void Config::SetValue(std::string setting, std::string value) {
+		void Config::SetCfgValue(std::string setting, std::string value) {
 			this->settings[setting] = value;
 		}
 

@@ -15,38 +15,48 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 #endif
 	// Hook the Interrupt signal
 	signal(SIGINT, Term);
-
-	// Argument Parsing
-	if(argc > 1) {
-		// Pass off the the argument parser.
-		std::cout << argv[0] << std::endl;
+	
+	// Configuration bits and bobs
+	Mt::core::Config::GetInstance()->ReadEnvForConfig(env);
+	// Parse command line options
+	Mt::core::Config::GetInstance()->ParseArguments(argc, argv);
+	// Check to see if we pass a explicit configuration file
+	if(Mt::core::Config::GetInstance()->ArgHasValue("config")) {
+		Mt::core::Config::GetInstance()->OpenFile(
+				Mt::core::Config::GetInstance()->GetArgValue("config")
+			);
+	} else {
+		// If not, load the default file
+		Mt::core::Config::GetInstance()->OpenFile("mt.cfg");
 	}
+	// Load the file
+	Mt::core::Config::GetInstance()->LoadFromFile();
 
 	// Banner
 	std::cout << VERSION_STRING << std::endl << std::endl;
-	// Enable the rotating banner, if _NOFUN is not defined
-#if !defined(_NOFUN)
-	std::random_device rd;
-	std::cout << quotes[rd() % 10] << std::endl << std::endl;
-#endif
-	// Configuration bits and bobs
-	Mt::core::Config::GetInstance()->OpenFile("mt.cfg");
-	Mt::core::Config::GetInstance()->ReadEnvForConfig(env);
-	Mt::core::Config::GetInstance()->LoadFromFile();
 
-	// Print out the config settings
-	if(Mt::core::Config::GetInstance()->GetValue("show_env") == "yes")
+	// Print out the configuration settings
+	if(Mt::core::Config::GetInstance()->GetCfgValue("show_env") == "yes")
 		std::cout << "Environment settings:" << std::endl << (*Mt::core::Config::GetInstance()) << std::endl;
 
+	// Enable the rotating banner, if _NOFUN is not defined
+#if !defined(_NOFUN)
+	// If you have the item enabled in the configuration, then quote away.
+	f(Mt::core::Config::GetInstance()->GetCfgValue("challenge") == "response") {
+		std::random_device rd;
+		std::cout << quotes[rd() % 15] << std::endl << std::endl;
+	}
+#endif
+
 	// Load modules and such
-	Mt::core::ModuleEngine::GetInstance()->LoadAll(Mt::core::Config::GetInstance()->GetValue("module_dir"));
+	Mt::core::ModuleEngine::GetInstance()->LoadAll(Mt::core::Config::GetInstance()->GetCfgValue("module_dir"));
 	// Etc
 	unsigned long long InterpLineNum = 1ULL;
 
 	// REPL
 	std::string strBuffLine;
 
-	// Init the parser
+	// Initialize the parser
 	Mt::SParser::GetInstance();
 	while (true) {
 		std::cout << "mt:" << InterpLineNum++ << "> ";
@@ -61,9 +71,10 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 
 
 void Term(int Signal) {
-	if(Signal == SIGTERM); // Nop out, removes the warning...
+	if(Signal == SIGTERM) continue; // Nop out, removes the warning...
 	std::cout << std::endl << "SIGTERM Caught, releasing resources" << std::endl;
 	// Unload the modules
 	Mt::core::ModuleEngine::GetInstance()->UnloadAll();
+	// Die.
 	exit(0);
 }

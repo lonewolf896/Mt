@@ -2,6 +2,8 @@
 	List.hh - A list of unordered non-unique objects
 */
 
+#pragma once
+
 #include "core/INumeric.hh"
 
 #include <vector>

@@ -51,10 +51,17 @@ namespace Mt {
 			Scalar s(Internal * rhs.Internal);
 			return s;
 		}
+
 		Scalar& Scalar::operator/(Scalar& rhs){
 			Scalar s(Internal / rhs.Internal);
 			return s;
 		}
+
+		Scalar& Scalar::operator%(Scalar& rhs){
+			Scalar s(Internal % rhs.Internal);
+			return s;
+		}
+
 		Scalar& Scalar::operator++(int){
 			Internal++;
 			return *this;
@@ -79,6 +86,11 @@ namespace Mt {
 		}
 		Scalar& Scalar::operator/(mtfloat_t& rhs){
 			Scalar s(Internal / rhs);
+			return s;
+		}
+
+		Scalar& Scalar::operator%(mtfloat_t& rhs){
+			Scalar s(Internal % rhs);
 			return s;
 		}
 
@@ -119,6 +131,10 @@ namespace Mt {
 		}
 		bool Scalar::operator<=(mtfloat_t const& rhs){
 			return Internal <= rhs;
+		}
+
+		std::ostream& operator<<(std::ostream& os, const Scalar& sclr) {
+			return (os << sclr.Internal);
 		}
 	}
 }
