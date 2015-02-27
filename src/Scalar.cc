@@ -22,6 +22,10 @@ namespace Mt {
 			Internal = s.Internal;
 		}
 
+		Scalar::Scalar(Scalar const& s){
+			Internal = s.Internal;
+		}
+
 		Scalar::~Scalar(){
 
 		}
@@ -30,6 +34,10 @@ namespace Mt {
 			The assignment operator, this should check for type so you cant assign a Mt::Complex to an Mt::Integer
 		*/
 		Scalar& Scalar::operator=(Scalar const& rhs){
+			Internal = rhs.Internal;
+			return *this;
+		}
+		Scalar& Scalar::operator=(Scalar& rhs){
 			Internal = rhs.Internal;
 			return *this;
 		}

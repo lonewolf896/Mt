@@ -20,9 +20,11 @@ namespace Mt {
 			Scalar();
 			Scalar(mtfloat_t num);
 			Scalar(Scalar& s);
+			Scalar(Scalar const& s);
 			Scalar(Scalar&& s);
 			~Scalar();
 			Scalar& operator=(Scalar const& rhs);
+			Scalar& operator=(Scalar& rhs);
 			Scalar& operator=(mtfloat_t const& rhs);
 			Scalar& operator+(Scalar& rhs);
 			Scalar& operator+(mtfloat_t& rhs);
