@@ -22,8 +22,8 @@ namespace Mt {
 			Scalar(Scalar& s);
 			Scalar(Scalar&& s);
 			~Scalar();
-			Scalar& operator=(Scalar& rhs);
-			Scalar& operator=(mtfloat_t& rhs);
+			Scalar& operator=(Scalar const& rhs);
+			Scalar& operator=(mtfloat_t const& rhs);
 			Scalar& operator+(Scalar& rhs);
 			Scalar& operator+(mtfloat_t& rhs);
 			Scalar& operator-(Scalar& rhs);
