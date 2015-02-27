@@ -42,7 +42,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 	// Enable the rotating banner, if _NOFUN is not defined
 #if !defined(_NOFUN)
 	// If you have the item enabled in the configuration, then quote away.
-	f(Mt::core::Config::GetInstance()->GetCfgValue("challenge") == "response") {
+	if(Mt::core::Config::GetInstance()->GetCfgValue("challenge") == "response") {
 		std::random_device rd;
 		std::cout << quotes[rd() % 15] << std::endl << std::endl;
 	}
@@ -71,7 +71,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 
 
 void Term(int Signal) {
-	if(Signal == SIGTERM) continue; // Nop out, removes the warning...
+	if(Signal == SIGTERM); // Nop out, removes the warning...
 	std::cout << std::endl << "SIGTERM Caught, releasing resources" << std::endl;
 	// Unload the modules
 	Mt::core::ModuleEngine::GetInstance()->UnloadAll();

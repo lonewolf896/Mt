@@ -85,7 +85,7 @@ namespace Mt {
 			*/
 			void LoadFromFile(void);
 			/*!
-				Reads the given envrioment for a MT_CONFIG value and loads settings from that
+				Reads the given environment for a MT_CONFIG value and loads settings from that
 			*/
 			void ReadEnvForConfig(char* env[]);
 			/*!

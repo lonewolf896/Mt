@@ -2,7 +2,7 @@
 	Scalar.hh - Scalar
 */
 #pragma once
-
+#include <iostream>
 #include "core/INumeric.hh"
 
 namespace Mt {

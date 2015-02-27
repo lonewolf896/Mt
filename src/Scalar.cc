@@ -66,8 +66,8 @@ namespace Mt {
 		}
 
 		Scalar& Scalar::operator%(Scalar& rhs){
-			Scalar s(Internal % rhs.Internal);
-			return s;
+			//Scalar s(Internal % rhs.Internal);
+			//return s;
 		}
 
 		Scalar& Scalar::operator++(int){
@@ -98,8 +98,8 @@ namespace Mt {
 		}
 
 		Scalar& Scalar::operator%(mtfloat_t& rhs){
-			Scalar s(Internal % rhs);
-			return s;
+			//Scalar s(Internal % rhs);
+			//return s;
 		}
 
 		// Comparison Scalar::operators
