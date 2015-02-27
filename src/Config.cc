@@ -31,13 +31,24 @@ namespace Mt {
 		void Config::ParseArguments(int argc, char* argv[]) {
 			// Iterate through the arguments, always ignore the first, as that's our path
 			for(int i = 1; i < argc; i++) {
+				std::string tmp(argv[i]);
 
+				std::size_t pos_eq = tmp.find("=");
+
+				if(pos_eq != std::string::npos) {
+					std::string key = tmp.substr(0, pos_eq);
+					std::string value = tmp.substr(pos_eq + 1);
+					this->arguments[key.substr(1, key.length())] = value;
+				} else {
+					this->arguments[tmp.substr(1, tmp.length())] = "SET";
+				}
 			}
 		}
 
 
 		bool Config::ArgHasValue(std::string argument) {
-
+			auto itr = this->arguments.find(argument);
+			return (itr != this->arguments.end());
 		}
 
 		std::string Config::GetArgValue(std::string argument) {

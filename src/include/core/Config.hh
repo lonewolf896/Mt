@@ -19,7 +19,7 @@ namespace Mt {
 			\brief Configuration parsing and lookup
 
 			This class implements basic configuration file reading and lookup, allowing one to read
-			configuration options from a file or the env paramater passed in to main
+			configuration options from a file or the env parameter passed in to main
 		*/
 		class Config {
 			private:
@@ -54,7 +54,6 @@ namespace Mt {
 				Returns an instance of Mt::Config if one exists, if not it creates one and then returns that.
 			*/
 			static Config* GetInstance(void);
-
 			/*!
 				Opens the given file for configuration reading, returns true upon success
 			*/
