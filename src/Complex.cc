@@ -12,8 +12,8 @@ namespace Mt {
 		}
 
 		Complex::Complex(const std::pair<Mt::objects::Scalar, Mt::objects::Scalar>& parts) {
-			this->partReal = parts.first;
-			this->partImaginary = parts.second;
+			//this->partReal = parts.first;
+			//this->partImaginary = parts.second;
 		}
 
 		Complex::Complex(Mt::objects::Scalar real, Mt::objects::Scalar i) {
@@ -22,11 +22,11 @@ namespace Mt {
 		}
 
 		Complex::Complex(Complex& cplx){
-			this->SetPair(cplx.GetPair());
+			//this->SetPair(cplx.GetPair());
 		}
 
 		Complex::Complex(Complex&& cplx) {
-			this->SetPair(cplx.GetPair());
+			//this->SetPair(cplx.GetPair());
 		}
 
 		// Destructor
@@ -43,9 +43,9 @@ namespace Mt {
 			this->partImaginary = i;
 		}
 
-		void Complex::SetPair(std::pair<Mt::objects::Scalar, Mt::objects::Scalar> cmplxPair) {
-			this->partReal = cmplxPair.first;
-			this->partImaginary = cmplxPair.second;
+		void Complex::SetPair(const std::pair<Mt::objects::Scalar, Mt::objects::Scalar> cmplxPair) {
+			//this->partReal = cmplxPair.first;
+			//this->partImaginary = cmplxPair.second;
 		}
 
 		Mt::objects::Scalar Complex::GetRealPart(void) {

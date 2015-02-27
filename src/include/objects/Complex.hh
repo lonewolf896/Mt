@@ -34,7 +34,7 @@ namespace Mt {
 			// Misc functions
 			void SetRealPart(Mt::objects::Scalar real);
 			void SetImaginaryPart(Mt::objects::Scalar i);
-			void SetPair(std::pair<Mt::objects::Scalar, Mt::objects::Scalar> cmplxPair);
+			void SetPair(const std::pair<Mt::objects::Scalar, Mt::objects::Scalar> cmplxPair);
 
 			Mt::objects::Scalar GetRealPart(void);
 			Mt::objects::Scalar GetImaginaryPart(void);
