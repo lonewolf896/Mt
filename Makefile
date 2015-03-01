@@ -17,12 +17,12 @@ CXX := g++ -Werror -fno-builtin
 CXX_DBG := clang++ -g -stdlib=libc++
 
 CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
-	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -I$(SRCDIR)/include
+	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -I$(SRCDIR)/include -I/usr/include/editline 
 
 CFLAGS += -D'VERSION="$(VERSION)"'
 
 
-LDFLAGS := -ltcmalloc -lc++abi -lpthread -ldl
+LDFLAGS := -ltcmalloc -lc++abi -lpthread -ldl -ledit -lcurses
 
 SRCS := $(shell ls $(SRCDIR)/*.cc)
 _OBJS := $(SRCS:.cc=.o)
