@@ -23,7 +23,7 @@ namespace Mt {
 				return (ModuleEngine::instance = new ModuleEngine());
 			return ModuleEngine::instance;
 		}
-#if defined(__linux__) // Linux implementation
+#if defined(__linux__) | defined(__APPLE__) // *NIX implementation
 		bool ModuleEngine::LoadModule(std::string module) {
 #if defined(DEBUG) | defined(_DEBUG)
 			std::cout << "Attempting to load module '" << module << "'" << std::endl;
@@ -136,7 +136,7 @@ namespace Mt {
 #endif
 
 
-#if defined(__linux__)
+#if defined(__linux__) | defined(__APPLE__)
 		bool ModuleEngine::__LX_GetDirContent(std::string directory, std::vector<std::string> &files) {
 			// Yay! File-system interaction. 
 			DIR *dp;

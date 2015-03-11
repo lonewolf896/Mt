@@ -3,13 +3,10 @@
 */
 	
 #pragma once
-#include <termnios.h>
 
-// libedit support
-#include <histedit.h>
 
 namespace Mt {
-	namsepce frontend {
+	namespace frontend {
 		class REPL {
 			private:
 

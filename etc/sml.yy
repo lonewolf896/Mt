@@ -74,7 +74,7 @@ program : stmts { rootScope = $1; }
 /*
 	Any collection of statements
 */
-stmts : stmt { $$ = new Mt::NBlock(); $$->statements.push_back($<stmt>1); }
+stmts : stmt { $$ = new Mt::core::lang::NBlock(); $$->statements.push_back($<stmt>1); }
 	  | stmts stmt { $1->statements.push_back($<stmt>2); }
 	  ;
 
@@ -160,7 +160,7 @@ call_args : /* Empty */ { $$ = new Mt::core::lang::ExpressionList(); }
 		  ;
 
 /*
-	All binary operators ( + - * / ^ > < += -= *= /= >= <=)
+	All binary operators ( + - * / ^ > < += -= *= /= >= <= ~)
 */
 comparison : TCEQ | TNEQUAL | TCLT | TCGT | TCLE | TCGE
 		   | TPLUS | TMINUS | TMUL | TDIV | TMOD | TPOW

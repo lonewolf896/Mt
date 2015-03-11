@@ -82,7 +82,7 @@ namespace Mt {
 
 		void Config::ReadEnvForConfig(char* env[]) {
 			char **envcpy;
-			for(envcpy = env; envcpy != nullptr; envcpy++) {
+			for(envcpy = env; envcpy != NULL; envcpy++) {
 				if(strncmp(*envcpy, "MTCFG", 4)) {
 					 
 				}

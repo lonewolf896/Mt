@@ -5,7 +5,7 @@
 
 #include "Module.hh"
 
-#if defined(__linux__)
+#if defined(__linux__) | defined(__APPLE__)
 #include <dlfcn.h>
 #include <sys/types.h>
 #include <dirent.h>
@@ -76,7 +76,7 @@ namespace Mt {
 				*/
 				std::map<std::string, ModulePackage*> Modules;
 
-#if defined(__linux__)
+#if defined(__linux__) | defined(__APPLE__)
 				/*!
 					Internal Linux implementation to get all files in a given directory
 				*/
