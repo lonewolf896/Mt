@@ -59,6 +59,8 @@ bison:
 	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.yy
 	@echo -e Moving misplaced file
 	@mv $(SRCDIR)/stack.hh $(SRCDIR)/include/core/lang/stack.hh
+	@echo -e Patching Parser
+	@sed -i 's/Parser.hh/core\/lang\/Parser.hh/g' $(SRCDIR)/Parser.cc 
 
 lex: bison
 	@echo -e Generating lexical tokens

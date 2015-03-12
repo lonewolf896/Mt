@@ -47,31 +47,31 @@ namespace Mt {
 
 				This is a lexical object that represents the Mt::objects::Integer type
 			*/
-			class NInteger : NExpression {
+			class NInteger : public NExpression {
 				public:
-					Mt::objects::Scalar i;
-					NInteger(int val) : i((mtfloat_t)val) {}
+					Mt::objects::Scalar _i;
+					NInteger(int val) : _i((mtfloat_t)val) {}
 			};
 			/*! \class NDouble
 				\brief SML Double Representation
 
 				This is a lexical object that represents the Mt::objects::Double type
 			*/
-			class NDouble : NExpression{
+			class NDouble : public NExpression{
 				public:
-					Mt::objects::Scalar d;
-					NDouble(double val) : d((mtfloat_t)val) {}
+					Mt::objects::Scalar _d;
+					NDouble(double val) : _d((mtfloat_t)val) {}
 			};
 			/*! \class NComplex
 				\brief SML Complex Representation
 
 				This is a lexical object that represents the Mt::objects::Complex type
 			*/
-			class NComplex : NExpression {
+			class NComplex : public NExpression {
 				public:
-					Mt::objects::Complex c;
-					NComplex(const std::string cplx) {}
-					NComplex(const char* cpkx) {}
+					Mt::objects::Complex _c;
+					NComplex(const std::string cplx) : _c(cplx) {}
+					NComplex(const char* cplx) : _c(cplx) {}
 			};
 			/*! \class NIdentifier
 				\brief SML Lexical Identifier
@@ -81,10 +81,10 @@ namespace Mt {
 				An SML identifier can be any alphanumeric string with any amount of underscores contained 
 				within as long as it starts only with an alpha that matches [a-zA-Z]
 			*/
-			class NIdentifier : NExpression {
+			class NIdentifier : public NExpression {
 				public:
-					std::string name;
-					NIdentifier(const std::string& name) : name(name) { }
+					std::string _name;
+					NIdentifier(const std::string& name) : _name(name) { }
 			};
 			/*! \class NVariableDeclaration
 				\brief SML Variable Declaration Representation
@@ -97,12 +97,12 @@ namespace Mt {
 			*/
 			class NVariableDeclaration : public NStatement {
 				public:
-					NIdentifier& id;
-					NExpression *assignmentExpr;
+					NIdentifier& _id;
+					NExpression* _assignmentExpr;
 					NVariableDeclaration(NIdentifier& id) :
-						id(id) { }
+						_id(id) { }
 					NVariableDeclaration(NIdentifier& id, NExpression *assignmentExpr) :
-						id(id), assignmentExpr(assignmentExpr) { }
+						_id(id), _assignmentExpr(assignmentExpr) { }
 			};
 
 
@@ -121,12 +121,12 @@ namespace Mt {
 
 				where `ExpressionList` is `std::vector<Mt::core::lang::NExpression*>`
 			*/
-			class NMethodCall : NExpression {
+			class NMethodCall : public NExpression {
 				public:
-					const NIdentifier& id;
-					ExpressionList arguments;
-					NMethodCall(const NIdentifier& id, ExpressionList& arguments) : id(id), arguments(arguments) { }
-					NMethodCall(const NIdentifier& id) : id(id) { }
+					const NIdentifier& _id;
+					ExpressionList _arguments;
+					NMethodCall(const NIdentifier& id, ExpressionList& arguments) : _id(id), _arguments(arguments) { }
+					NMethodCall(const NIdentifier& id) : _id(id) { }
 			};
 			/*! \class NBinaryOperator
 				\brief SML Binary Operator Representation
@@ -139,11 +139,11 @@ namespace Mt {
 			*/
 			class NBinaryOperator : public NExpression {
 				public:
-					int op;
-					NExpression& lhs;
-					NExpression& rhs;
+					NExpression& _lhs;
+					int _op;
+					NExpression& _rhs;
 					NBinaryOperator(NExpression& lhs, int op, NExpression& rhs) :
-						lhs(lhs), rhs(rhs), op(op) { }
+						_lhs(lhs), _op(op), _rhs(rhs) { }
 			};
 			/*! \class NAssigmnet 
 				\brief SML Assignment Operation Representation
@@ -157,10 +157,10 @@ namespace Mt {
 			*/
 			class NAssignment : public NExpression {
 				public:
-					NIdentifier& lhs;
-					NExpression& rhs;
+					NIdentifier& _lhs;
+					NExpression& _rhs;
 					NAssignment(NIdentifier& lhs, NExpression& rhs) :
-						lhs(lhs), rhs(rhs) { }
+						_lhs(lhs), _rhs(rhs) { }
 			};
 			/*! \class NBlock
 				\brief SML Scope Representation
@@ -180,9 +180,9 @@ namespace Mt {
 			*/
 			class NExpressionStatement : public NStatement {
 				public:
-					NExpression& expression;
+					NExpression& _expression;
 					NExpressionStatement(NExpression& expression) :
-						expression(expression) { }
+						_expression(expression) { }
 			};
 			/*! \class NFunctionDeclaration
 				\brief SML Function Declaration Representation
@@ -197,22 +197,22 @@ namespace Mt {
 			*/
 			class NFunctionDeclaration : public NStatement {
 				public:
-					const NIdentifier& id;
-					VariableList arguments;
-					NBlock& block;
+					const NIdentifier& _id;
+					VariableList _arguments;
+					NBlock& _block;
 					NFunctionDeclaration(const NIdentifier& id,
 							const VariableList& arguments, NBlock& block) :
-						id(id), arguments(arguments), block(block) { }
+						_id(id), _arguments(arguments), _block(block) { }
 			};
 
 			class NListDeclaration : public NStatement {
 				public:
-					const NIdentifier& id;
-					VariableList arguments;
-					NBlock& block;
+					const NIdentifier& _id;
+					VariableList _arguments;
+					NBlock& _block;
 					NListDeclaration(const NIdentifier& id,
 							const VariableList& arguments, NBlock& block) :
-						id(id), arguments(arguments), block(block) { }
+						_id(id), _arguments(arguments), _block(block) { }
 			};
 		}
 	}

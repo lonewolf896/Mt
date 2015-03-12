@@ -2,7 +2,8 @@
 	sml.l - Simple Math Language (SML) flex lexer grammar
 
 */
-%option c++
+
+%option c++ noyywrap nounput batch debug
 
 %{
 	#include <iostream>
@@ -14,7 +15,6 @@
 	#define SAVE_TOKEN yylval.string = new std::string(yytext, yyleng)
 	#define TOKEN(t) (yylval.token = t)
 	
-	extern "C" int yywrap() { }
 %}
 
 %%

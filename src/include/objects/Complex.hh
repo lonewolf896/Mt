@@ -23,6 +23,8 @@ namespace Mt {
 
 			// Constructors
 			Complex(void);
+			Complex(std::string cplx);
+			Complex(const char * cplx);
 			Complex(std::pair<Mt::objects::Scalar, Mt::objects::Scalar>& parts);
 			Complex(Mt::objects::Scalar real, Mt::objects::Scalar i);
 

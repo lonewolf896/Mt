@@ -9,14 +9,19 @@
 %require "3.0.4"
 %language "C++"
 
+
 %{
 	#include <iostream>
+	// Rocking the C++ Lexer yo.
+	#include <FlexLexer.h>
+
 	#include "core/lang/ASTObjs.hh"
 	#include "core/Types.hh"
 
 	Mt::core::lang::NBlock *rootScope;
 
-	extern int yylex();
+	yyFlexLexer* yylexer;
+
 	void yyerror(const char* s) { std::cout << "ERROR: " << s << std::endl; }
 %}
 
@@ -29,19 +34,16 @@
 	Mt::core::lang::NVariableDeclaration *var_decl;
 	std::vector<Mt::core::lang::NVariableDeclaration*> *varvec;
 	std::vector<Mt::core::lang::NExpression*> *exprvec;
-	Mt::Complex *cmplx;
+	Mt::core::INumeric *numeric;
 	bool boolean;
 	std::string *string;
 	int token;
 }
 
 %defines
-%define parser_class_name {sml_parser}
-%define api.token.constructor
-%define api.value.type variant
+%define parser_class_name {SMLParser}
 %define parse.assert
 
-%define parse.trace
 %define parse.error verbose
 
 %token <boolean> TTRUE TFALSE
@@ -52,10 +54,10 @@
 
 %type <ident> ident
 %type <expr> numeric expr
-%type <varvec> func_decl_args list_decl_args
+%type <varvec> func_decl_args /* list_decl_args */
 %type <exprvec> call_args
 %type <block> program stmts block
-%type <stmt> stmt var_decl func_decl list_decl
+%type <stmt> stmt var_decl func_decl /*list_decl*/
 %type <token> comparison
 
 %left TPLUS TMINUS
@@ -81,7 +83,7 @@ stmts : stmt { $$ = new Mt::core::lang::NBlock(); $$->statements.push_back($<stm
 /*
 	Any statement, variable, function, list, matrix definitions
 */
-stmt : var_decl | func_decl | list_decl
+stmt : var_decl | func_decl //| list_decl
 	 | expr { $$ = new Mt::core::lang::NExpressionStatement(*$1); }
 	 ;
 
@@ -92,29 +94,43 @@ block : TLBRACE stmts TRBRACE { $$ = $2; }
 	  | TLBRACE TRBRACE { $$ = new Mt::core::lang::NBlock(); }
 
 /*
+	Numeric types (Mt::INumeric/Mt::IScalar)
+	Integer - Any whole, non-rational number
+	Double - Any number with a decimal place
+	Complex - Any complex number as represented by X[+-]Yi
+*/
+numeric : TINTEGER { $$ = new Mt::core::lang::NInteger(atoi($1->c_str())); delete $1; }
+		| TDOUBLE { $$ = new Mt::core::lang::NDouble(atof($1->c_str())); delete $1; }
+		| TCOMPLEX { $$ = new Mt::core::lang::NComplex(*$1); delete $1; }
+		;
+
+/*
 	Variable Declarations E.G A = B + C
 */
 var_decl : ident { $$ = new Mt::core::lang::NVariableDeclaration(*$1); }
-		 | ident TASSIGN expr { $$ = Mt::core::lang::NVariableDeclaration(*$1, *$3); }
+		 | ident TASSIGN expr { $$ = new Mt::core::lang::NVariableDeclaration(*$1, $3); }
 		 ;
 
-list_decl : ident TASSIGN TCLT list_decl_args TCGT
-		   { $$ = new Mt::core::lang::NListDeclaration(*$1, *$3, *$5); delete $5; }
-		  ;
+//list_decl : ident TASSIGN TCLT list_decl_args TCGT
+//		   { $$ = new Mt::core::lang::NListDeclaration(*$1, *$3, *$5); delete $5; }
+//		  ;
+
 /*
 	Function definition. I.E f := (...) { ... }
 */
 func_decl : ident TASSIGN TLPAREN func_decl_args TRPAREN block
-			{ $$ = new Mt::core::lang::NFunctionDeclaration(*$1, *$3, *$5); delete $3; }
+			{ $$ = new Mt::core::lang::NFunctionDeclaration(*$1, *$4, *$6); delete $4; }
 		  ;
 /*
 
 	List Arguments E.G <> <1,2,...N>
 */
-list_decl_args : /* Empty */ { $$ = new Mt::core::lang::VariableList(); }
-			   | numeric { $$ = new Mt::core::lang::VariableList(); $$->push_back$($<numeric>1); }
-			   | list_decl_args TCOMMA numeric { $1->push_back($<numeric>3); }
-			   ;
+
+//list_decl_args : /* Empty */ { $$ = new Mt::core::lang::VariableList(); }
+//			   | numeric { $$ = new Mt::core::lang::VariableList(); $$->push_back($<numeric>1); }
+//			   | list_decl_args TCOMMA numeric { $1->push_back($<numeric>3); }
+//			   ;
+
 /*
 	Function arguments E.G () (a, b, c, d)
 */
@@ -129,25 +145,15 @@ func_decl_args : /* Empty */ { $$ = new Mt::core::lang::VariableList(); }
 ident : TIDENTIFIER { $$ = new Mt::core::lang::NIdentifier(*$1); delete $1; }
 	  ;
 
-/*
-	Numeric types (Mt::INumeric/Mt::IScalar)
-	Integer - Any whole, non-rational number
-	Double - Any number with a decimal place
-	Complex - Any complex number as represented by X[+-]Yi
-*/
-numeric : TINTEGER { $$ = new Mt::core::lang::NInteger(atoi($1-c_str())); delete $1; }
-		| TDOUBLE { $$ = new Mt::core::lang::NDouble(atof($1->c_str())); delete $1; }
-		| TCOMPLEX { $$ = new Mt::core::lang::NComplex(*$1); delete $1; }
-		;
 
 /*
 	Expressions E.G A = 2+B;
 */
-expr : ident TASSIGN expr { $$ = new Mt::core::lang::NAssignment(*$<ident>1, *3); }
+expr : ident TASSIGN expr { $$ = new Mt::core::lang::NAssignment(*$<ident>1, *$3); }
 	 | ident TLPAREN call_args TRPAREN { $$ = new Mt::core::lang::NMethodCall(*$1, *$3); delete $3; }
 	 | ident { $<ident>$ = $1; }
 	 | numeric
-	 | expr comparison expr { $$ = new Mt::core::langNBinaryOperation(*$1, *$2, *$3); }
+	 | expr comparison expr { $$ = new Mt::core::lang::NBinaryOperator(*$1, $2, *$3); }
 	 | TLPAREN expr TRPAREN { $$ = $2; }
 	 ;
 
