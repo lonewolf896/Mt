@@ -11,6 +11,8 @@
 #include <string>
 #include <iomanip>
 #include <csignal>
+#include <thread>
+#include <chrono>
 
 #if !defined(_NOFUN)
 #include <random>
@@ -38,6 +40,7 @@
 #include <core/Config.hh>
 #include <core/lang/SParser.hh>
 #include <core/ModuleEngine.hh>
+#include <remote/RPCServer.hh>
 
 #define ERROR_SUCCESS 0
 #define ERROR_FAILURE 1
@@ -104,6 +107,12 @@ namespace Mt {
 		All items in this namespace are objects that Mt can operate on, such as Mt::objects::Complex
 	*/
 	namespace objects {}
+	/*! \namespace Mt::remote
+		\brief Mt remote operation
+
+		This namespace contains the PRC server and client for talking to other Mt processes and any other application that wishes to use Mt
+	*/
+	namespace remote {}
 
 }
 

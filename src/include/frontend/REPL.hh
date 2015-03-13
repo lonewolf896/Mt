@@ -12,6 +12,8 @@ namespace Mt {
 			private:
 
 			public:
+				REPL(void);
+				~REPL(void);
 		};
 	}
 }

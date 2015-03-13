@@ -36,7 +36,7 @@
 #if defined(__linux__) | defined(__APPLE__)
 #ifndef __LINENOISE_H
 #define __LINENOISE_H
-
+#include <cstddef> // Fix for size_t
 #ifdef __cplusplus
 extern "C" {
 #endif
