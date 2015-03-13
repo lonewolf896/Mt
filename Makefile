@@ -17,12 +17,12 @@ CXX := g++ -Werror -fno-builtin
 CXX_DBG := clang++ -g -stdlib=libc++
 
 CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
-	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -I$(SRCDIR)/include -I/usr/include/editline 
+	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -I$(SRCDIR)/include
 
 CFLAGS += -D'VERSION="$(VERSION)"'
 
 
-LDFLAGS := -ltcmalloc -lc++abi -lpthread -ldl -ledit -lcurses
+LDFLAGS := -ltcmalloc -lc++abi -lpthread -ldl
 
 SRCS := $(shell ls $(SRCDIR)/*.cc)
 _OBJS := $(SRCS:.cc=.o)
@@ -59,6 +59,8 @@ bison:
 	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.yy
 	@echo -e Moving misplaced file
 	@mv $(SRCDIR)/stack.hh $(SRCDIR)/include/core/lang/stack.hh
+	@echo -e Patching Parser
+	@sed -i 's/Parser.hh/core\/lang\/Parser.hh/g' $(SRCDIR)/Parser.cc 
 
 lex: bison
 	@echo -e Generating lexical tokens

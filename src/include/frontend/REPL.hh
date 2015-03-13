@@ -3,13 +3,11 @@
 */
 	
 #pragma once
-#include <termnios.h>
-
-// libedit support
-#include <histedit.h>
+	
+#include "third_party/linenoise.hh"
 
 namespace Mt {
-	namsepce frontend {
+	namespace frontend {
 		class REPL {
 			private:
 

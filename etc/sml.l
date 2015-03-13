@@ -3,13 +3,18 @@
 
 */
 
+%option c++ noyywrap nounput batch debug
+
 %{
+	#include <iostream>
 	#include <string>
+
 	#include "core/lang/ASTObjs.hh"
 	#include "core/lang/Parser.hh"
+
 	#define SAVE_TOKEN yylval.string = new std::string(yytext, yyleng)
 	#define TOKEN(t) (yylval.token = t)
-	extern "C" int yywrap() { }
+	
 %}
 
 %%

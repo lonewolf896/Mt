@@ -29,6 +29,13 @@ namespace Mt {
 			this->SetPair(cplx.GetPair());
 		}
 
+		Complex::Complex(std::string cplx) {
+			
+		}
+		Complex::Complex(const char * cplx){
+			
+		}
+
 		// Destructor
 		Complex::~Complex(void) {
 
@@ -80,11 +87,13 @@ namespace Mt {
 		}
 
 		Complex& Complex::operator*(Complex& rhs) {
-
+#pragma message("TODO: Replace with proper multiplication")
+			return *this;
 		}
 
 		Complex& Complex::operator/(Complex& rhs) {
-			
+#pragma message("TODO: Replace with proper division")
+			return *this;		
 		}
 
 		Complex& Complex::operator%(Complex& rhs) {

@@ -20,6 +20,7 @@
 /*!
 	This macro adds the needed external C calls that Mt needs for loading the module
 */
+#if defined(__linux__) | defined(__APPLE__)
 #define MODULE(MODULE_NAME)								\
 extern "C" Mt::Module* InitializeModule(void) {			\
 	return Mt::Module::GetInstance();					\
@@ -30,7 +31,19 @@ extern "C" void DeallocateModule(Mt::Module* module) {	\
 extern "C" const char * ModuleName(void) {				\
 	return MODULE_NAME;									\
 }
-
+#elif defined(_WIN32)
+// Windows Module shim
+#define MODULE(MODULE_NAME)													\
+__declspec(dllexport) extern Mt::Module* InitializeModule(void) {			\
+	return Mt::Module::GetInstance();										\
+}																			\
+__declspec(dllexport) extern void DeallocateModule(Mt::Module* module) {	\
+		delete module;														\
+}																			\
+__declspec(dllexport) extern const char * ModuleName(void) {				\
+	return MODULE_NAME;														\
+}
+#endif
 
 #include <functional>
 #include <map>
