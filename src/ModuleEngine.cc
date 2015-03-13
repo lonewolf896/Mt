@@ -115,23 +115,81 @@ namespace Mt {
 			}
 			return true;
 		}
-#elif defined(_WIN32) // Windows implementation
+#elif defined(_WIN32) // Windows implementation 
 		bool ModuleEngine::LoadModule(std::string module) {
-			
+#if defined(DEBUG) | defined(_DEBUG)
+			std::cout << "Attempting to load module '" << module << "'" << std::endl;
+#endif
+			ModulePackage *mdl = new  ModulePackage;
+			mdl->ModuleHandle = LoadLibrary(("./"+module).c_str());
+			if(!mdl->ModuleHandle) {
+				std::cout << "Error loading module '" << module << "'. " << dlerror() << std::endl;
+				delete mdl;
+				return false;
+			}
+			mdl->mdlCtor =  (create_t*)GetProcAddress(mdl->ModuleHandle, "InitializeModule");
+			mdl->mdlDtor = (destroy_t*)GetProcAddress(mdl->ModuleHandle, "DeallocateModule");
+			mdl->mdlName = (modulename_t*)GetProcAddress(mdl->ModuleHandle, "ModuleName");
+			if(mdl->mdlDtor == nullptr || mdl->mdlCtor == nullptr || mdl->mdlName == nullptr) {
+				// Close the module
+				FreeLibrary(mdl->ModuleHandle);
+				std::cout << "Error loading module '" << module << "'. I don't have the needed function pointers... " << dlerror() << std::endl;
+				delete mdl;
+				return false;
+			}
+			mdl->modulePtr = mdl->mdlCtor();
+			if(mdl->modulePtr == nullptr) {
+				dlclose(mdl->ModuleHandle);
+				std::cout << "Error: unable to construct module '" << module << "'" << std::endl;
+				delete mdl;
+				return false;
+			}
+
+#if defined(DEBUG) | defined(_DEBUG)
+			std::cout << "Loaded '" << module << "'" << std::endl;
+#endif
+			return true;
 		}
 
 		bool ModuleEngine::UnloadModule(std::string module) {
-
-
+#if defined(DEBUG) | defined(_DEBUG)
+			std::cout << "Unloading '" << module << "'" << std::endl;
+#endif
+			this->Modules[module]->mdlDtor(this->Modules[module]->modulePtr);
+			FreeLibrary(this->Modules[module]->ModuleHandle);
+			delete this->Modules[module];
+			this->Modules.erase(module);
+			return true;
 		}
 
 		bool ModuleEngine::LoadAll(std::string directory) {
+#if defined(DEBUG) | defined(_DEBUG)
+			std::cout << "Attempting to load modules from '" << directory << "'" << std::endl;
+#endif
+			std::vector<std::string> files;
+			if(!this->__WI_GetDirContent(directory, files)) return false;
+			files.erase(std::remove_if(files.begin(), files.end(), IsValidModule), files.end());
+#if defined(DEBUG) | defined(_DEBUG)
+			std::cout << "Found " << files.size() << " modules" << std::endl << std::endl;
+#endif
+			for(auto& module : files){
 
+				if(!this->LoadModule(module)) {
+					std::cout << "Loading of the module '" << module << "' failed." << std::endl;
+					return false;
+				}
+			}
+			return true;
 		}
 
 		bool ModuleEngine::UnloadAll(void) {
-
-
+#if defined(_DEBUG) || defined(DEBUG)
+			std::cout << std::endl << "Unloading Modules..." << std::endl;
+#endif
+			for(auto& mod : this->Modules) {
+				this->UnloadModule(mod.first);
+			}
+			return true;
 		}
 #endif
 
@@ -151,6 +209,10 @@ namespace Mt {
 			}
 			closedir(dp);
 			return true;
+		}
+#elif defined(_WIN32)
+		bool ModuleEngine::__WI_GetDirContent(std::string directory, std::vector<std::string> &files) {
+			// TODO :T
 		}
 #endif
 

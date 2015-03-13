@@ -3,7 +3,8 @@
 */
 	
 #pragma once
-
+	
+#include "third_party/linenoise.hh"
 
 namespace Mt {
 	namespace frontend {

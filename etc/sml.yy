@@ -22,6 +22,8 @@
 
 	yyFlexLexer* yylexer;
 
+
+
 	void yyerror(const char* s) { std::cout << "ERROR: " << s << std::endl; }
 %}
 
