@@ -45,11 +45,9 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 	} else {
 		// Banner
 		std::cout << VERSION_STRING << std::endl << std::endl;
-
 		// Print out the configuration settings
 		if(Mt::core::Config::GetInstance()->GetCfgValue("show_env") == "yes")
 			std::cout << "Environment settings:" << std::endl << (*Mt::core::Config::GetInstance()) << std::endl;
-
 		// Enable the rotating banner, if _NOFUN is not defined
 	#if !defined(_NOFUN)
 		// If you have the item enabled in the configuration, then quote away.
@@ -58,29 +56,15 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 			std::cout << quotes[rd() % 15] << std::endl << std::endl;
 		}
 	#endif
-
-		std::cout << "(ﾉ≧▽≦)ﾉ～～～～『すき』ﾟ+" << std::endl;
-
-		// Etc
-		unsigned long long InterpLineNum = 1ULL;
-
-		// REPL
-		std::string strBuffLine;
-
-		// Initialize the parser
-		Mt::SParser::GetInstance();
-		while (true) {
-			std::cout << "mt:" << InterpLineNum++ << "> ";
-			std::getline(std::cin, strBuffLine);
-	#if defined(_DEBUG) || defined(DEBUG)
-			std::cout << " " << strBuffLine << std::endl;
-			Mt::SParser::GetInstance()->Eval(strBuffLine);
-	#endif
-		}	
+		// Define a new REPL
+		Mt::frontend::REPL repl;
+		// Start the REPL up.
+		repl.Start();
 	}
+	// Assuming we reach this point naturally, lets use our one unified exit point.
+	raise(SIGTERM);
 	return ERROR_SUCCESS;
 }
-
 
 void Term(int Signal) {
 	if(Signal == SIGTERM); // Nop out, removes the warning...
