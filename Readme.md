@@ -10,6 +10,7 @@ In order to build MT from source, you need a few things
  * clang ( >= 3.5 ), g++ ( >= 4.9 )
  * libc++, libc++abi (http://libcxx.llvm.org/ , http://libcxxabi.llvm.org/)
  * gperftools (https://code.google.com/p/gperftools/)
+ * Protocol Buffers AKA. protobuf (https://github.com/google/protobuf)
  * doxygen
  * latex, pdflatex
 

@@ -17,12 +17,12 @@ CXX := g++ -Werror -fno-builtin
 CXX_DBG := clang++ -g -stdlib=libc++
 
 CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
-	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -I$(SRCDIR)/include
+	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -pthread -I$(SRCDIR)/include
 
 CFLAGS += -D'VERSION="$(VERSION)"'
 
 
-LDFLAGS := -ltcmalloc -lc++abi -lpthread -ldl
+LDFLAGS := -lprotobuf -pthread -ltcmalloc -lc++abi -lpthread -ldl 
 
 SRCS := $(shell ls $(SRCDIR)/*.cc)
 _OBJS := $(SRCS:.cc=.o)
@@ -53,6 +53,16 @@ $(OBJS): $(SRCS)
 $(OBJDIR)/%.o: $(SRCDIR)/%.cc
 	@echo -e Building $(CYAN)$@$(WHITE) from $(CYAN)$<$(WHITE)
 	@$(CXX) $(CFLAGS) -o $@ -c $<
+
+prebuild: grammar protobuf
+
+protobuf:
+	@echo -e Compiling RPC Protocol Buffers
+	@protoc -I$(ETCDIR) --cpp_out=$(SRCDIR) $(ETCDIR)/RPC.proto
+	@echo -e Moving misplaced header
+	@mv $(SRCDIR)/RPC.pb.h $(SRCDIR)/include/remote/RPC.pb.hh
+	@echo -e Patching header location
+	@sed -i 's/RPC.pb.h/remote\/RPC.pb.hh/g' $(SRCDIR)/RPC.pb.cc 
 
 bison:
 	@echo -e Generating bison grammar

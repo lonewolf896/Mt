@@ -45,7 +45,6 @@ namespace Mt {
 			}
 		}
 
-
 		bool Config::ArgHasValue(std::string argument) {
 			auto itr = this->arguments.find(argument);
 			return (itr != this->arguments.end());
