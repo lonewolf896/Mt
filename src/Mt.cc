@@ -14,6 +14,8 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 #endif
 	// Hook the Interrupt signal
 	signal(SIGINT, Term);
+	// >.>
+	signal(SIGSEGV, Kawaii);
 	// Configuration bits and bobs
 	Mt::core::Config::GetInstance()->ReadEnvForConfig(env);
 	// Parse command line options
@@ -56,6 +58,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 			std::cout << quotes[rd() % 15] << std::endl << std::endl;
 		}
 	#endif
+		RuntimeDump();
 		// Define a new REPL
 		Mt::frontend::REPL repl;
 		// Start the REPL up.
@@ -74,3 +77,21 @@ void Term(int Signal) {
 	// Die.
 	exit(0);
 }
+
+void Kawaii(int Signal) {
+	if(Signal == SIGSEGV); // Nothing to do here 
+	std::cout << std::endl << "Ｏｏ｡｡(￣￢￣*)ぽあぁん" << std::endl;
+	std::cout << "Segmentation Fault, Forcing core dump via SIGABRT." << std::endl;
+	// Force core dump
+	raise(SIGABRT);
+	exit(0);
+}
+#if defined(__linux__) || defined(__APPLE__)
+// No idea why this is needed, I thought I would be a nifty debugging thing.
+void RuntimeDump(void) {
+	// Here we force a core dump at runtime, we fork, then kill our child
+	if(!fork()) {
+		raise(SIGSEGV);
+	}
+}
+#endif

@@ -1,0 +1,26 @@
+package Mt;
+
+message RPCCall {
+	optional int32 InstanceID = 1;
+	optional string Statement = 2;
+	optional string FilePath  = 3;
+	enum CallType {
+		StartNewRPCInstance 	= 0;
+		ExitRPCInstance 		= 1;
+		RunStatement 			= 2;
+		RunFile					= 3;
+
+		TerminateAllInstances	= 255;
+	}
+}
+
+message RPCResponse {
+	required string ResponseMessage = 1;
+	required int32 InstanceID = 2;
+	optional string Result = 3;
+	enum ResponseType {
+		GenericResponse = 0;
+		StatementResult = 1;
+		FileResult		= 2;
+	}
+}
