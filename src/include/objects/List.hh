@@ -19,9 +19,10 @@ namespace Mt {
 		class List : Mt::core::INumeric {
 			public:
 				std::vector<Mt::core::INumeric> elements;
-			private:
 				List(void);
 				List(std::initializer_list<Mt::core::INumeric>);
+				void Add(INumeric value);
+			private:
 		};	
 	}
 }

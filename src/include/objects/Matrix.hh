@@ -4,6 +4,7 @@
 #pragma once
 
 #include "core/INumeric.hh"
+#include "objects/List.hh"
 #include <vector>
 
 namespace Mt {
@@ -21,9 +22,8 @@ namespace Mt {
 				Matrix(int m, int n);
 				~Matrix();
 
-				mtfloat_t GetIndex(int index);
-				List GetRow(int index);
-				List GetColumn(int index);
+				Mt::objects::List GetRow(int index);
+				Mt::objects::List GetColumn(int index);
 		};
 	}
 }

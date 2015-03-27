@@ -17,7 +17,7 @@ CXX := g++ -Werror -fno-builtin
 CXX_DBG := clang++ -g -stdlib=libc++
 
 CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
-	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -pthread -I$(SRCDIR)/include
+	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -pthread -I$(SRCDIR)/include -I/usr/include/c++/4.9.2 -I/usr/include/c++/4.9.2/x86_64-unknown-linux-gnu/
 
 CFLAGS += -D'VERSION="$(VERSION)"'
 
