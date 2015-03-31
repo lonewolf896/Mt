@@ -13,7 +13,7 @@ namespace Mt {
 			this allows for all of those types to be operated on by each other, and also allows for uniformity amoung the internal
 			system.
 		*/
-		class INumeric : IMtObject {
+		class INumeric : public IMtObject {
 			public:
 			// Disable default move and copy constructors for the interface
 			INumeric(void) { }
