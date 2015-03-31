@@ -15,7 +15,8 @@ namespace Mt {
 		class Matrix : Mt::core::INumeric {
 			private:
 				int m, n;
-				mtfloat_t* data;
+				INumeric* data;
+				int RowColumnToIndex(int row, int column);
 			public:
 				Matrix();
 				Matrix(int n);

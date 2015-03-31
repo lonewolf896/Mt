@@ -5,10 +5,10 @@ namespace Mt {
 		List::List(void)
 		{ }
 
-		List::List(std::initializer_list<Mt::core::INumeric>)
+		List::List(std::initializer_list<Mt::core::IMtObject>)
 		{ }
 
-		List::Add(Mt::core::INumeric value)
+		void List::Add(Mt::core::IMtObject value)
 		{
 			elements.push_back(value);
 		}

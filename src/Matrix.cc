@@ -2,7 +2,6 @@
 
 namespace Mt {
 	namespace objects {
-		int RowColumnToIndex(int row, int column);
 
 		Matrix::Matrix() {
 			m = 0;
@@ -12,12 +11,12 @@ namespace Mt {
 		Matrix::Matrix(int n) {
 			m = n;
 			this->n = n;
-			data = new mtfloat_t[n * n];
+			data = new INumeric[n * n];
 		}
 		Matrix::Matrix(int m, int n) {
 			this->m = m;
 			this->n = n;
-			data = new mtfloat_t[n * n];
+			data = new INumeric[n * n];
 		}
 		Matrix::~Matrix() {
 			delete [] data;
@@ -37,7 +36,7 @@ namespace Mt {
 				returnList.Add(data[RowColumnToIndex(index, i)]);
 		}
 
-		int RowColumnToIndex(int row, int column)
+		int Matrix::RowColumnToIndex(int row, int column)
 		{
 			return (row * n) + row;
 		}
