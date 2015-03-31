@@ -32,7 +32,9 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 	// Load the file
 	Mt::core::Config::GetInstance()->LoadFromFile();
 	// Load modules and such
-	Mt::core::ModuleEngine::GetInstance()->LoadAll(Mt::core::Config::GetInstance()->GetCfgValue("module_dir"));
+	if(Mt::core::Config::GetInstance()->ArgHasValue("module_dir")){
+		Mt::core::ModuleEngine::GetInstance()->LoadAll(Mt::core::Config::GetInstance()->GetCfgValue("module_dir"));
+	}
 	// If the --rpc-server flag is passed we start up the server, dont drop into a REPL
 	if(Mt::core::Config::GetInstance()->ArgHasValue("rpc-server")) {
 		// Start up the RPC server

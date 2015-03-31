@@ -10,6 +10,7 @@
 
 #include "core/IMtObject.hh"
 #include "third_party/linenoise.hh"
+#define _DUMMY_REPL
 
 namespace Mt {
 	namespace frontend {
