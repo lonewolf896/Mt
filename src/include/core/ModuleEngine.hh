@@ -20,6 +20,8 @@
 #include <functional>
 #include <vector>
 #include <map>
+#include <algorithm>
+#include <cstring>
 
 namespace Mt {
 	namespace core {

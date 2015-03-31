@@ -2,6 +2,7 @@
 	Config.cc global configuration manager implementation
 */
 #include "core/Config.hh"
+#include <cstring>
 
 namespace Mt {
 	namespace core {
