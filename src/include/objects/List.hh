@@ -9,7 +9,6 @@
 #include <vector>
 #include <initializer_list>
 
-
 namespace Mt {
 	namespace objects {
 		/*! \class List
