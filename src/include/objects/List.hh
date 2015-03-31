@@ -4,11 +4,10 @@
 
 #pragma once
 
-#include "core/INumeric.hh"
+#include "core/IMtObject.hh"
 
 #include <vector>
 #include <initializer_list>
-
 
 namespace Mt {
 	namespace objects {
@@ -16,12 +15,13 @@ namespace Mt {
 			\brief A collection of unordered non-unique objects
 
 		*/
-		class List : Mt::core::INumeric {
+		class List : Mt::core::IMtObject {
 			public:
-				std::vector<Mt::core::INumeric> elements;
-			private:
+				std::vector<Mt::core::IMtObject> elements;
 				List(void);
-				List(std::initializer_list<Mt::core::INumeric>);
+				List(std::initializer_list<Mt::core::IMtObject>);
+				void Add(Mt::core::IMtObject value);
+			private:
 		};	
 	}
 }
