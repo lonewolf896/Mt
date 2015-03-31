@@ -52,7 +52,7 @@
 %token <string> TIDENTIFIER TDOUBLE TINTEGER TLIST TCOMPLEX
 %token <token>  TCEQ TEQUAL TASSIGN TNEQUAL TCLT TCLE TCGT TCGE
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT
-%token <token> TPLUS TMINUS TMUL TDIV TMOD TPEQUAL TMEQUAL TDEQUAL TMUEQUAL TMOEQUAL TPOW TROOT
+%token <token> TPLUS TMINUS TMUL TDIV TMOD TPEQUAL TMEQUAL TDEQUAL TMUEQUAL TMOEQUAL TPOW TROOT TSRO
 
 %type <ident> ident
 %type <expr> numeric expr
@@ -62,7 +62,7 @@
 %type <stmt> stmt var_decl func_decl /*list_decl*/
 %type <token> comparison
 
-%left TPLUS TMINUS
+%left TPLUS TMINUS TSRO
 %left TMUL TDIV TMOD
 
 %start program
@@ -107,15 +107,15 @@ numeric : TINTEGER { $$ = new Mt::core::lang::NInteger(atoi($1->c_str())); delet
 		;
 
 /*
-	Variable Declarations E.G A = B + C
+	Variable Declarations E.G A := B + C
 */
 var_decl : ident { $$ = new Mt::core::lang::NVariableDeclaration(*$1); }
 		 | ident TASSIGN expr { $$ = new Mt::core::lang::NVariableDeclaration(*$1, $3); }
 		 ;
 
-//list_decl : ident TASSIGN TCLT list_decl_args TCGT
-//		   { $$ = new Mt::core::lang::NListDeclaration(*$1, *$3, *$5); delete $5; }
-//		  ;
+list_decl : ident TASSIGN TCLT list_decl_args TCGT
+		   { $$ = new Mt::core::lang::NListDeclaration(*$1, *$4, *$6); delete $4; }
+		  ;
 
 /*
 	Function definition. I.E f := (...) { ... }
@@ -128,10 +128,10 @@ func_decl : ident TASSIGN TLPAREN func_decl_args TRPAREN block
 	List Arguments E.G <> <1,2,...N>
 */
 
-//list_decl_args : /* Empty */ { $$ = new Mt::core::lang::VariableList(); }
-//			   | numeric { $$ = new Mt::core::lang::VariableList(); $$->push_back($<numeric>1); }
-//			   | list_decl_args TCOMMA numeric { $1->push_back($<numeric>3); }
-//			   ;
+list_decl_args : /* Empty */ { $$ = new Mt::core::lang::VariableList(); }
+			   | numeric { $$ = new Mt::core::lang::VariableList(); $$->push_back($<numeric>1); }
+			   | list_decl_args TCOMMA numeric { $1->push_back($<numeric>3); }
+			   ;
 
 /*
 	Function arguments E.G () (a, b, c, d)
@@ -142,6 +142,12 @@ func_decl_args : /* Empty */ { $$ = new Mt::core::lang::VariableList(); }
 			   ;
 
 /*
+	Scope Resolution E.G Mt::func(...) Mt::sub::func()
+*/
+scope : ident TSRO  ident TLPAREN call_args TRPAREN { $$ = }
+	  | ident TSRO scope
+	  ;
+/*
 	Valid Identifiers: Must start with a Alpha or _ and can only contain alphanumeric and underscores
 */
 ident : TIDENTIFIER { $$ = new Mt::core::lang::NIdentifier(*$1); delete $1; }
@@ -149,7 +155,7 @@ ident : TIDENTIFIER { $$ = new Mt::core::lang::NIdentifier(*$1); delete $1; }
 
 
 /*
-	Expressions E.G A = 2+B;
+	Expressions E.G A := 2+B;
 */
 expr : ident TASSIGN expr { $$ = new Mt::core::lang::NAssignment(*$<ident>1, *$3); }
 	 | ident TLPAREN call_args TRPAREN { $$ = new Mt::core::lang::NMethodCall(*$1, *$3); delete $3; }

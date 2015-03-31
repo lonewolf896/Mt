@@ -58,7 +58,6 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 			std::cout << quotes[rd() % 15] << std::endl << std::endl;
 		}
 	#endif
-		RuntimeDump();
 		// Define a new REPL
 		Mt::frontend::REPL repl;
 		// Start the REPL up.
@@ -86,7 +85,7 @@ void Kawaii(int Signal) {
 	raise(SIGABRT);
 	exit(0);
 }
-#if defined(__linux__) || defined(__APPLE__)
+#if (defined(__linux__) || defined(__APPLE__)) && (defined(_DEBUG) || defined(DEBUG))
 // No idea why this is needed, I thought I would be a nifty debugging thing.
 void RuntimeDump(void) {
 	// Here we force a core dump at runtime, we fork, then kill our child
