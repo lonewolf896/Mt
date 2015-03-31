@@ -6,7 +6,9 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 
+#include "core/IMtObject.hh"
 #include "third_party/linenoise.hh"
 
 namespace Mt {
@@ -18,6 +20,11 @@ namespace Mt {
 		*/
 		class REPL {
 			private:
+				// Stores internal and module functions
+				//std::map<std::string,std::function<Mt::core::IMtObject(Mt::core::IMtObject obj...)>> GlobalFunctionTable;
+				// Stores the current list of symbols for this session
+				std::map<std::string, Mt::core::IMtObject> GlobalSymbolTable;
+
 				unsigned int LineNum;
 #if !defined(_DUMMY_REPL)
 				char* line;

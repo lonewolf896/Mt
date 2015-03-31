@@ -13,7 +13,7 @@
 #include <csignal>
 #include <thread>
 #include <chrono>
-#if defined(__linux__) || defined(__APPLE__)
+#if (defined(__linux__) || defined(__APPLE__)) && (defined(_DEBUG) || defined(DEBUG))
 #include <unistd.h>	
 void RuntimeDump(void);
 #endif

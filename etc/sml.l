@@ -23,7 +23,7 @@
 [a-zA-Z_][a-zA-Z0-9_]*	SAVE_TOKEN; return TIDENTIFIER;
 [0-9]+\.[0-9]*			SAVE_TOKEN; return TDOUBLE;
 [0-9]+					SAVE_TOKEN; return TINTEGER;
-\<.+\>					SAVE_TOKEN;	return TLIST;
+\<.+\>\n				SAVE_TOKEN;	return TLIST;
 [0-9]+[+-][0-9]+i 		SAVE_TOKEN; return TCOMPLEX;
 
 "="						return TOKEN(TEQUAL);
@@ -39,6 +39,7 @@
 "<="					return TOKEN(TCLE);
 ">"						return TOKEN(TCGT);
 ">="					return TOKEN(TCGE);
+"::"					return TOKEN(TSRO);
 "("						return TOKEN(TLPAREN);
 ")"						return TOKEN(TRPAREN);
 "{"                     return TOKEN(TLBRACE);
