@@ -8,22 +8,27 @@ namespace Mt {
 	namespace objects {
 		Scalar::Scalar(){
 			Internal = 0;
+			baseNumber = &Internal;
 		}
 
 		Scalar::Scalar(mtfloat_t num){
 			Internal = num;
+			baseNumber = &Internal;
 		}
 
 		Scalar::Scalar(Scalar&& s){
 			Internal = s.Internal;
+			baseNumber = &Internal;
 		}
 
 		Scalar::Scalar(Scalar& s){
 			Internal = s.Internal;
+			baseNumber = &Internal;
 		}
 
 		Scalar::Scalar(Scalar const& s){
 			Internal = s.Internal;
+			baseNumber = &Internal;
 		}
 
 		Scalar::~Scalar(){

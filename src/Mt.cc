@@ -3,6 +3,7 @@
 */
 
 #include "Mt.hh"
+#include "objects/Matrix.hh" // TODO: Remove me
 /*!
 	Main entry-point of the application
 */
@@ -58,6 +59,11 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 			std::cout << quotes[rd() % 15] << std::endl << std::endl;
 		}
 	#endif
+
+		std::cout << "\nTESTING:\n";
+		Mt::objects::Matrix matrix(5,5);
+		std::cout << "The location holds: " << matrix.GetAtLocation(0,0) << "\nEND TESTING\n";
+
 		// Define a new REPL
 		Mt::frontend::REPL repl;
 		// Start the REPL up.

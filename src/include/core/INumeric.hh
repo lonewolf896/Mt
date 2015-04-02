@@ -4,6 +4,7 @@
 #pragma once
 #include "IMtObject.hh"
 #include "Types.hh"
+#include <iostream>
 namespace Mt {
 	namespace core {
 		/*! \class INumeric
@@ -14,7 +15,9 @@ namespace Mt {
 			system.
 		*/
 		class INumeric : public IMtObject {
-			public:
+		protected:
+			mtfloat_t* baseNumber = nullptr;
+		public:
 			// Disable default move and copy constructors for the interface
 			INumeric(void) { }
 			// This glob of pragmas is to stop the compiler from complaining about our
@@ -37,6 +40,10 @@ namespace Mt {
 
 			// Virtual Destructor
 			virtual ~INumeric(void) {}
+
+			mtfloat_t GetBaseNumber();
+
+			friend std::ostream& operator<<(std::ostream& os, const INumeric& numeric);
 		}; 
 	}
 }

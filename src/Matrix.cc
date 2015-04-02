@@ -22,23 +22,28 @@ namespace Mt {
 			delete [] data;
 		}
 
-		Mt::objects::List Matrix::GetRow(int index)
-		{
+		List Matrix::GetRow(int index) {
 			List returnList;
 			for (int i = 0; i < n; ++i)
 				returnList.Add(data[RowColumnToIndex(i, index)]);
 		}
 
-		Mt::objects::List Matrix::GetColumn(int index)
-		{
+		List Matrix::GetColumn(int index) {
 			List returnList;
 			for (int i = 0; i < m; ++i)
 				returnList.Add(data[RowColumnToIndex(index, i)]);
 		}
 
-		int Matrix::RowColumnToIndex(int row, int column)
-		{
+		core::INumeric& Matrix::GetAtLocation(int row, int column) {
+			return data[RowColumnToIndex(row,column)];
+		}
+
+		int Matrix::RowColumnToIndex(int row, int column) {
 			return (row * n) + row;
+		}
+
+		std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
+			return os << "MATRIX OVERLOAD USED";
 		}
 	}
 }
