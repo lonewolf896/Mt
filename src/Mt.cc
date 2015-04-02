@@ -81,6 +81,7 @@ void Term(int Signal) {
 
 void Kawaii(int Signal) {
 	if(Signal == SIGSEGV); // Nothing to do here 
+	// Spit out something cute to the terminal
 	std::cout << std::endl << "Ｏｏ｡｡(￣￢￣*)ぽあぁん" << std::endl;
 	std::cout << "Segmentation Fault, Forcing core dump via SIGABRT." << std::endl;
 	// Force core dump
