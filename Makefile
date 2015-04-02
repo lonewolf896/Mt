@@ -17,7 +17,7 @@ CXX := g++ -Werror -fno-builtin
 CXX_DBG := clang++ -g -stdlib=libc++
 
 CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
-	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -pthread -I$(SRCDIR)/include -I/usr/include/c++/4.9.2 -I/usr/include/c++/4.9.2/x86_64-unknown-linux-gnu/
+	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -pthread -I$(SRCDIR)/include
 
 CFLAGS += -D'VERSION="$(VERSION)"'
 
@@ -64,19 +64,28 @@ protobuf:
 	@echo -e Patching header location
 	@sed -i 's/RPC.pb.h/remote\/RPC.pb.hh/g' $(SRCDIR)/RPC.pb.cc 
 
-bison:
-	@echo -e Generating bison grammar
+bisonpp:
+	@echo -e Generating bison++ parser
 	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.yy
 	@echo -e Moving misplaced file
 	@mv $(SRCDIR)/stack.hh $(SRCDIR)/include/core/lang/stack.hh
 	@echo -e Patching Parser
 	@sed -i 's/Parser.hh/core\/lang\/Parser.hh/g' $(SRCDIR)/Parser.cc 
 
-lex: bison
-	@echo -e Generating lexical tokens
-	@flex -+ -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.l
+flexpp: bisonpp
+	@echo -e Generating C++ lexer
+	@flex -+ -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.ll
 
-grammar: lex bison
+grammarpp: flexpp
+
+bison:
+	@echo -e Generating bison parser
+	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.y
+lex:
+	@echo -e Generating C++ lexer
+	@flex -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.l
+
+grammar: lex
 
 .PHONY: faux_module
 faux_module:
@@ -85,9 +94,14 @@ faux_module:
 	@$(CXX_DBG) $(CFLAGS) $(LDFLAGS) -shared $(OBJDIR)/faux_module.o -o $(OUTDIR)/modules/faux_module.moe
 
 .PHONY: clean
-clean:
+clean: 
 	@echo -e Cleaning...
 	@rm -rf $(OBJS) $(TARGET) ./docs
+
+.PHONY: cleangrammar
+cleangrammar:
+	@echo -e Cleaning generated files
+	@rm $(SRCDIR)/Tokens.cc $(SRCDIR)/Parser.cc $(SRCDIR)/include/core/lang/Parser.hh $(SRCDIR)/include/core/lang/stack.hh
 
 .PHONY: directories
 directories:

@@ -6,7 +6,7 @@
 namespace Mt {
 	namespace frontend {
 		REPL::REPL(void) {
-
+			this->LineNum = 0;
 		}
 		REPL::~REPL(void) {
 

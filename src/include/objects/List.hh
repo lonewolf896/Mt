@@ -9,7 +9,6 @@
 #include <vector>
 #include <initializer_list>
 
-
 namespace Mt {
 	namespace objects {
 		/*! \class List
@@ -21,7 +20,7 @@ namespace Mt {
 				std::vector<Mt::core::IMtObject> elements;
 				List(void);
 				List(std::initializer_list<Mt::core::IMtObject>);
-				void Add(IMtObject value);
+				void Add(Mt::core::IMtObject value);
 			private:
 		};	
 	}

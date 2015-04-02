@@ -3,7 +3,13 @@
 
 */
 
-%option c++ noyywrap nounput batch debug
+%option c++
+%option prefix="Mt" 
+%option noyywrap
+%option yylineno 
+%option nounput 
+%option batch 
+%option debug 
 
 %{
 	#include <iostream>
@@ -14,17 +20,24 @@
 
 	#define SAVE_TOKEN yylval.string = new std::string(yytext, yyleng)
 	#define TOKEN(t) (yylval.token = t)
+
+	#define YY_USER_ACTION  yylloc->columns(yyleng);
 	
 %}
 
 %%
+
+%{
+    // reset location
+    yylloc->step();
+%}
 
 [ \t\n\r]					;
 [a-zA-Z_][a-zA-Z0-9_]*	SAVE_TOKEN; return TIDENTIFIER;
 [0-9]+\.[0-9]*			SAVE_TOKEN; return TDOUBLE;
 [0-9]+					SAVE_TOKEN; return TINTEGER;
 \<.+\>\n				SAVE_TOKEN;	return TLIST;
-[0-9]+[+-][0-9]+i 		SAVE_TOKEN; return TCOMPLEX;
+[0-9]+[\+\-][0-9]+i 		SAVE_TOKEN; return TCOMPLEX;
 
 "="						return TOKEN(TEQUAL);
 ":="					return TOKEN(TASSIGN);

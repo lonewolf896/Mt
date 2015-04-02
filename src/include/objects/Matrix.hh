@@ -5,7 +5,9 @@
 
 #include "core/INumeric.hh"
 #include "objects/List.hh"
-#include <vector>
+
+#include "core/IMtObject.hh"
+
 
 namespace Mt {
 	namespace objects {
@@ -14,17 +16,17 @@ namespace Mt {
 		*/
 		class Matrix : Mt::core::INumeric {
 			private:
+				IMtObject* data;
 				int m, n;
-				INumeric* data;
 				int RowColumnToIndex(int row, int column);
 			public:
-				Matrix();
+				Matrix(void);
 				Matrix(int n);
-				Matrix(int m, int n);
+				Matrix(int n, int m);
 				~Matrix();
 
-				Mt::objects::List GetRow(int index);
-				Mt::objects::List GetColumn(int index);
+				List GetRow(int index);
+				List GetColumn(int index);
 		};
 	}
 }
