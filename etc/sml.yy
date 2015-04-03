@@ -67,7 +67,7 @@
 %left TPLUS TMINUS TSRO
 %left TMUL TDIV TMOD
 
-//%name-prefix="Mt::core::lang"
+%name-prefix "Mt::core::lang"
 %parse-param { class Mt::core::lang::SMLDriver& driver }
 
 %start program

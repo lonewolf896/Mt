@@ -103,7 +103,7 @@ clean:
 .PHONY: cleangrammar
 cleangrammar:
 	@echo -e Cleaning generated files
-	@rm $(SRCDIR)/Tokens.cc $(SRCDIR)/Parser.cc $(SRCDIR)/include/core/lang/Parser.hh $(SRCDIR)/include/core/lang/stack.hh
+	@rm $(SRCDIR)/Tokens.cc $(SRCDIR)/Parser.cc $(SRCDIR)/include/core/lang/Parser.hh $(SRCDIR)/include/core/lang/stack.hh $(SRCDIR)/include/location.hh $(SRCDIR)/include/position.hh
 
 .PHONY: directories
 directories:

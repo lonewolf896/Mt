@@ -6,8 +6,8 @@
 #include <string>
 
 #include "core/lang/ASTObjs.hh"
-
 #include "core/lang/SMLScanner.hh"
+
 
 namespace Mt {
 	namespace core {
