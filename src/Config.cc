@@ -33,9 +33,7 @@ namespace Mt {
 			// Iterate through the arguments, always ignore the first, as that's our path
 			for(int i = 1; i < argc; i++) {
 				std::string tmp(argv[i]);
-
 				std::size_t pos_eq = tmp.find("=");
-
 				if(pos_eq != std::string::npos) {
 					std::string key = tmp.substr(0, pos_eq);
 					std::string value = tmp.substr(pos_eq + 1);

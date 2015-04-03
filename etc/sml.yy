@@ -113,9 +113,9 @@ var_decl : ident { $$ = new Mt::core::lang::NVariableDeclaration(*$1); }
 		 | ident TASSIGN expr { $$ = new Mt::core::lang::NVariableDeclaration(*$1, $3); }
 		 ;
 
-list_decl : ident TASSIGN TCLT list_decl_args TCGT
-		   { $$ = new Mt::core::lang::NListDeclaration(*$1, *$4, *$6); delete $4; }
-		  ;
+//list_decl : ident TASSIGN TCLT list_decl_args TCGT
+//		   { $$ = new Mt::core::lang::NListDeclaration(*$1, *$4, *$6); delete $4; }
+//		  ;
 
 /*
 	Function definition. I.E f := (...) { ... }
@@ -128,10 +128,10 @@ func_decl : ident TASSIGN TLPAREN func_decl_args TRPAREN block
 	List Arguments E.G <> <1,2,...N>
 */
 
-list_decl_args : /* Empty */ { $$ = new Mt::core::lang::VariableList(); }
-			   | numeric { $$ = new Mt::core::lang::VariableList(); $$->push_back($<numeric>1); }
-			   | list_decl_args TCOMMA numeric { $1->push_back($<numeric>3); }
-			   ;
+//list_decl_args : /* Empty */ { $$ = new Mt::core::lang::VariableList(); }
+//			   | numeric { $$ = new Mt::core::lang::VariableList(); $$->push_back($<numeric>1); }
+//			   | list_decl_args TCOMMA numeric { $1->push_back($<numeric>3); }
+//			   ;
 
 /*
 	Function arguments E.G () (a, b, c, d)
@@ -144,9 +144,10 @@ func_decl_args : /* Empty */ { $$ = new Mt::core::lang::VariableList(); }
 /*
 	Scope Resolution E.G Mt::func(...) Mt::sub::func()
 */
-scope : ident TSRO  ident TLPAREN call_args TRPAREN { $$ = }
-	  | ident TSRO scope
-	  ;
+//scope : ident TSRO  ident TLPAREN call_args TRPAREN { $$ = }
+//	  | ident TSRO scope
+//	  ;
+
 /*
 	Valid Identifiers: Must start with a Alpha or _ and can only contain alphanumeric and underscores
 */

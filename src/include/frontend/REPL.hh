@@ -7,9 +7,11 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <FlexLexer.h>
 
 #include "core/IMtObject.hh"
 #include "third_party/linenoise.hh"
+#define _DUMMY_REPL
 
 namespace Mt {
 	namespace frontend {
