@@ -16,7 +16,6 @@
 	#include <FlexLexer.h>
 
 	#include "core/lang/ASTObjs.hh"
-	#include "core/lang/SMLDriver.hh"
 	#include "core/Types.hh"
 
 	Mt::core::lang::NBlock *rootScope;
@@ -68,12 +67,14 @@
 %left TPLUS TMINUS TSRO
 %left TMUL TDIV TMOD
 
-%name-prefix="Mt::core::lang"
+//%name-prefix="Mt::core::lang"
 %parse-param { class Mt::core::lang::SMLDriver& driver }
 
 %start program
 
 %{
+	#include "core/lang/SMLDriver.hh"
+	#include "core/lang/SMLScanner.hh"
 	#undef yylex
 	#define yylex driver.lexer->lex
 %}

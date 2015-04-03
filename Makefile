@@ -67,8 +67,10 @@ protobuf:
 bisonpp:
 	@echo -e Generating bison++ parser
 	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.yy
-	@echo -e Moving misplaced file
+	@echo -e Moving misplaced files
 	@mv $(SRCDIR)/stack.hh $(SRCDIR)/include/core/lang/stack.hh
+	@mv $(SRCDIR)/location.hh $(SRCDIR)/include/location.hh
+	@mv $(SRCDIR)/position.hh $(SRCDIR)/include/position.hh
 	@echo -e Patching Parser
 	@sed -i 's/Parser.hh/core\/lang\/Parser.hh/g' $(SRCDIR)/Parser.cc 
 

@@ -32,7 +32,7 @@ namespace Mt {
 			public:
 				SMLScanner(std::istream* arg_yyin = 0, std::ostream* arg_yyout = 0);
 				virtual ~SMLScanner(void);
-				virtual Mt::core::lang::SMLParser::token_type lex(Mt::core::lang::SMLParser::semantic_type* yylval,Mt::core::lang::SMLParser::location_type* yylloc);
+				virtual yy::SMLParser::token_type lex(yy::SMLParser::semantic_type* yylval, yy::SMLParser::location_type* yylloc);
 				void set_debug(bool b);
 			};
 		}

@@ -16,6 +16,7 @@
 	#include <string>
 
 	#include "core/lang/ASTObjs.hh"
+	#include "core/lang/SMLDriver.hh"
 	#include "core/lang/SMLScanner.hh"
 	#include "core/lang/Parser.hh"
 
