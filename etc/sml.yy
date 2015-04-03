@@ -16,16 +16,19 @@
 	#include <FlexLexer.h>
 
 	#include "core/lang/ASTObjs.hh"
+	#include "core/lang/SMLDriver.hh"
 	#include "core/Types.hh"
 
 	Mt::core::lang::NBlock *rootScope;
 
-	yyFlexLexer* yylexer;
-
-
-
-	void yyerror(const char* s) { std::cout << "ERROR: " << s << std::endl; }
 %}
+
+%locations
+%initial-action
+{
+    // initialize the initial location object
+    @$.begin.filename = @$.end.filename = &driver.streamname;
+};
 
 %union {
 	Mt::core::lang::NRoot *node;
@@ -65,7 +68,15 @@
 %left TPLUS TMINUS TSRO
 %left TMUL TDIV TMOD
 
+%name-prefix="Mt::core::lang"
+%parse-param { class Mt::core::lang::SMLDriver& driver }
+
 %start program
+
+%{
+	#undef yylex
+	#define yylex driver.lexer->lex
+%}
 
 %%
 
@@ -184,3 +195,7 @@ comparison : TCEQ | TNEQUAL | TCLT | TCGT | TCLE | TCGE
 		   ;
 
 %%
+
+void Mt::core::lang::SMLParser::error(const SMLParser::location_type& l, const std::string& m) {
+	driver.error(l, m);
+}

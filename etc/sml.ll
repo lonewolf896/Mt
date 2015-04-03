@@ -16,6 +16,7 @@
 	#include <string>
 
 	#include "core/lang/ASTObjs.hh"
+	#include "core/lang/SMLScanner.hh"
 	#include "core/lang/Parser.hh"
 
 	#define SAVE_TOKEN yylval.string = new std::string(yytext, yyleng)
@@ -69,3 +70,27 @@
 .						std::cout << "Error: Unknown Token" << std::endl; yyterminate();
 
 %%
+
+namespace Mt {
+	namespace core {
+		namespace lang {
+			SMLScanner::SMLScanner(std::istream* in, std::ostream* out) : MtFlexLexer(in, out) { }
+			SMLScanner::~SMLScanner(void) { }
+			SMLScanner::set_debug(bool b) {
+				yy_flex_debug = b;
+			}
+		}
+	}
+}
+
+#ifdef yylex
+#undef yylex
+#endif
+
+int MtFlexLexer::yylex(void) {
+	std::cerr << "in MtFlexLexer::yylex() !" << std::endl;
+    return 0;
+}
+int MtFlexLexer::yywrap() {
+    return 1;
+}

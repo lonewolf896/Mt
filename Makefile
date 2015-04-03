@@ -96,7 +96,7 @@ faux_module:
 .PHONY: clean
 clean: 
 	@echo -e Cleaning...
-	@rm -rf $(OBJS) $(TARGET) ./docs
+	@rm -rf $(OBJS) $(TARGET) ./docs  $(OUTDIR)/modules/*.moe
 
 .PHONY: cleangrammar
 cleangrammar:
