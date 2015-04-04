@@ -79,12 +79,12 @@ namespace Mt {
 		}
 
 		void Config::ReadEnvForConfig(char* env[]) {
-			char **envcpy;
-			for(envcpy = env; envcpy != NULL; envcpy++) {
-				if(strncmp(*envcpy, "MTCFG", 4)) {
+			// char **envcpy;
+			// for(envcpy = env; envcpy != NULL; envcpy++) {
+			// 	if(strncmp(*envcpy, "MTCFG", 4)) {
 					 
-				}
-			}
+			// 	}
+			// }
 		}
 
 		void Config::SaveToFile(void) {
