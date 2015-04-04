@@ -16,7 +16,7 @@ TARGET := $(OUTDIR)/$(shell basename `pwd`)
 CXX := g++ -Werror -fno-builtin
 CXX_DBG := clang++ -g -stdlib=libc++
 
-CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
+CFLAGS := -std=c++11 -O0 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
 	-Wformat-nonliteral -Wuninitialized -fstack-protector -Wformat-security -pthread -I$(SRCDIR)/include
 
 CFLAGS += -D'VERSION="$(VERSION)"'
