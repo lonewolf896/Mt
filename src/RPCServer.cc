@@ -17,7 +17,7 @@ namespace Mt {
 		}
 		
 		bool RPCServer::IsServing(void) {
-
+			return true; // TODO: Do something else here
 		}
 	}
 }
