@@ -62,10 +62,6 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 		}
 	#endif
 
-		std::cout << "\nTESTING:\n";
-		Mt::objects::Matrix matrix(5,5);
-		std::cout << "The location holds: " << matrix.GetAtLocation(0,0) << "\nEND TESTING\n";
-
 		// Define a new REPL
 		Mt::frontend::REPL repl;
 		// Start the REPL up.

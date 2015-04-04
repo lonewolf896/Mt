@@ -30,6 +30,21 @@ namespace Mt {
 			Internal = s.Internal;
 			baseNumber = &Internal;
 		}
+		
+		Scalar::Scalar(core::INumeric&& s){
+			Internal = s.GetBaseNumber();
+			baseNumber = &Internal;
+		}
+
+		Scalar::Scalar(core::INumeric& s){
+			Internal = s.GetBaseNumber();
+			baseNumber = &Internal;
+		}
+
+		Scalar::Scalar(core::INumeric const& s){
+			Internal = s.GetBaseNumber();
+			baseNumber = &Internal;
+		}
 
 		Scalar::~Scalar(){
 
@@ -73,6 +88,7 @@ namespace Mt {
 		Scalar& Scalar::operator%(Scalar& rhs){
 			//Scalar s(Internal % rhs.Internal);
 			//return s;
+			return *this;
 		}
 
 		Scalar& Scalar::operator++(int){
@@ -104,7 +120,8 @@ namespace Mt {
 
 		Scalar& Scalar::operator%(mtfloat_t& rhs){
 			//Scalar s(Internal % rhs);
-			//return s;
+			// return s;
+			return *this;
 		}
 
 		// Comparison Scalar::operators

@@ -37,12 +37,17 @@ namespace Mt {
 #elif defined(__GCC__)
 #pragma GCC diagnostics pop
 #endif
+			
+			INumeric(mtfloat_t const& num);
 
 			// Virtual Destructor
-			virtual ~INumeric(void) {}
+			virtual ~INumeric(void);
 
-			mtfloat_t GetBaseNumber();
-
+			mtfloat_t GetBaseNumber() const;
+			
+			INumeric& operator=(INumeric rhs);
+			INumeric& operator=(mtfloat_t rhs);
+			
 			friend std::ostream& operator<<(std::ostream& os, const INumeric& numeric);
 		}; 
 	}
