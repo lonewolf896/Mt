@@ -13,7 +13,7 @@ namespace Mt {
 			This abstract class is the base of all non-complex and non-intricate numerical types
 
 		*/
-		class Scalar : core::INumeric {
+		class Scalar : public core::INumeric {
 		private:
 			mtfloat_t Internal;
 		public:
@@ -22,6 +22,9 @@ namespace Mt {
 			Scalar(Scalar& s);
 			Scalar(Scalar const& s);
 			Scalar(Scalar&& s);
+			Scalar(INumeric& s);
+			Scalar(INumeric const& s);
+			Scalar(INumeric&& s);
 			~Scalar();
 			Scalar& operator=(Scalar const& rhs);
 			Scalar& operator=(Scalar& rhs);
