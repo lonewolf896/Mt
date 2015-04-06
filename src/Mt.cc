@@ -4,6 +4,7 @@
 
 #include "Mt.hh"
 #include "objects/Matrix.hh" // TODO: Remove me
+#include "objects/Scalar.hh"
 /*!
 	Main entry-point of the application
 */
@@ -62,6 +63,20 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 		}
 	#endif
 
+// 		std::cout << "\nTesting\n";
+// 		Mt::objects::Matrix<Mt::objects::Scalar> matrix(5,5);
+// 		matrix.GetAtLocation(0,0) = (mtfloat_t)101;
+// 		matrix.GetAtLocation(0,1) = (mtfloat_t)1;
+// 		matrix.GetAtLocation(0,2) = (mtfloat_t)2;
+// 		matrix.GetAtLocation(2,4) = (mtfloat_t)24;
+// 		Mt::objects::Matrix<Mt::objects::Scalar> temp(5,5);
+// 		Mt::objects::Scalar one((mtfloat_t)1);
+// 		temp.SetAll(one);
+// 		std::cout << "The matrix stores: " << matrix + temp << "\n";
+// 		std::cout << "\nEnd Testing\n";
+// 		matrix.~Matrix();
+// 		temp.~Matrix();
+	
 		// Define a new REPL
 		Mt::frontend::REPL repl;
 		// Start the REPL up.

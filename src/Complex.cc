@@ -76,27 +76,27 @@ namespace Mt {
 		}
 
 		// Basic Arithmetic operations
-		Complex& Complex::operator+(Complex& rhs) {
+		Complex Complex::operator+(Complex& rhs) {
 			Complex c((this->partReal + rhs.partReal), (this->partImaginary + rhs.partImaginary));
 			return c;
 		}
 
-		Complex& Complex::operator-(Complex& rhs) {
+		Complex Complex::operator-(Complex& rhs) {
 			Complex c((this->partReal + rhs.partReal), (this->partImaginary + rhs.partImaginary));
 			return c;
 		}
 
-		Complex& Complex::operator*(Complex& rhs) {
+		Complex Complex::operator*(Complex& rhs) {
 #pragma message("TODO: Replace with proper multiplication")
 			return *this;
 		}
 
-		Complex& Complex::operator/(Complex& rhs) {
+		Complex Complex::operator/(Complex& rhs) {
 #pragma message("TODO: Replace with proper division")
 			return *this;		
 		}
 
-		Complex& Complex::operator%(Complex& rhs) {
+		Complex Complex::operator%(Complex& rhs) {
 			Complex c((this->partReal % rhs.partReal), (this->partImaginary % rhs.partImaginary));
 			return c;
 		}
