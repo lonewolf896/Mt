@@ -6,6 +6,7 @@
 #include "objects/List.hh"
 
 #include <iostream>
+#include <stdexcept>
 
 namespace Mt {
 	namespace objects {
@@ -21,7 +22,7 @@ namespace Mt {
 			public:
 				Matrix(void);
 				Matrix(int n);
-				Matrix(int n, int m);
+				Matrix(int m, int n);
 				~Matrix();
 
 				int GetRows() const;
@@ -33,6 +34,7 @@ namespace Mt {
 				void SetAll(T value);
 				
 				Matrix<T> operator+(Matrix<T>& rhs);
+				Matrix<T> operator*(Matrix<T>& rhs);
 
 				friend std::ostream& operator<<(std::ostream& os, const Matrix<T>& matrix){
 					os << "\n[\n";
@@ -74,12 +76,12 @@ namespace Mt {
 		
 		template<class T>
 		int Matrix<T>::GetRows() const{
-			return n; 
+			return m; 
 		}
 		
 		template<class T>
 		int Matrix<T>::GetColumns() const{
-			return m; 
+			return n; 
 		}
 		
 		template<class T>
@@ -122,11 +124,22 @@ namespace Mt {
 		template<class T>
 		Matrix<T> Matrix<T>::operator+(Matrix<T>& rhs) {
 			if(rhs.n != n || rhs.m != m) 
-				throw "When adding two matrix togeather, make sure they are of the same dimentions";
+				throw std::invalid_argument("When adding two matrix togeather, make sure they are of the same dimentions.");
 			
 			Matrix<T> returnMatrix(n, m);
 			for(int row = 0; row < m; row++) for(int column = 0; column < n; column++)
 				returnMatrix.GetAtLocation(row, column) = rhs.GetAtLocation(row,column) + GetAtLocation(row, column);
+			return returnMatrix;
+		}
+		
+		template<class T>
+		Matrix<T> Matrix<T>::operator*(Matrix<T>& rhs) {
+			if(n != rhs.m)
+				throw std::invalid_argument("When multiplying two matrix togeather, make sure that Matrix A's n is Matrix B's m.");
+			Matrix<T> returnMatrix(m, rhs.GetColumns());
+			for(int row = 0; row < m; row++) for(int column = 0; column < rhs.GetColumns(); column++)
+				for(int inner = 0; inner < m; inner++)
+					returnMatrix.GetAtLocation(row, column) += GetAtLocation(row, inner) * rhs.GetAtLocation(inner, column);
 			return returnMatrix;
 		}
 	}

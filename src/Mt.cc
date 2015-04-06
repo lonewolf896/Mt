@@ -63,19 +63,27 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 		}
 	#endif
 
-// 		std::cout << "\nTesting\n";
-// 		Mt::objects::Matrix<Mt::objects::Scalar> matrix(5,5);
-// 		matrix.GetAtLocation(0,0) = (mtfloat_t)101;
-// 		matrix.GetAtLocation(0,1) = (mtfloat_t)1;
-// 		matrix.GetAtLocation(0,2) = (mtfloat_t)2;
-// 		matrix.GetAtLocation(2,4) = (mtfloat_t)24;
-// 		Mt::objects::Matrix<Mt::objects::Scalar> temp(5,5);
-// 		Mt::objects::Scalar one((mtfloat_t)1);
-// 		temp.SetAll(one);
-// 		std::cout << "The matrix stores: " << matrix + temp << "\n";
-// 		std::cout << "\nEnd Testing\n";
-// 		matrix.~Matrix();
-// 		temp.~Matrix();
+		std::cout << "\nTesting\n";
+		Mt::objects::Matrix<Mt::objects::Scalar> matrixA(3,2);
+		Mt::objects::Matrix<Mt::objects::Scalar> matrixB(2,3);
+		matrixA.GetAtLocation(0,0) = 1;
+		matrixA.GetAtLocation(0,1) = 4;
+		matrixA.GetAtLocation(1,0) = 2;
+		matrixA.GetAtLocation(1,1) = 5;
+		matrixA.GetAtLocation(2,0) = 3;
+		matrixA.GetAtLocation(2,1) = 6;
+		
+		matrixB.GetAtLocation(0,0) = 7;
+		matrixB.GetAtLocation(0,1) = 8;
+		matrixB.GetAtLocation(0,2) = 9;
+		matrixB.GetAtLocation(1,0) = 10;
+		matrixB.GetAtLocation(1,1) = 11;
+		matrixB.GetAtLocation(1,2) = 12;
+		
+		std::cout << "A * B = " << matrixA * matrixB;
+		std::cout << "\nEnd Testing\n";
+		matrixA.~Matrix();
+		matrixB.~Matrix();
 	
 		// Define a new REPL
 		Mt::frontend::REPL repl;

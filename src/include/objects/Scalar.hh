@@ -26,13 +26,14 @@ namespace Mt {
 			Scalar& operator=(Scalar const& rhs);
 			Scalar& operator=(Scalar& rhs);
 			Scalar& operator=(mtfloat_t const& rhs);
-			Scalar operator+(Mt::objects::Scalar& rhs);
+			Scalar operator+(Scalar& rhs);
 			Scalar operator+(mtfloat_t& rhs);
-			Scalar operator-(Mt::objects::Scalar& rhs);
+			Scalar& operator+=(Scalar const& rhs);
+			Scalar operator-(Scalar& rhs);
 			Scalar operator-(mtfloat_t& rhs);
-			Scalar operator*(Mt::objects::Scalar& rhs);
+			Scalar operator*(Scalar& rhs);
 			Scalar operator*(mtfloat_t& rhs);
-			Scalar operator/(Mt::objects::Scalar& rhs);
+			Scalar operator/(Scalar& rhs);
 			Scalar operator/(mtfloat_t& rhs);
 			Scalar& operator%(Scalar& rhs);
 			Scalar& operator%(mtfloat_t& rhs);

@@ -70,6 +70,11 @@ namespace Mt {
 			//return s;
 			return *this;
 		}
+		
+		Scalar& Scalar::operator+=(Scalar const& rhs) {
+			Internal += rhs.Internal;
+			return *this;
+		}
 
 		Scalar& Scalar::operator++(int){
 			Internal++;
