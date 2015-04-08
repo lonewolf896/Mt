@@ -24,6 +24,11 @@ namespace Mt {
 			while(true) {
 				std::cout << "mt:" << this->LineNum++ << "> ";	
 				std::getline(std::cin, strBuffLine);
+#if !defined(_NOFUN)
+				if(strBuffLine == "make") {
+					std::cout << "No no Trevor." << std::endl;
+				}
+#endif
 				std::cout << " " << strBuffLine << std::endl;
 			}	
 		}

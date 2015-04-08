@@ -58,7 +58,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 		// If you have the item enabled in the configuration, then quote away.
 		if(Mt::core::Config::GetInstance()->GetCfgValue("challenge") == "response") {
 			std::random_device rd;
-			std::cout << quotes[rd() % 15] << std::endl << std::endl;
+			std::cout << quotes[rd() % 18] << std::endl << std::endl;
 		}
 	#endif
 

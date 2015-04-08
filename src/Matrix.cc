@@ -4,18 +4,18 @@ namespace Mt {
 	namespace objects {
 
 		Matrix::Matrix() {
-			m = 0;
-			n = 0;
+			this->_m = 0;
+			this->_n = 0;
 			data = nullptr;
 		}
 		Matrix::Matrix(int n) {
-			m = n;
-			this->n = n;
+			this->_m = n;
+			this->_n = n;
 			data = new INumeric[n * n];
 		}
 		Matrix::Matrix(int m, int n) {
-			this->m = m;
-			this->n = n;
+			this->_m = m;
+			this->_n = n;
 			data = new INumeric[n * m];
 		}
 		Matrix::~Matrix() {
@@ -27,14 +27,14 @@ namespace Mt {
 
 		List Matrix::GetRow(int index) {
 			List returnList;
-			for (int i = 0; i < n; ++i)
+			for (int i = 0; i < this->_n; ++i)
 				returnList.Add(data[RowColumnToIndex(i, index)]);
 			return returnList;
 		}
 
 		List Matrix::GetColumn(int index) {
 			List returnList;
-			for (int i = 0; i < m; ++i)
+			for (int i = 0; i < this->_m; ++i)
 				returnList.Add(data[RowColumnToIndex(index, i)]);
 			return returnList;
 		}
@@ -48,7 +48,7 @@ namespace Mt {
 		}
 
 		int Matrix::RowColumnToIndex(int row, int column) {
-			return (row * n) + column;
+			return (row * this->_n) + column;
 		}
 
 		std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {

@@ -14,6 +14,7 @@ namespace Mt {
 		namespace lang {
 			/*! \class SMLDriver
 				\brief Driver for SML in bison and flex
+				
 			*/
 			class SMLDriver {
 			public:

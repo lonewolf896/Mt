@@ -13,7 +13,7 @@ namespace Mt {
 		*/
 		class Matrix : Mt::core::INumeric {
 			private:
-				int m, n;
+				int _m, _n;
 				int RowColumnToIndex(int row, int column);
 				INumeric* data;
 			public:
