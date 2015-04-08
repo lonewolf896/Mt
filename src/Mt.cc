@@ -3,7 +3,6 @@
 */
 
 #include "Mt.hh"
-#include "objects/Matrix.hh" // TODO: Remove me
 /*!
 	Main entry-point of the application
 */
@@ -61,7 +60,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 			std::cout << quotes[rd() % 15] << std::endl << std::endl;
 		}
 	#endif
-
+	
 		// Define a new REPL
 		Mt::frontend::REPL repl;
 		// Start the REPL up.

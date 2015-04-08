@@ -8,46 +8,26 @@ namespace Mt {
 	namespace objects {
 		Scalar::Scalar(){
 			Internal = 0;
-			baseNumber = &Internal;
 		}
 
 		Scalar::Scalar(mtfloat_t num){
 			Internal = num;
-			baseNumber = &Internal;
 		}
 
 		Scalar::Scalar(Scalar&& s){
 			Internal = s.Internal;
-			baseNumber = &Internal;
 		}
 
 		Scalar::Scalar(Scalar& s){
 			Internal = s.Internal;
-			baseNumber = &Internal;
 		}
 
 		Scalar::Scalar(Scalar const& s){
 			Internal = s.Internal;
-			baseNumber = &Internal;
 		}
+
+		Scalar::~Scalar() {
 		
-		Scalar::Scalar(core::INumeric&& s){
-			Internal = s.GetBaseNumber();
-			baseNumber = &Internal;
-		}
-
-		Scalar::Scalar(core::INumeric& s){
-			Internal = s.GetBaseNumber();
-			baseNumber = &Internal;
-		}
-
-		Scalar::Scalar(core::INumeric const& s){
-			Internal = s.GetBaseNumber();
-			baseNumber = &Internal;
-		}
-
-		Scalar::~Scalar(){
-
 		}
 
 		/*!
@@ -67,20 +47,20 @@ namespace Mt {
 		}
 
 		// Basic Arithmetic operations
-		Scalar& Scalar::operator+(Scalar& rhs){
+		Scalar Scalar::operator+(Scalar& rhs){
 			Scalar s(Internal + rhs.Internal);
 			return s;
 		}
-		Scalar& Scalar::operator-(Scalar& rhs){
+		Scalar Scalar::operator-(Scalar& rhs){
 			Scalar s(Internal - rhs.Internal);
 			return s;
 		}
-		Scalar& Scalar::operator*(Scalar& rhs){
+		Scalar Scalar::operator*(Scalar& rhs){
 			Scalar s(Internal * rhs.Internal);
 			return s;
 		}
 
-		Scalar& Scalar::operator/(Scalar& rhs){
+		Scalar Scalar::operator/(Scalar& rhs){
 			Scalar s(Internal / rhs.Internal);
 			return s;
 		}
@@ -88,6 +68,11 @@ namespace Mt {
 		Scalar& Scalar::operator%(Scalar& rhs){
 			//Scalar s(Internal % rhs.Internal);
 			//return s;
+			return *this;
+		}
+		
+		Scalar& Scalar::operator+=(Scalar const& rhs) {
+			Internal += rhs.Internal;
 			return *this;
 		}
 
@@ -101,19 +86,19 @@ namespace Mt {
 		}
 
 		// Basic Arithmetic operations mtfloat_t
-		Scalar& Scalar::operator+(mtfloat_t& rhs){
+		Scalar Scalar::operator+(mtfloat_t& rhs){
 			Scalar s(Internal + rhs);
 			return s;
 		}
-		Scalar& Scalar::operator-(mtfloat_t& rhs){
+		Scalar Scalar::operator-(mtfloat_t& rhs){
 			Scalar s(Internal - rhs);
 			return s;
 		}
-		Scalar& Scalar::operator*(mtfloat_t& rhs){
+		Scalar Scalar::operator*(mtfloat_t& rhs){
 			Scalar s(Internal * rhs);
 			return s;
 		}
-		Scalar& Scalar::operator/(mtfloat_t& rhs){
+		Scalar Scalar::operator/(mtfloat_t& rhs){
 			Scalar s(Internal / rhs);
 			return s;
 		}
