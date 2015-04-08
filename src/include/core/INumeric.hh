@@ -15,11 +15,9 @@ namespace Mt {
 			system.
 		*/
 		class INumeric : public IMtObject {
-		protected:
-			mtfloat_t* baseNumber = nullptr;
 		public:
 			// Disable default move and copy constructors for the interface
-			INumeric(void) { }
+			INumeric(void);
 			// This glob of pragmas is to stop the compiler from complaining about our
 			// unused inum in the copy and move constructors, prevents the release build
 			// from failing
@@ -37,18 +35,8 @@ namespace Mt {
 #elif defined(__GCC__)
 #pragma GCC diagnostics pop
 #endif
-			
-			INumeric(mtfloat_t const& num);
-
 			// Virtual Destructor
-			virtual ~INumeric(void);
-
-			mtfloat_t GetBaseNumber() const;
-			
-			INumeric& operator=(INumeric rhs);
-			INumeric& operator=(mtfloat_t rhs);
-			
-			friend std::ostream& operator<<(std::ostream& os, const INumeric& numeric);
+			virtual ~INumeric();
 		}; 
 	}
 }

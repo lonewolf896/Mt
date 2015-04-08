@@ -3,31 +3,144 @@
 */
 #pragma once
 
-#include "core/INumeric.hh"
 #include "objects/List.hh"
+
+#include <iostream>
+#include <stdexcept>
 
 namespace Mt {
 	namespace objects {
 		/*! \class Matrix
 			\brief Represents an M by N matrix
 		*/
-		class Matrix : Mt::core::INumeric {
+		template <class T>
+		class Matrix : Mt::core::IMtObject {
 			private:
-				int _m, _n;
-				int RowColumnToIndex(int row, int column);
-				INumeric* data;
+				int m, n;
+				int RowColumnToIndex(int row, int column) const;
+				T* data;
 			public:
 				Matrix(void);
 				Matrix(int n);
-				Matrix(int n, int m);
+				Matrix(int m, int n);
 				~Matrix();
 
+				int GetRows() const;
+				int GetColumns() const;
 				List GetRow(int index);
 				List GetColumn(int index);
-				INumeric& GetAtLocation(int row, int column);
-				void SetAtLocation(int row, int column, INumeric value);
+				T& GetAtLocation(int row, int column) const;
+				void SetAtLocation(int row, int column, T value);
+				void SetAll(T value);
+				
+				Matrix<T> operator+(Matrix<T>& rhs);
+				Matrix<T> operator*(Matrix<T>& rhs);
 
-				friend std::ostream& operator<<(std::ostream& os, const Matrix& matrix);
+				friend std::ostream& operator<<(std::ostream& os, const Matrix<T>& matrix){
+					os << "\n[\n";
+					for(int row = 0; row < matrix.GetRows(); row++) {
+						for(int column = 0; column < matrix.GetColumns(); column++)
+							os << matrix.GetAtLocation(row,column) << "\t";
+						os << "\n";
+					}
+					os << "]\n";
+					return os;
+				}
 		};
+		
+		template<class T>
+		Matrix<T>::Matrix(void) {
+			m = 0;
+			n = 0;
+			data = nullptr;
+		}
+		
+		template<class T>
+		Matrix<T>::Matrix(int n) {
+			m = n;
+			this->n = n;
+			data = new T[n * n];
+		}
+		
+		template<class T>
+		Matrix<T>::Matrix(int m, int n) {
+			this->m = m;
+			this->n = n;
+			data = new T[n * m];
+		}
+		
+		template<class T>
+		Matrix<T>::~Matrix() {
+			delete [] data;
+		}
+		
+		template<class T>
+		int Matrix<T>::GetRows() const{
+			return m; 
+		}
+		
+		template<class T>
+		int Matrix<T>::GetColumns() const{
+			return n; 
+		}
+		
+		template<class T>
+		List Matrix<T>::GetRow(int index) {
+			List returnList;
+			for (int i = 0; i < n; ++i)
+				returnList.Add(data[RowColumnToIndex(i, index)]);
+			return returnList;
+		}
+		
+		template<class T>
+		List Matrix<T>::GetColumn(int index) {
+			List returnList;
+			for (int i = 0; i < m; ++i)
+				returnList.Add(data[RowColumnToIndex(index, i)]);
+			return returnList;
+		}
+
+		template<class T>
+		T& Matrix<T>::GetAtLocation(int row, int column) const {
+			return data[RowColumnToIndex(row,column)];
+		}
+		
+		template<class T>
+		void Matrix<T>::SetAtLocation(int row, int column, T value) {
+			data[RowColumnToIndex(row, column)] = value; 
+		}
+		
+		template<class T>
+		void Matrix<T>::SetAll(T value) {
+			for(int row = 0; row < m; row++) for(int column = 0; column < n; column++)
+				GetAtLocation(row, column) = value;
+		}
+
+		template<class T>
+		int Matrix<T>::RowColumnToIndex(int row, int column) const {
+			return (row * n) + column;
+		}
+		
+		template<class T>
+		Matrix<T> Matrix<T>::operator+(Matrix<T>& rhs) {
+			if(rhs.n != n || rhs.m != m) 
+				throw std::invalid_argument("When adding two matrix togeather, make sure they are of the same dimentions.");
+			
+			Matrix<T> returnMatrix(n, m);
+			for(int row = 0; row < m; row++) for(int column = 0; column < n; column++)
+				returnMatrix.GetAtLocation(row, column) = rhs.GetAtLocation(row,column) + GetAtLocation(row, column);
+			return returnMatrix;
+		}
+		
+		template<class T>
+		Matrix<T> Matrix<T>::operator*(Matrix<T>& rhs) {
+			if(n != rhs.m)
+				throw std::invalid_argument("When multiplying two matrix togeather, make sure that Matrix A's n is Matrix B's m.");
+			Matrix<T> returnMatrix(m, rhs.GetColumns());
+			for(int row = 0; row < m; row++) for(int column = 0; column < rhs.GetColumns(); column++)
+				for(int inner = 0; inner < m; inner++)
+					returnMatrix.GetAtLocation(row, column) += GetAtLocation(row, inner) * rhs.GetAtLocation(inner, column);
+			return returnMatrix;
+		}
 	}
 }
