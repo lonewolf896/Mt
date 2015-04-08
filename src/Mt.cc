@@ -60,7 +60,6 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 			std::cout << quotes[rd() % 18] << std::endl << std::endl;
 		}
 	#endif
-	
 		// Define a new REPL
 		Mt::frontend::REPL repl;
 		// Start the REPL up.
