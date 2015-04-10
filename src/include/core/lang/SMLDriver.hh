@@ -2,16 +2,19 @@
 	SMLDriver.hh - Flex and bison driver for SML
 */
 #pragma once
+#include <sstream>
 #include <istream>
 #include <string>
 
 #include "core/lang/ASTObjs.hh"
-#include "core/lang/SMLScanner.hh"
+#include "location.hh"
+
 
 
 namespace Mt {
 	namespace core {
 		namespace lang {
+			class SMLScanner;
 			/*! \class SMLDriver
 				\brief Driver for SML in bison and flex
 				
@@ -51,7 +54,7 @@ namespace Mt {
 					\param[in] l location information
 					\param[in] m error message
 				*/
-				void error(const class location& l, const std::string& m);
+				void error(const yy::location& l, const std::string& m);
 
 				/*!
 					General Error handler

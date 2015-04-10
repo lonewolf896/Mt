@@ -2,6 +2,7 @@
 	SMLDriver.cc - Flex and bison driver for SML
 */
 #include "core/lang/SMLDriver.hh"
+#include "core/lang/SMLScanner.hh"
 
 namespace Mt {
 	namespace core {
@@ -30,13 +31,14 @@ namespace Mt {
 				return this->parse_stream(iss, sname);
 			}
 
-			bool SMLDriver::parse_file(const std::strin& filename) {
-				std::ifstream in(filename.c_str());
+			bool SMLDriver::parse_file(const std::string& filename) {
+				std::ifstream in;
+				in.open(filename.c_str());
 				if(!in.good()) return false;
 				return this->parse_stream(in, filename);
 			}
 
-			void SMLDriver::error(const class location& l, const std::string& m) {
+			void SMLDriver::error(const yy::location& l, const std::string& m) {
 				std::cerr << l <<": " << m << std::endl;
 			}
 
