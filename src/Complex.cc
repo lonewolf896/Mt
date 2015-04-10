@@ -87,13 +87,30 @@ namespace Mt {
 		}
 
 		Complex Complex::operator*(Complex& rhs) {
-#pragma message("TODO: Replace with proper multiplication")
-			return *this;
+			Complex temp; 
+			temp.partReal = rhs.partReal * this->partReal;
+
+			if (this->partImaginary  == 1 && rhs.partImaginary  == 1) {
+				temp.partImaginary = 0;
+			}
+
+			else{
+				temp.partImaginary = rhs.partImaginary * this->partImaginary;
+			}
+			return temp;
 		}
 
 		Complex Complex::operator/(Complex& rhs) {
-#pragma message("TODO: Replace with proper division")
-			return *this;		
+			Complex temp;
+			temp.partReal = rhs.partReal / this->partReal;
+			if (this->partImaginary == 1 && rhs.partImaginary == 1) {
+				temp.partImaginary = 0;
+			} 
+			
+			else{
+				temp.partImaginary = rhs.partImaginary / this->partImaginary;	
+			}
+			return temp;
 		}
 
 		Complex Complex::operator%(Complex& rhs) {
