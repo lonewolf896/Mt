@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A9813D32-E9C3-47D2-A86A-BC5704F4BD1B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Mt</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>07CC86A457D8AD1ADBA2215D7F755C3908BA6333</key>
+		<string>github.com:Delamare2112/Mt</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>proj/Mt.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>07CC86A457D8AD1ADBA2215D7F755C3908BA6333</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:Delamare2112/Mt</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>07CC86A457D8AD1ADBA2215D7F755C3908BA6333</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>07CC86A457D8AD1ADBA2215D7F755C3908BA6333</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Mt</string>
+		</dict>
+	</array>
+</dict>
+</plist>
