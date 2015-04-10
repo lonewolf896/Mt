@@ -4,6 +4,7 @@
 #pragma once
 #include <sstream>
 #include <istream>
+#include <fstream>
 #include <string>
 
 #include "core/lang/ASTObjs.hh"

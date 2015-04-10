@@ -64,12 +64,6 @@ namespace Mt {
 			Scalar s(Internal / rhs.Internal);
 			return s;
 		}
-
-		Scalar& Scalar::operator%(Scalar& rhs){
-			//Scalar s(Internal % rhs.Internal);
-			//return s;
-			return *this;
-		}
 		
 		Scalar& Scalar::operator+=(Scalar const& rhs) {
 			Internal += rhs.Internal;
@@ -101,12 +95,6 @@ namespace Mt {
 		Scalar Scalar::operator/(mtfloat_t& rhs){
 			Scalar s(Internal / rhs);
 			return s;
-		}
-
-		Scalar& Scalar::operator%(mtfloat_t& rhs){
-			//Scalar s(Internal % rhs);
-			// return s;
-			return *this;
 		}
 
 		// Comparison Scalar::operators
