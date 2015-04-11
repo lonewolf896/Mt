@@ -7,8 +7,9 @@
 namespace Mt {
 	namespace core {
 		namespace lang {
-			SMLDriver::SMLDriver(Mt::core::lang::NBlock& block) : trace_scanning(false),
-																  trace_parsing(false) {
+			SMLDriver::SMLDriver(class Mt::core::lang::NBlock& block) : trace_scanning(false),
+																  		trace_parsing(false),
+																  		nblk(block) {
 
 			}
 

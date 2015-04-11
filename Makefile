@@ -64,7 +64,7 @@ protobuf:
 	@echo -e Patching header location
 	@sed -i 's/RPC.pb.h/remote\/RPC.pb.hh/g' $(SRCDIR)/RPC.pb.cc 
 
-bisonpp:
+bison:
 	@echo -e Generating bison++ parser
 	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.yy
 	@echo -e Moving misplaced files
@@ -72,22 +72,14 @@ bisonpp:
 	@mv $(SRCDIR)/location.hh $(SRCDIR)/include/location.hh
 	@mv $(SRCDIR)/position.hh $(SRCDIR)/include/position.hh
 	@echo -e Patching Parser
-	@sed -i 's/Parser.hh/core\/lang\/Parser.hh/g' $(SRCDIR)/Parser.cc 
+	@sed -i 's/Parser.hh/core\/lang\/Parser.hh/g' $(SRCDIR)/Parser.cc
+	@sed -i '52i # include "SMLDriver.hh"' $(SRCDIR)/include/core/lang/Parser.hh
 
-flexpp: bisonpp
+flex: bison
 	@echo -e Generating C++ lexer
 	@flex -+ -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.ll
 
-grammarpp: flexpp
-
-bison:
-	@echo -e Generating bison parser
-	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.y
-lex:
-	@echo -e Generating C++ lexer
-	@flex -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.l
-
-grammar: lex
+grammar: flex
 
 .PHONY: faux_module
 faux_module:

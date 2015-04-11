@@ -8,16 +8,16 @@
 // the C++ parser expects it to be declared. We can factor both as follows.
 
 #ifndef YY_DECL
-#define	YY_DECL												\
+#define	YY_DECL									\
     yy::SMLParser::token_type					\
-    Mt::core::lang::SMLScanner::lex(						\
-	yy::SMLParser::semantic_type* yylval,		\
-	yy::SMLParser::location_type* yylloc		\
+    Mt::core::lang::SMLScanner::lex(			\
+		yy::SMLParser::semantic_type* yylval,	\
+		yy::SMLParser::location_type* yylloc	\
     )
 #endif
 
 #ifndef __FLEX_LEXER_H
-#define yyFlexLexer MtFlexLexer
+#define yyFlexLexer yyFlexLexer
 #include <FlexLexer.h>
 #undef yyFlexLexer
 #endif
@@ -31,7 +31,7 @@ namespace Mt {
 			/*! \class SMLScanner
 				\brief Wrapper for Flex
 			*/
-			class SMLScanner {
+			class SMLScanner : public yyFlexLexer {
 			public:
 				SMLScanner(std::istream* arg_yyin = 0, std::ostream* arg_yyout = 0);
 				virtual ~SMLScanner(void);

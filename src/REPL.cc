@@ -7,6 +7,7 @@ namespace Mt {
 	namespace frontend {
 		REPL::REPL(void) {
 			this->LineNum = 0;
+			this->driver = new Mt::core::lang::SMLDriver(this->ASTBlock);
 		}
 		REPL::~REPL(void) {
 
@@ -29,6 +30,11 @@ namespace Mt {
 					std::cout << "No no Trevor." << std::endl;
 				}
 #endif
+				if(driver->parse_string(strBuffLine)) {
+					// Solve AST Here
+				} else {
+					std::cerr << "Failed to parse SML expression" << std::endl;
+				}
 				std::cout << " " << strBuffLine << std::endl;
 			}	
 		}

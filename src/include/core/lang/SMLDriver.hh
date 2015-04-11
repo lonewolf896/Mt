@@ -22,7 +22,11 @@ namespace Mt {
 			*/
 			class SMLDriver {
 			public:
-				SMLDriver(Mt::core::lang::NBlock& block);
+				/*!
+					Constructs a new instance of the SML driver
+					\param[in]	block SML AST Block
+				*/
+				SMLDriver(class Mt::core::lang::NBlock& block);
 				bool trace_scanning;
 				bool trace_parsing;
 				std::string streamname;
@@ -63,7 +67,14 @@ namespace Mt {
 				*/
 				void error(const std::string& m);
 
+				/*!
+					Pointer to the Lexer Scanner
+				*/
 				class Mt::core::lang::SMLScanner* lexer;
+				/*!
+					Pointer to the AST NBlock filed during SML parsing
+				*/
+				class Mt::core::lang::NBlock nblk;
 			};
 		}
 	}

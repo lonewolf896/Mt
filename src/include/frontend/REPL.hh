@@ -29,7 +29,8 @@ namespace Mt {
 				//std::map<std::string,std::function<Mt::core::IMtObject(Mt::core::IMtObject obj...)>> GlobalFunctionTable;
 				// Stores the current list of symbols for this session
 				std::map<std::string, Mt::core::IMtObject> GlobalSymbolTable;
-
+				Mt::core::lang::NBlock ASTBlock;
+				Mt::core::lang::SMLDriver* driver;
 				unsigned int LineNum;
 #if !defined(_DUMMY_REPL)
 				char* line;
