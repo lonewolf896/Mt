@@ -86,32 +86,51 @@ namespace Mt {
 			return c;
 		}
 
+
 		Complex Complex::operator*(Complex& rhs) {
+
+			Scalar a = rhs.partReal * this->partReal;
+			Scalar b = rhs.partImaginary * this->partImaginary;
+			Scalar c = rhs.partReal * this->partImaginary;
+			Scalar d = rhs.partImaginary * this->partReal;
+
 			Complex temp; 
-			temp.partReal = rhs.partReal * this->partReal;
 
-			if (this->partImaginary  == 1 && rhs.partImaginary  == 1) {
-				temp.partImaginary = 0;
-			}
+			temp.partReal = a - b;
+			temp.partImaginary = c + d;
 
-			else{
-				temp.partImaginary = rhs.partImaginary * this->partImaginary;
-			}
 			return temp;
 		}
 
 		Complex Complex::operator/(Complex& rhs) {
+			#pragma Fix scalar and make this not horribly ugly
+			Scalar a = rhs.partReal;
+			Scalar b = rhs.partImaginary;
+			Scalar c = rhs.partReal;
+			Scalar d = rhs.partImaginary;
+
 			Complex temp;
-			temp.partReal = rhs.partReal / this->partReal;
-			if (this->partImaginary == 1 && rhs.partImaginary == 1) {
-				temp.partImaginary = 0;
-			} 
-			
-			else{
-				temp.partImaginary = rhs.partImaginary / this->partImaginary;	
-			}
+
+			//yes I do hate myself, thanks for asking
+			Scalar e = c * c;
+			Scalar f = d * d;
+			Scalar bottom = e + f;
+
+			Scalar x = a * c;
+			Scalar y = b * d;
+			Scalar top = x + y;
+
+			temp.partReal = (top/bottom);
+
+			Scalar x1 = b * c;
+			Scalar y1 = a * d;
+			Scalar top1 = x1 - y1;
+
+			temp.partImaginary = (top1/bottom);
+
 			return temp;
 		}
+
 
 		Complex Complex::operator%(Complex& rhs) {
 			Complex c((this->partReal % rhs.partReal), (this->partImaginary % rhs.partImaginary));
