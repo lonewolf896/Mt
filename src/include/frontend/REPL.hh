@@ -31,7 +31,7 @@ namespace Mt {
 				// Stores the current list of symbols for this session
 				std::map<std::string, Mt::core::IMtObject> GlobalSymbolTable;
 				// AST Block that is passed to the parser to hold the results
-				Mt::core::lang::NBlock* ASTBlock;
+				Mt::core::lang::NBlock ASTBlock;
 				// Parser and scanner driver
 				Mt::core::lang::SMLDriver* driver;
 				// AST Evaluation Engine

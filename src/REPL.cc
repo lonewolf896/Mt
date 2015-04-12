@@ -9,7 +9,7 @@ namespace Mt {
 			// set the initial line number.
 			this->LineNum = 0;
 			// create a new language driver
-			this->driver = new Mt::core::lang::SMLDriver(this->ASTBlock);
+			this->driver = new Mt::core::lang::SMLDriver(&(this->ASTBlock));
 		}
 		REPL::~REPL(void) {
 			// Clean up this mish mash.
@@ -66,7 +66,7 @@ namespace Mt {
 						// If not, try to parse the line
 						if(this->driver->ParseString(strBuffLine, "Mt REPL")) {
 							// Evaluate the current AST
-							this->eengine.Evaluate(this->ASTBlock, this->GlobalSymbolTable, strBuffLine);
+							this->eengine.Evaluate(&(this->ASTBlock), this->GlobalSymbolTable, strBuffLine);
 						}
 					}
 				}	

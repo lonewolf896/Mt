@@ -12,14 +12,8 @@
 
 %{
 	#include <iostream>
-	// Rocking the C++ Lexer yo.
-	//#include <FlexLexer.h>
-
 	#include "core/lang/ASTObjs.hh"
 	#include "core/Types.hh"
-
-	Mt::core::lang::NBlock *rootScope;
-
 %}
 
 %locations
