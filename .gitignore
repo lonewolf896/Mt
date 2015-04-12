@@ -45,3 +45,5 @@ Parser.cc
 Tokens.cc
 Parser.hh
 stack.hh
+location.hh
+position.hh

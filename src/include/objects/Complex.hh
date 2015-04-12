@@ -53,7 +53,6 @@ namespace Mt {
 			Complex operator-();
 			Complex operator*(Complex& rhs);
 			Complex operator/(Complex& rhs);
-			Complex operator%(Mt::objects::Complex& rhs);
 			Complex& operator++();
 			Complex& operator++(int);
 			Complex& operator--();

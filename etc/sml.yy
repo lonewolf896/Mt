@@ -13,19 +13,21 @@
 %{
 	#include <iostream>
 	// Rocking the C++ Lexer yo.
-	#include <FlexLexer.h>
+	//#include <FlexLexer.h>
 
 	#include "core/lang/ASTObjs.hh"
 	#include "core/Types.hh"
 
 	Mt::core::lang::NBlock *rootScope;
 
-	yyFlexLexer* yylexer;
-
-
-
-	void yyerror(const char* s) { std::cout << "ERROR: " << s << std::endl; }
 %}
+
+%locations
+%initial-action
+{
+    // initialize the initial location object
+    @$.begin.filename = @$.end.filename = &driver.streamname;
+};
 
 %union {
 	Mt::core::lang::NRoot *node;
@@ -48,6 +50,7 @@
 
 %define parse.error verbose
 
+%token END	     0
 %token <boolean> TTRUE TFALSE
 %token <string> TIDENTIFIER TDOUBLE TINTEGER TLIST TCOMPLEX
 %token <token>  TCEQ TEQUAL TASSIGN TNEQUAL TCLT TCLE TCGT TCGE
@@ -65,7 +68,17 @@
 %left TPLUS TMINUS TSRO
 %left TMUL TDIV TMOD
 
+//%name-prefix "Mt::core::lang"
+%parse-param { class Mt::core::lang::SMLDriver& driver }
+
 %start program
+
+%{
+	#include "core/lang/SMLDriver.hh"
+	#include "core/lang/SMLScanner.hh"
+	#undef yylex
+	#define yylex driver.lexer->lex
+%}
 
 %%
 
@@ -184,3 +197,7 @@ comparison : TCEQ | TNEQUAL | TCLT | TCGT | TCLE | TCGE
 		   ;
 
 %%
+
+void yy::SMLParser::error(const SMLParser::location_type& l, const std::string& m) {
+	driver.error(l, m);
+}

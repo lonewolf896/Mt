@@ -77,8 +77,19 @@ namespace Mt {
 				}
 			}
 		}
-
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#elif defined(__GCC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
 		void Config::ReadEnvForConfig(char* env[]) {
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GCC__)
+#pragma GCC diagnostics pop
+#endif
 			//char **envcpy;
 			//for(envcpy = env; envcpy != NULL; envcpy++) {
 			//	if(strncmp(*envcpy, "MTCFG", 4)) {

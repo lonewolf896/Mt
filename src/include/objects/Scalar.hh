@@ -35,8 +35,6 @@ namespace Mt {
 			Scalar operator*(mtfloat_t& rhs);
 			Scalar operator/(Scalar& rhs);
 			Scalar operator/(mtfloat_t& rhs);
-			Scalar& operator%(Scalar& rhs);
-			Scalar& operator%(mtfloat_t& rhs);
 			Scalar& operator++(int);
 			Scalar& operator--(int);
 			bool operator==(Scalar const& rhs);

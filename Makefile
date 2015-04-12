@@ -17,7 +17,7 @@ CXX := g++ -Werror -fno-builtin
 CXX_DBG := clang++ -g -stdlib=libc++
 
 CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
-	-Wformat-nonliteral -Wuninitialized -Werror=return-type -fstack-protector -Wformat-security -pthread -I$(SRCDIR)/include
+	-Wformat-nonliteral -Wuninitialized -Werror=return-type -Werror=shadow -fstack-protector -Wformat-security -pthread -I$(SRCDIR)/include
 
 CFLAGS += -D'VERSION="$(VERSION)"'
 
@@ -44,7 +44,7 @@ debug: CFLAGS += -DDEBUG
 debug: CXX=$(CXX_DBG)
 debug: release
 
-release: directories clean $(OBJS)
+release: grammar directories clean $(OBJS)
 	@echo -e Linking $(LIGHT_GREEN)$(TARGET)$(NO_COLOUR)
 	@$(CXX) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $(TARGET)
 
@@ -64,28 +64,22 @@ protobuf:
 	@echo -e Patching header location
 	@sed -i 's/RPC.pb.h/remote\/RPC.pb.hh/g' $(SRCDIR)/RPC.pb.cc 
 
-bisonpp:
+bison:
 	@echo -e Generating bison++ parser
 	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.yy
-	@echo -e Moving misplaced file
+	@echo -e Moving misplaced files
 	@mv $(SRCDIR)/stack.hh $(SRCDIR)/include/core/lang/stack.hh
+	@mv $(SRCDIR)/location.hh $(SRCDIR)/include/location.hh
+	@mv $(SRCDIR)/position.hh $(SRCDIR)/include/position.hh
 	@echo -e Patching Parser
-	@sed -i 's/Parser.hh/core\/lang\/Parser.hh/g' $(SRCDIR)/Parser.cc 
+	@sed -i 's/Parser.hh/core\/lang\/Parser.hh/g' $(SRCDIR)/Parser.cc
+	@sed -i '52i # include "SMLDriver.hh"' $(SRCDIR)/include/core/lang/Parser.hh
 
-flexpp: bisonpp
+flex: bison
 	@echo -e Generating C++ lexer
 	@flex -+ -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.ll
 
-grammarpp: flexpp
-
-bison:
-	@echo -e Generating bison parser
-	@bison -t --defines=$(SRCDIR)/include/core/lang/Parser.hh -o $(SRCDIR)/Parser.cc $(ETCDIR)/sml.y
-lex:
-	@echo -e Generating C++ lexer
-	@flex -o $(SRCDIR)/Tokens.cc $(ETCDIR)/sml.l
-
-grammar: lex
+grammar: flex
 
 .PHONY: faux_module
 faux_module:
@@ -96,12 +90,12 @@ faux_module:
 .PHONY: clean
 clean: 
 	@echo -e Cleaning...
-	@rm -rf $(OBJS) $(TARGET) ./docs
+	@rm -rf $(OBJS) $(TARGET) ./docs  $(OUTDIR)/modules/*.moe
 
 .PHONY: cleangrammar
 cleangrammar:
 	@echo -e Cleaning generated files
-	@rm $(SRCDIR)/Tokens.cc $(SRCDIR)/Parser.cc $(SRCDIR)/include/core/lang/Parser.hh $(SRCDIR)/include/core/lang/stack.hh
+	@rm $(SRCDIR)/Tokens.cc $(SRCDIR)/Parser.cc $(SRCDIR)/include/core/lang/Parser.hh $(SRCDIR)/include/core/lang/stack.hh $(SRCDIR)/include/location.hh $(SRCDIR)/include/position.hh
 
 .PHONY: directories
 directories:
