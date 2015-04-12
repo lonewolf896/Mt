@@ -14,9 +14,11 @@
 	#if defined(__clang__)
 	#pragma clang diagnostic push
 	#pragma clang diagnostic ignored "-Wdeprecated-register"
+	#pragma clang diagnostic ignored "-Wsign-compare"
 	#elif defined(__GCC__)
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wdeprecated-register"
+	#pragma CGG diagnostic ignored "-Wsign-compare"
 	#endif
 %}
 

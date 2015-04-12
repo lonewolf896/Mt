@@ -88,7 +88,7 @@ namespace Mt {
 
 
 		Complex Complex::operator*(Complex& rhs) {
-
+#pragma message("Fix scalar and make this not horribly ugly")
 			Scalar a = rhs.partReal * this->partReal;
 			Scalar b = rhs.partImaginary * this->partImaginary;
 			Scalar c = rhs.partReal * this->partImaginary;
@@ -103,7 +103,7 @@ namespace Mt {
 		}
 
 		Complex Complex::operator/(Complex& rhs) {
-			#pragma Fix scalar and make this not horribly ugly
+#pragma message("Fix scalar and make this not horribly ugly")
 			Scalar a = rhs.partReal;
 			Scalar b = rhs.partImaginary;
 			Scalar c = rhs.partReal;

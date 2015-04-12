@@ -48,7 +48,7 @@ namespace Mt {
 						// if so, toggle the debug values
 						driver->trace_scanning = !(driver->trace_scanning);
 						driver->trace_parsing = !(driver->trace_parsing);
-						std::cout << " scanner parser debug tracing toggled" << std::endl;
+						std::cout << "Scanner parser debug tracing toggled (" << std::boolalpha << driver->trace_parsing << ")" << std::endl;
 					} else {
 						// If not, try to parse the line
 						if(driver->parse_string(strBuffLine, "Mt REPL")) {
