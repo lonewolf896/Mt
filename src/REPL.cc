@@ -6,13 +6,17 @@
 namespace Mt {
 	namespace frontend {
 		REPL::REPL(void) {
+			// set the initial line number.
 			this->LineNum = 0;
+			// create a new language driver
 			this->driver = new Mt::core::lang::SMLDriver(this->ASTBlock);
 		}
 		REPL::~REPL(void) {
-
+			// Clean up
+			delete this->driver;
 		}
 #if !defined(_DUMMY_REPL)
+		// Fancy REPL stuff, 100% broken
 		void REPL::Start(void) {
 			while((this->line = linenoise("mt> ")) != NULL) {
 				std::cout << " " << this->line << std::endl;
@@ -21,22 +25,41 @@ namespace Mt {
 		}
 #else
 		void REPL::Start(void) { 
+			// current line buffer
 			std::string strBuffLine;
+			// loop forever!
 			while(true) {
-				std::cout << "mt:" << this->LineNum++ << "> ";	
+				// Print the prompt in the form of mt:#> 
+				std::cout << "mt:" << this->LineNum++ << "> ";
+				// get the input from cin
 				std::getline(std::cin, strBuffLine);
 #if !defined(_NOFUN)
+				// just a fun little easter egg
 				if(strBuffLine == "make") {
 					std::cout << "No no Trevor." << std::endl;
+					// clear the string so we dont shove this into the eval
+					strBuffLine.clear();
 				}
 #endif	
+				// Check to see if the line is empty
 				if(!strBuffLine.empty()) {
-					if(driver->parse_string(strBuffLine, "Mt REPL")) {
-
+					// If not, is the contents of the line "dbg"
+					if(strBuffLine == "dbg") {
+						// if so, toggle the debug values
+						driver->trace_scanning = !(driver->trace_scanning);
+						driver->trace_parsing = !(driver->trace_parsing);
+						std::cout << " scanner parser debug tracing toggled" << std::endl;
 					} else {
-						std::cerr << "Failed to parse SML expression" << std::endl;
+						// If not, try to parse the line
+						if(driver->parse_string(strBuffLine, "Mt REPL")) {
+							// If the parsing succeed, eval the AST here
+						} else {
+							// If not, complain loudly
+							std::cerr << "Failed to parse SML expression" << std::endl;
+						}
+						// After all is said and done, echo the input back out
+						std::cout << " " << strBuffLine << std::endl;
 					}
-					std::cout << " " << strBuffLine << std::endl;
 				}	
 			}
 		}
