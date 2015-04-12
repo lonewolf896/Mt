@@ -76,6 +76,7 @@ void RuntimeDump(void);
 
 #define VERSION_STRING "Mt: Simple math and linear algebra environment. " << std::endl << "\tVer " VERSION " (" COMPILER ") " MODE " Build"
 
+// Misc handlers
 void Term(int Signal);
 void Kawaii(int Signal);
 

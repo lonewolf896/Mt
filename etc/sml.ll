@@ -90,7 +90,7 @@
 "%"						return TOKEN(token::TMOD);
 "^"						return TOKEN(token::TPOW);
 "~"                     return TOKEN(token::TROOT);
-.						std::cout << "Error: Unknown Token" << std::endl; yyterminate();
+.						std::cout << "Error: Unknown Token \"" <<  yytext << "\"" << std::endl; yyterminate();
 
 %%
 

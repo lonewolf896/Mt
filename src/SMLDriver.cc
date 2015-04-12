@@ -7,12 +7,12 @@
 namespace Mt {
 	namespace core {
 		namespace lang {
-			SMLDriver::SMLDriver(class Mt::core::lang::NBlock& block) : trace_scanning(false),
+			SMLDriver::SMLDriver(class Mt::core::lang::NBlock* block) : trace_scanning(false),
 																  		trace_parsing(false),
 																  		nblk(block) {
 
 			}
-			SMLDriver::SMLDriver(class Mt::core::lang::NBlock& block, bool debug) : trace_scanning(debug),
+			SMLDriver::SMLDriver(class Mt::core::lang::NBlock* block, bool debug) : trace_scanning(debug),
 																  					trace_parsing(debug),
 																  					nblk(block) {
 

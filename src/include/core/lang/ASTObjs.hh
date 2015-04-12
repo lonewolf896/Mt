@@ -10,6 +10,7 @@
 
 #include "core/Types.hh"
 
+#include <iostream>
 #include <vector>
 #include <map>
 #include <string>
@@ -50,7 +51,7 @@ namespace Mt {
 			class NInteger : public NExpression {
 				public:
 					Mt::objects::Scalar _i;
-					NInteger(int val) : _i((mtfloat_t)val) {}
+					NInteger(int val) : _i((mtfloat_t)val) { }
 			};
 			/*! \class NDouble
 				\brief SML Double Representation
@@ -171,6 +172,9 @@ namespace Mt {
 				public:
 					StatementList statements;
 					NBlock() { }
+					int Count(void) {
+						return this->statements.size();
+					}
 			};
 			/*! \class NExpressionStatement
 				\brief SML Expression Statement Representation

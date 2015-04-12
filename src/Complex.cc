@@ -30,7 +30,7 @@ namespace Mt {
 		}
 		Complex::Complex(std::string cplx) {
 			// TODO, split #[+-]#i into # and [-+]#i
-			
+
 		}
 		// Chained constructor
 		Complex::Complex(const char * cplx) : Complex(std::string(cplx)) {

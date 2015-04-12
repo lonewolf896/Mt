@@ -9,7 +9,7 @@ namespace Mt {
 			// set the initial line number.
 			this->LineNum = 0;
 			// create a new language driver
-			this->driver = new Mt::core::lang::SMLDriver(this->ASTBlock);
+			this->driver = new Mt::core::lang::SMLDriver(&(this->ASTBlock));
 		}
 		REPL::~REPL(void) {
 			// Clean up
@@ -52,7 +52,8 @@ namespace Mt {
 					} else {
 						// If not, try to parse the line
 						if(driver->parse_string(strBuffLine, "Mt REPL")) {
-							// If the parsing succeed, eval the AST here
+							//driver->eval();
+							std::cout << driver->nblk->Count() << std::endl;
 						} else {
 							// If not, complain loudly
 							std::cerr << "Failed to parse SML expression" << std::endl;

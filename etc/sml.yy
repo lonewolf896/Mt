@@ -85,7 +85,7 @@
 /*
 	A program as defined by a collection of statements
 */
-program : stmts { rootScope = $1; }
+program : stmts { driver.nblk = $1; }
 		;
 
 /*
