@@ -66,7 +66,8 @@ namespace Mt {
 						// If not, try to parse the line
 						if(this->driver->ParseString(strBuffLine, "Mt REPL")) {
 							// Evaluate the current AST
-							this->eengine.Evaluate(&(this->ASTBlock), this->GlobalSymbolTable, strBuffLine);
+							// BUG: the REPL AST is blank, but the driver AST contains the results, copyback?
+							this->eengine.Evaluate((driver->nblk), this->GlobalSymbolTable, strBuffLine);
 						}
 					}
 				}	
