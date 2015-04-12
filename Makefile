@@ -44,7 +44,7 @@ debug: CFLAGS += -DDEBUG
 debug: CXX=$(CXX_DBG)
 debug: release
 
-release: directories clean $(OBJS)
+release: grammar directories clean $(OBJS)
 	@echo -e Linking $(LIGHT_GREEN)$(TARGET)$(NO_COLOUR)
 	@$(CXX) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $(TARGET)
 

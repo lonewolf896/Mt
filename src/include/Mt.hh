@@ -38,11 +38,15 @@ void RuntimeDump(void);
 		"Features tend to be added, spontaneously at best.",
 		"You are all terrible people and I hope you die in a chemical fire.",
 		"With the divine inspiration from the omniscient prof bush, we took it upon our humble selves to produce a work of art",
-		"\n?> LIST GAMES;\n\nBRIDGE\nCHECKERS\nCHESS\nPOKER\nFIGHTER COMBAT\nGUERILLA ENGAGEMENT\nDESERT WARFARE\nAIR-TO-GROUND ACTIONS\nTHEATERWIDE TACTICAL WARFARE\nTHEATERWIDE BIOTOXIC AND CHEMICAL WARFARE\nGLOBAL THERMONUCLEAR WAR\n\n"
+		"\n?> LIST GAMES;\n\nBRIDGE\nCHECKERS\nCHESS\nPOKER\nFIGHTER COMBAT\nGUERILLA ENGAGEMENT\nDESERT WARFARE\nAIR-TO-GROUND ACTIONS\nTHEATERWIDE TACTICAL WARFARE\nTHEATERWIDE BIOTOXIC AND CHEMICAL WARFARE\nGLOBAL THERMONUCLEAR WAR\n\n",
+		"lp0 on fire",
+		"ENOTTY: Not a typewriter"
 	};
 #endif
-
+// Check to see if we are on a machine with SSE or AVX
+#if defined(__SSE__) 
 #include <immintrin.h>
+#endif
 
 #include <core/Config.hh>
 #include <core/ModuleEngine.hh>

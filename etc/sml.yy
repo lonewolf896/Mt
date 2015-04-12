@@ -50,6 +50,7 @@
 
 %define parse.error verbose
 
+%token END	     0
 %token <boolean> TTRUE TFALSE
 %token <string> TIDENTIFIER TDOUBLE TINTEGER TLIST TCOMPLEX
 %token <token>  TCEQ TEQUAL TASSIGN TNEQUAL TCLT TCLE TCGT TCGE

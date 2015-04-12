@@ -57,13 +57,14 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 		// If you have the item enabled in the configuration, then quote away.
 		if(Mt::core::Config::GetInstance()->GetCfgValue("challenge") == "response") {
 			std::random_device rd;
-			std::cout << quotes[rd() % 18] << std::endl << std::endl;
+			std::cout << quotes[rd() % 20] << std::endl << std::endl;
 		}
 	#endif
 		// Define a new REPL
 		Mt::frontend::REPL repl;
 		// Start the REPL up.
 		repl.Start();
+
 	}
 	// Assuming we reach this point naturally, lets use our one unified exit point.
 	raise(SIGTERM);
