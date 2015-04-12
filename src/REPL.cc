@@ -29,14 +29,16 @@ namespace Mt {
 				if(strBuffLine == "make") {
 					std::cout << "No no Trevor." << std::endl;
 				}
-#endif
-				if(driver->parse_string(strBuffLine)) {
-					// Solve AST Here
-				} else {
-					std::cerr << "Failed to parse SML expression" << std::endl;
-				}
-				std::cout << " " << strBuffLine << std::endl;
-			}	
+#endif	
+				if(!strBuffLine.empty()) {
+					if(driver->parse_string(strBuffLine, "Mt REPL")) {
+
+					} else {
+						std::cerr << "Failed to parse SML expression" << std::endl;
+					}
+					std::cout << " " << strBuffLine << std::endl;
+				}	
+			}
 		}
 #endif
 	}

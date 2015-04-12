@@ -12,6 +12,11 @@ namespace Mt {
 																  		nblk(block) {
 
 			}
+			SMLDriver::SMLDriver(class Mt::core::lang::NBlock& block, bool debug) : trace_scanning(debug),
+																  					trace_parsing(debug),
+																  					nblk(block) {
+
+			}
 
 			bool SMLDriver::parse_stream(std::istream& in, const std::string& sname) {
 				// Set the stream name

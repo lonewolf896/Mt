@@ -27,6 +27,7 @@ namespace Mt {
 					\param[in]	block SML AST Block
 				*/
 				SMLDriver(class Mt::core::lang::NBlock& block);
+				SMLDriver(class Mt::core::lang::NBlock& block, bool debug);
 				bool trace_scanning;
 				bool trace_parsing;
 				std::string streamname;
