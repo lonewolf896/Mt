@@ -172,9 +172,6 @@ namespace Mt {
 				public:
 					StatementList statements;
 					NBlock() { }
-					int Count(void) {
-						return this->statements.size();
-					}
 			};
 			/*! \class NExpressionStatement
 				\brief SML Expression Statement Representation

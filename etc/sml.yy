@@ -199,5 +199,5 @@ comparison : TCEQ | TNEQUAL | TCLT | TCGT | TCLE | TCGE
 %%
 
 void yy::SMLParser::error(const SMLParser::location_type& l, const std::string& m) {
-	driver.error(l, m);
+	driver.Error(l, m);
 }

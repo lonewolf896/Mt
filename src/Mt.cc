@@ -64,10 +64,9 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 		Mt::frontend::REPL repl;
 		// Start the REPL up.
 		repl.Start();
-
 	}
 	// Assuming we reach this point naturally, lets use our one unified exit point.
-	raise(SIGTERM);
+	Term(SIGTERM);
 	return ERROR_SUCCESS;
 }
 

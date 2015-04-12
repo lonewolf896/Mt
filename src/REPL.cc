@@ -9,11 +9,16 @@ namespace Mt {
 			// set the initial line number.
 			this->LineNum = 0;
 			// create a new language driver
-			this->driver = new Mt::core::lang::SMLDriver(&(this->ASTBlock));
+			this->driver = new Mt::core::lang::SMLDriver(this->ASTBlock);
 		}
 		REPL::~REPL(void) {
-			// Clean up
-			delete this->driver;
+			// Clean up this mish mash.
+			if(this->driver != nullptr)
+				delete this->driver;
+			// This tends to explode every thing. whoops
+			//if(this->ASTBlock != nullptr)
+			//	delete this->ASTBlock;
+
 		}
 #if !defined(_DUMMY_REPL)
 		// Fancy REPL stuff, 100% broken
@@ -27,8 +32,10 @@ namespace Mt {
 		void REPL::Start(void) { 
 			// current line buffer
 			std::string strBuffLine;
+			// Set the running state
+			this->running = true;
 			// loop forever!
-			while(true) {
+			while(this->running) {
 				// Print the prompt in the form of mt:#> 
 				std::cout << "mt:" << this->LineNum++ << "> ";
 				// get the input from cin
@@ -41,25 +48,26 @@ namespace Mt {
 					strBuffLine.clear();
 				}
 #endif	
+				// Simpler than ^C just a normal exit command
+				if(strBuffLine == "exit") {
+					strBuffLine.clear();
+					this->running = false;
+				}
+
 				// Check to see if the line is empty
 				if(!strBuffLine.empty()) {
 					// If not, is the contents of the line "dbg"
 					if(strBuffLine == "dbg") {
 						// if so, toggle the debug values
-						driver->trace_scanning = !(driver->trace_scanning);
-						driver->trace_parsing = !(driver->trace_parsing);
-						std::cout << "Scanner parser debug tracing toggled (" << std::boolalpha << driver->trace_parsing << ")" << std::endl;
+						this->driver->ToggleTracing();
+						this->eengine.ToggleDebug();
+						std::cout << "SML debug tracing toggled (" << std::boolalpha << this->driver->GetIfTracing() << ")" << std::endl;
 					} else {
 						// If not, try to parse the line
-						if(driver->parse_string(strBuffLine, "Mt REPL")) {
-							//driver->eval();
-							std::cout << driver->nblk->Count() << std::endl;
-						} else {
-							// If not, complain loudly
-							std::cerr << "Failed to parse SML expression" << std::endl;
+						if(this->driver->ParseString(strBuffLine, "Mt REPL")) {
+							// Evaluate the current AST
+							this->eengine.Evaluate(this->ASTBlock, this->GlobalSymbolTable, strBuffLine);
 						}
-						// After all is said and done, echo the input back out
-						std::cout << " " << strBuffLine << std::endl;
 					}
 				}	
 			}
