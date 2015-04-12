@@ -28,12 +28,13 @@ namespace Mt {
 		Complex::Complex(Complex&& cplx) {
 			this->SetPair(cplx.GetPair());
 		}
-
 		Complex::Complex(std::string cplx) {
+			// TODO, split #[+-]#i into # and [-+]#i
 			
 		}
-		Complex::Complex(const char * cplx){
-			
+		// Chained constructor
+		Complex::Complex(const char * cplx) : Complex(std::string(cplx)) {
+			// Nothing to do boss...
 		}
 
 		// Destructor

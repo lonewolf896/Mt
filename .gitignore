@@ -33,7 +33,8 @@
 [Dd]ebug/
 [Rr]elease/
 [Dd]ocs/
-
+# We don't want personal data etc
+xcuserdata/
 *.suo
 *.sdf
 *.opensdf
