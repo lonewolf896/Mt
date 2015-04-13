@@ -61,7 +61,7 @@ namespace Mt {
 					// Place a ^ right where the error is
 					std::cerr << "^";
 					// Fill the rest of the space
-					for(int i = (end_col + 1); i < (int)(this->texpr.size()); i++)
+					for(int i = (end_col + 1); i < (int)(this->texpr.size())+1; i++)
 						std::cerr << "~";
 					// New line
 					std::cerr << std::endl;
