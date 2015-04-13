@@ -53,6 +53,10 @@ void RuntimeDump(void);
 #include <remote/RPCServer.hh>
 #include <frontend/REPL.hh>
 
+#if defined(CPU_PERF)
+#include <gperftools/profiler.h>
+#endif
+
 #define ERROR_SUCCESS 0
 #define ERROR_FAILURE 1
 
@@ -220,7 +224,7 @@ namespace yy {}
 
 	To build the documentation, issue a `make docs` and it will build the docs for you.
 
-	If you wish to enable CPU profiling, `make prof` will build the profiling library into the binary.
+	If you wish to enable CPU profiling, `make perf` will build the profiling library into the binary.
 	
 	\section license License
 

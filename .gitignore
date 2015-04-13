@@ -48,3 +48,7 @@ Parser.hh
 stack.hh
 location.hh
 position.hh
+
+# Profiling bits
+Mt.prof
+

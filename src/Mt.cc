@@ -7,6 +7,10 @@
 	Main entry-point of the application
 */
 auto main(int argc, char* argv[], char* env[]) -> int {
+	// If we have profiling built into us, start 'er up.
+#if defined(CPU_PERF)
+	ProfilerStart("Mt.prof");
+#endif
 	// Check to see if the machine we are building on supports SSE
 #if defined(__SSE__) 
 	// Fix flush mode, gives us just a little bit better floating points
@@ -75,6 +79,10 @@ void Term(int Signal) {
 	std::cout << std::endl << "SIGTERM Caught, releasing resources" << std::endl;
 	// Unload the modules
 	Mt::core::ModuleEngine::GetInstance()->UnloadAll();
+	// stop the profiling
+#if defined(CPU_PERF)
+	ProfilerStop();
+#endif
 	// Die.
 	exit(0);
 }

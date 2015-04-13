@@ -37,6 +37,7 @@ qmath: LDFLAGS += -lquadmath
 qmath: CFLAGS += -D'_MT_USE_LIB_QUADMATH_'
 qmath: debug 
 
+perf: CFLAGS += -D'CPU_PERF'
 perf: LDFLAGS += -lprofiler
 perf: debug
 
@@ -94,7 +95,7 @@ faux_module:
 .PHONY: clean
 clean: 
 	@echo -e Cleaning...
-	@rm -rf $(OBJDIR)/*.o $(OBJDIR)/*.gcno $(OBJDIR)/*.gcda $(TARGET) ./docs  $(OUTDIR)/modules/*.moe
+	@rm -rf Mt.prof $(OBJDIR)/*.o $(OBJDIR)/*.gcno $(OBJDIR)/*.gcda $(TARGET) ./docs  $(OUTDIR)/modules/*.moe
 
 .PHONY: cleangrammar
 cleangrammar:
