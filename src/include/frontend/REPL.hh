@@ -45,6 +45,8 @@ namespace Mt {
 #endif
 
 				bool running;
+
+				void ProcessCommand(std::string command);
 			public:
 				REPL(void);
 				~REPL(void);

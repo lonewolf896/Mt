@@ -20,6 +20,35 @@ namespace Mt {
 			//	delete this->ASTBlock;
 
 		}
+
+		void REPL::ProcessCommand(std::string command) {
+			// Simpler than ^C just a normal exit command
+			if(command == "exit") {
+				this->running = false;
+			}
+#if defined(_DEBUG) || defined(DEBUG)
+			else if (command == "dbg-sml") {
+				//  Toggle the SML debugging
+				this->driver->ToggleTracing();
+				this->eengine.ToggleDebug();
+				std::cout << "SML debug tracing toggled (" << std::boolalpha << this->driver->GetIfTracing() << ")" << std::endl;
+			} else if (command == "dump-gst") {
+				// Helpful during debugging to see what is in the GST
+				if(this->GlobalSymbolTable.size() != 0) {
+					for (auto& kvp : this->GlobalSymbolTable ) {
+						std::cout << kvp.first << " := " << kvp.second << std::endl;
+					}
+					std::cout << std::endl;
+				} else {
+					std::cout << "GST EMPTY" << std::endl;
+				}
+			}
+#endif
+			else {
+				std::cout << "Unknown command '" << command << "'" << std::endl;
+			}
+		}
+
 #if !defined(_DUMMY_REPL)
 		// Fancy REPL stuff, 100% broken
 		void REPL::Start(void) {
@@ -48,29 +77,22 @@ namespace Mt {
 					strBuffLine.clear();
 				}
 #endif	
-				// Simpler than ^C just a normal exit command
-				if(strBuffLine == "exit") {
+				// If the line starts with a ! then it is an internal system command, don't pass it on.
+				if(strBuffLine[0] == '!') {
+					// Pass on the command minus the bang
+					this->ProcessCommand(strBuffLine.substr(1));
+					// purge the buffer, this allows for us to skip over eval
 					strBuffLine.clear();
-					this->running = false;
 				}
-
 				// Check to see if the line is empty
 				if(!strBuffLine.empty()) {
-					// If not, is the contents of the line "dbg"
-					if(strBuffLine == "dbg") {
-						// if so, toggle the debug values
-						this->driver->ToggleTracing();
-						this->eengine.ToggleDebug();
-						std::cout << "SML debug tracing toggled (" << std::boolalpha << this->driver->GetIfTracing() << ")" << std::endl;
-					} else {
-						// If not, try to parse the line
-						if(this->driver->ParseString(strBuffLine, "Mt REPL")) {
-							// Lets set the current AST ptr to the new one.
-							this->ASTBlock = driver->nblk;
-							// Evaluate the current AST
-							this->eengine.Evaluate(this->ASTBlock, this->GlobalSymbolTable, strBuffLine);
-						}
-					}
+					// If not, try to parse the line
+					if(this->driver->ParseString(strBuffLine, "Mt REPL")) {
+						// Lets set the current AST ptr to the new one.
+						this->ASTBlock = driver->nblk;
+						// Evaluate the current AST
+						this->eengine.Evaluate(this->ASTBlock, this->GlobalSymbolTable, strBuffLine);
+					}	
 				}	
 			}
 		}
