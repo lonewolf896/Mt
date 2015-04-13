@@ -10,12 +10,12 @@ namespace Mt {
 			SMLDriver::SMLDriver(class Mt::core::lang::NBlock* block) : trace_scanning(false),
 																  		trace_parsing(false),
 																  		nblk(block) {
-				this->helpful_errors = Mt::core::Config::GetInstance()->ArgHasValue("helpful_errors");
+				this->helpful_errors = true;
 			}
 			SMLDriver::SMLDriver(class Mt::core::lang::NBlock* block, bool debug) : trace_scanning(debug),
 																  					trace_parsing(debug),
 																  					nblk(block) {
-				this->helpful_errors = Mt::core::Config::GetInstance()->ArgHasValue("helpful_errors");
+				this->helpful_errors = true;
 			}
 
 			bool SMLDriver::ParseStream(std::istream& in, const std::string& sname) {

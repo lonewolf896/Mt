@@ -19,8 +19,8 @@
 %locations
 %initial-action
 {
-    // initialize the initial location object
-    @$.begin.filename = @$.end.filename = &driver.streamname;
+	// initialize the initial location object
+	@$.begin.filename = @$.end.filename = &driver.streamname;
 };
 
 %union {
