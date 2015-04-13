@@ -32,6 +32,12 @@ namespace Mt {
 					std::cout << "AST at " << blk << std::endl;
 					std::cout << "Current expression has " << blk->statements.size() << " statement(s)" << std::endl;
 					std::cout << "The Global Symbol Table has " << GST.size() << " symbol(s)" << std::endl;
+					std::cout << "Iterating over statements" << std::endl;
+				}
+				for(auto statement : blk->statements) {
+					if(this->debug_evaluation) {
+						std::cout << "Evaluating statement at " << statement << " of type " << typeid(statement).name() << std::endl;
+					}
 				}
 		#pragma message("TODO: Properly evaluate AST")
 				std::cout << " " << rawInput << std::endl;

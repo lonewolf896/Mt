@@ -6,7 +6,8 @@
 #include <iostream>
 #include <map>
 #include <string>
-
+#include <typeinfo>
+	
 #include "core/IMtObject.hh"
 #include "ASTObjs.hh"
 
