@@ -58,8 +58,8 @@
 \n 						{ yylloc->lines(yyleng); yylloc->step(); }
 
 [a-zA-Z_][a-zA-Z0-9_]*	SAVE_TOKEN; return token::TIDENTIFIER;
-[0-9]+\.[0-9]*			SAVE_TOKEN; return token::TDOUBLE;
-[0-9]+					SAVE_TOKEN; return token::TINTEGER;
+-?[0-9]+\.[0-9]*		SAVE_TOKEN; return token::TDOUBLE;
+-?[0-9]+				SAVE_TOKEN; return token::TINTEGER;
 \<.+\>\n				SAVE_TOKEN;	return token::TLIST;
 [0-9]+[\+\-][0-9]+i 	SAVE_TOKEN; return token::TCOMPLEX;
 
