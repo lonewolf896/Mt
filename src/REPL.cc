@@ -26,6 +26,14 @@ namespace Mt {
 			if(command == "exit") {
 				this->running = false;
 			}
+			
+			else if (command == "help"){
+				std::cout << "exit     - it gets you out" << std::endl;
+#if defined(_DEBUG) || defined(DEBUG) 
+				std::cout << "dbg-sml  - toggles SML debugging" << std::endl;
+				std::cout << "dump-gst - prints out the GST" << std::endl;
+#endif
+			}
 #if defined(_DEBUG) || defined(DEBUG)
 			else if (command == "dbg-sml") {
 				//  Toggle the SML debugging

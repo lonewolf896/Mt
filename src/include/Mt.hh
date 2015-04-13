@@ -78,7 +78,7 @@ void RuntimeDump(void);
 #define MODE "RELEASE"
 #endif
 
-#define VERSION_STRING "Mt: Simple math and linear algebra environment. " << std::endl << "\tVer " VERSION " (" COMPILER ") " MODE " Build"
+#define VERSION_STRING "Mt: Simple math and linear algebra environment.  \n\nTo use commands prefix them with a \"!\" \nFor a list of commands use \"!help\" \n\n" << "Verion:   " VERSION " \nCompiler: " COMPILER " \nBuild:    " MODE " "
 
 // Misc handlers
 void Term(int Signal);
