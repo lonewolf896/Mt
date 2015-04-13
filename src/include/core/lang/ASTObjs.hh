@@ -25,7 +25,9 @@ namespace Mt {
 				This is an empty class that serves as the base for all SML lexical objects
 			*/
 			class NRoot {
-
+			public:
+				// Herp derp
+				virtual ~NRoot(void) { }
 			};
 			/*! \class NStatment 
 				\brief SML Lexical Statement

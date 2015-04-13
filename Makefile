@@ -40,7 +40,7 @@ qmath: debug
 perf: LDFLAGS += -lprofiler
 perf: debug
 
-vinfo: CFLAGS += -Rpass=loop-vectorize -Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize
+vinfo: CFLAGS += -Rpass=loop-vectorize -Rpass-analysis=loop-vectorize
 vinfo: debug
 
 coverage: CFLAGS += --coverage
