@@ -24,18 +24,17 @@ namespace Mt {
 				_NROOT = 0,
 				_NSTATEMENT = 1,
 				_NEXPRESSION = 2,
-				_NINTEGER = 3,
-				_NDOUBLE = 4,
-				_NCOMPLEX = 5,
-				_NIDENTIFIER = 6,
-				_NVARIABLEDECLARATION = 7,
-				_NMETHODCALL = 8,
-				_NBINARYOPERATOR = 9,
-				_NASSIGNMENT = 10,
-				_NBLOCK = 11,
-				_NEXPRESSIONSTATEMENT = 12,
-				_NFUNCTIONDECLARATION = 13,
-				_NLISTDECLARATION = 14
+				_NSCALAR = 3,
+				_NCOMPLEX = 4,
+				_NIDENTIFIER = 5,
+				_NVARIABLEDECLARATION = 6,
+				_NMETHODCALL = 7,
+				_NBINARYOPERATOR = 8,
+				_NASSIGNMENT = 9,
+				_NBLOCK = 10,
+				_NEXPRESSIONSTATEMENT = 11,
+				_NFUNCTIONDECLARATION = 12,
+				_NLISTDECLARATION = 13
 			};
 			/*! \class NRoot
 				\brief Lexical Expression Base
@@ -72,28 +71,16 @@ namespace Mt {
 				}
 
 			};
-			/*! \class NInteger
-				\brief SML Integer Representation
+			/*! \class NScalar
+				\brief SML Scalar Representation
 
 				This is a lexical object that represents the Mt::objects::Integer type
 			*/
-			class NInteger : public NExpression {
+			class NScalar : public NExpression {
 				public:
 					Mt::objects::Scalar _s;
-					NInteger(int val) : _s((mtfloat_t)val) {
-						this->type = _NINTEGER;
-					}
-			};
-			/*! \class NDouble
-				\brief SML Double Representation
-
-				This is a lexical object that represents the Mt::objects::Double type
-			*/
-			class NDouble : public NExpression{
-				public:
-					Mt::objects::Scalar _s;
-					NDouble(double val) : _s((mtfloat_t)val) {
-						this->type = _NDOUBLE;
+					NScalar(mtfloat_t val) : _s(val) {
+						this->type = _NSCALAR;
 					}
 			};
 			/*! \class NComplexfind . -name '*.cc' -o -name '*.hh' | xargs wc -l

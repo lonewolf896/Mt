@@ -27,10 +27,8 @@ namespace Mt {
 						return "NStatement";
 					case _NEXPRESSION:
 						return "NExpression";
-					case _NINTEGER:
-						return "NInteger";
-					case _NDOUBLE:
-						return "NDouble";
+					case _NSCALAR:
+						return "NScalar";
 					case _NCOMPLEX:
 						return "NComplex";
 					case _NIDENTIFIER:
@@ -58,8 +56,46 @@ namespace Mt {
 
 			std::string EvaluationEngine::GetTokenName(yy::SMLParser::token_type t) {
 				switch(t) {
-					case yy::SMLParser::token::yytokentype::TPLUS:
+					case yy::SMLParser::token_type::TPLUS:
 						return "TPLUS";
+					case yy::SMLParser::token_type::TMINUS:
+						return "TMINUS";
+					case yy::SMLParser::token_type::TMUL:
+						return "TMUL";
+					case yy::SMLParser::token_type::TDIV:
+						return "TDIV";
+					case yy::SMLParser::token_type::TMOD:
+						return "TMOD";
+					case yy::SMLParser::token_type::TPOW:
+						return "TPOW";
+					case yy::SMLParser::token_type::TROOT:
+						return "TROOT";
+					case yy::SMLParser::token_type::TCGT:
+						return "TCGT";
+					case yy::SMLParser::token_type::TCLT:
+						return "TCLT";
+					case yy::SMLParser::token_type::TCGE:
+						return "TCGE";
+					case yy::SMLParser::token_type::TCLE:
+						return "TCLE";
+					case yy::SMLParser::token_type::TMOEQUAL:
+						return "TMOEQUAL";
+					case yy::SMLParser::token_type::TMUEQUAL:
+						return "TMUEQUAL";
+					case yy::SMLParser::token_type::TDEQUAL:
+						return "TDEQUAL";
+					case yy::SMLParser::token_type::TMEQUAL:
+						return "TMEQUAL";
+					case yy::SMLParser::token_type::TPEQUAL:
+						return "TPEQUAL";
+					case yy::SMLParser::token_type::TASSIGN:
+						return "TASSIGN";
+					case yy::SMLParser::token_type::TEQUAL:
+						return "TEQUAL";
+					case yy::SMLParser::token_type::TCEQ:
+						return "TCEQ";
+					case yy::SMLParser::token_type::TSRO:
+						return "TSRO";
 					default:
 						return "<<UNKNOWN>>";
 				}
@@ -92,11 +128,10 @@ namespace Mt {
 					} case _NCOMPLEX: {
 
 						break;
-					} case _NDOUBLE:
-					  case _NINTEGER: {
+					} case _NSCALAR: {
 					  	// Capture both of these, because they are both backed by Scalar
 					  	if(this->debug_evaluation)
-					  		std::cout << "Expression at " << expr << " is a scalar with value " << dynamic_cast<NInteger*>(expr)->_s << std::endl;
+					  		std::cout << "Expression at " << expr << " is a NScalar with value " << dynamic_cast<NScalar*>(expr)->_s << std::endl;
 					  	break;
 					  }
 				}
