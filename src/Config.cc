@@ -49,6 +49,11 @@ namespace Mt {
 			return (itr != this->arguments.end());
 		}
 
+		bool Config::CfgHasValue(std::string setting) {
+			auto itr = this->settings.find(setting);
+			return (itr != this->settings.end());
+		}
+
 		std::string Config::GetArgValue(std::string argument) {
 			return this->arguments[argument];
 		}

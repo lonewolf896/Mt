@@ -7,15 +7,19 @@
 namespace Mt {
 	namespace core {
 		namespace lang {
-			SMLDriver::SMLDriver(class Mt::core::lang::NBlock* block) : trace_scanning(false),
-																  		trace_parsing(false),
-																  		nblk(block) {
-				this->helpful_errors = true;
-			}
-			SMLDriver::SMLDriver(class Mt::core::lang::NBlock* block, bool debug) : trace_scanning(debug),
-																  					trace_parsing(debug),
-																  					nblk(block) {
-				this->helpful_errors = true;
+			// Constructor chaining to make things less repeaty
+			SMLDriver::SMLDriver(class Mt::core::lang::NBlock* block) : SMLDriver(block, false) { }
+			SMLDriver::SMLDriver(class Mt::core::lang::NBlock* block, bool debug) : 	trace_scanning(debug),
+				/*	Oh hi this is a block of useless whitespace that can't be filled */	trace_parsing(debug),
+				/*	Sp I'm just going to take up space with a comment, to fill it... */	nblk(block) {
+				if(Mt::core::Config::GetInstance()->CfgHasValue("helpful_errors")) {
+					if(Mt::core::Config::GetInstance()->GetCfgValue("helpful_errors") == "yes")
+						this->helpful_errors = true;
+					else
+						this->helpful_errors = false;
+				} else {
+					this->helpful_errors = true;
+				}										  						
 			}
 
 			bool SMLDriver::ParseStream(std::istream& in, const std::string& sname) {
@@ -27,6 +31,7 @@ namespace Mt {
 				scanner.set_debug(this->trace_parsing);
 				this->lexer = &scanner;
 
+				// New parser
 				yy::SMLParser parser(*this);
 				parser.set_debug_level(this->trace_parsing);
 				return (parser.parse() == 0);

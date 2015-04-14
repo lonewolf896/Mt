@@ -56,6 +56,52 @@ namespace Mt {
 				}
 			}
 
+			std::string EvaluationEngine::GetTokenName(yy::SMLParser::token_type t) {
+				switch(t) {
+					case yy::SMLParser::token::yytokentype::TPLUS:
+						return "TPLUS";
+					default:
+						return "<<UNKNOWN>>";
+				}
+			}
+
+			void EvaluationEngine::ProcessExpressionStmnt(NExpressionStatement* expr, std::map<std::string, Mt::core::IMtObject>& GST) {
+				if(this->debug_evaluation)
+								std::cout << "Expression " << expr << " is of type " << this->GetNameFromMagik(expr->_expression.type) << std::endl;
+				this->ProcessExpression(&(expr->_expression), GST);
+			}
+
+			void EvaluationEngine::ProcessExpression(NExpression* expr, std::map<std::string, Mt::core::IMtObject>& GST) {
+				switch(expr->type) {
+					case _NBLOCK: {
+						auto blk = dynamic_cast<NBlock*>(expr);
+						this->Evaluate(blk, GST);
+						break;
+					} case _NBINARYOPERATOR: {
+						auto nbin = dynamic_cast<NBinaryOperator*>(expr);
+						if(this->debug_evaluation)
+							std::cout << "Binary Operation at " << nbin << " has operator of " << this->GetTokenName(static_cast<yy::SMLParser::token_type>(nbin->_op)) << std::endl;
+						this->ProcessExpression(&(nbin->_lhs), GST);
+						this->ProcessExpression(&(nbin->_rhs), GST);
+						break;
+					} case _NMETHODCALL: {
+
+					} case _NIDENTIFIER: {
+
+						break;
+					} case _NCOMPLEX: {
+
+						break;
+					} case _NDOUBLE:
+					  case _NINTEGER: {
+					  	// Capture both of these, because they are both backed by Scalar
+					  	if(this->debug_evaluation)
+					  		std::cout << "Expression at " << expr << " is a scalar with value " << dynamic_cast<NInteger*>(expr)->_s << std::endl;
+					  	break;
+					  }
+				}
+			}
+
 			void EvaluationEngine::Evaluate(Mt::core::lang::NBlock* blk, std::map<std::string, Mt::core::IMtObject>& GST, std::string rawInput) {
 				if(this->debug_evaluation) {
 					std::cout << "Evaluating input" << std::endl << "Performing AST sanity check" << std::endl;
@@ -77,16 +123,17 @@ namespace Mt {
 					}
 					switch(statement->type) {
 						case _NVARIABLEDECLARATION: {
-							std::cout << "VARDECL" << std::endl;
+							
 							break;
 						} case _NEXPRESSIONSTATEMENT: {
-							std::cout << "EXPRSS" << std::endl;
+							auto expr = dynamic_cast<NExpressionStatement*>(statement);
+							this->ProcessExpressionStmnt(expr, GST);
 							break;
 						} case _NFUNCTIONDECLARATION: {
-							std::cout << "FUNCDEL" << std::endl;
+							
 							break;
 						} case _NLISTDECLARATION: {
-							std::cout << "LISTDECL" << std::endl;
+							
 							break;
 						} default:
 							std::cerr << "Unknown statement type: " << this->GetNameFromMagik(statement->type) << std::endl;

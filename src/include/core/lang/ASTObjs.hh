@@ -79,8 +79,8 @@ namespace Mt {
 			*/
 			class NInteger : public NExpression {
 				public:
-					Mt::objects::Scalar _i;
-					NInteger(int val) : _i((mtfloat_t)val) {
+					Mt::objects::Scalar _s;
+					NInteger(int val) : _s((mtfloat_t)val) {
 						this->type = _NINTEGER;
 					}
 			};
@@ -91,8 +91,8 @@ namespace Mt {
 			*/
 			class NDouble : public NExpression{
 				public:
-					Mt::objects::Scalar _d;
-					NDouble(double val) : _d((mtfloat_t)val) {
+					Mt::objects::Scalar _s;
+					NDouble(double val) : _s((mtfloat_t)val) {
 						this->type = _NDOUBLE;
 					}
 			};
