@@ -21,6 +21,7 @@ namespace Mt {
 			class EvaluationEngine {
 			private:
 				bool debug_evaluation;
+				std::string GetNameFromMagik(MAGIK m);
 			public:
 				/*!
 					Create a new instance of the Evaluation Engine with defaults

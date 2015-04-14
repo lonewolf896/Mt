@@ -19,6 +19,24 @@
 namespace Mt {
 	namespace core {
 		namespace lang {
+			// This fixes BS, I think
+			enum MAGIK {
+				_NROOT = 0,
+				_NSTATEMENT = 1,
+				_NEXPRESSION = 2,
+				_NINTEGER = 3,
+				_NDOUBLE = 4,
+				_NCOMPLEX = 5,
+				_NIDENTIFIER = 6,
+				_NVARIABLEDECLARATION = 7,
+				_NMETHODCALL = 8,
+				_NBINARYOPERATOR = 9,
+				_NASSIGNMENT = 10,
+				_NBLOCK = 11,
+				_NEXPRESSIONSTATEMENT = 12,
+				_NFUNCTIONDECLARATION = 13,
+				_NLISTDECLARATION = 14
+			};
 			/*! \class NRoot
 				\brief Lexical Expression Base
 
@@ -27,14 +45,19 @@ namespace Mt {
 			class NRoot {
 			public:
 				// Herp derp
-				virtual ~NRoot(void) { }
+				virtual ~NRoot(void) = default;
+				MAGIK type;
 			};
 			/*! \class NStatment 
 				\brief SML Lexical Statement
 
 				This is an empty class the serves as the base for all SML lexical statements
 			*/
-			class NStatement : NRoot {
+			class NStatement : public NRoot {
+			public:
+				NStatement(void) {
+					this->type = _NSTATEMENT;
+				}
 
 			};
 			/*! \class NExpression
@@ -42,7 +65,11 @@ namespace Mt {
 
 				This is an empty class that serves as the base for all SML expressions
 			*/
-			class NExpression : NRoot {
+			class NExpression : public NRoot {
+			public:
+				NExpression(void) {
+					this->type = _NEXPRESSION;
+				}
 
 			};
 			/*! \class NInteger
@@ -53,7 +80,9 @@ namespace Mt {
 			class NInteger : public NExpression {
 				public:
 					Mt::objects::Scalar _i;
-					NInteger(int val) : _i((mtfloat_t)val) { }
+					NInteger(int val) : _i((mtfloat_t)val) {
+						this->type = _NINTEGER;
+					}
 			};
 			/*! \class NDouble
 				\brief SML Double Representation
@@ -63,9 +92,11 @@ namespace Mt {
 			class NDouble : public NExpression{
 				public:
 					Mt::objects::Scalar _d;
-					NDouble(double val) : _d((mtfloat_t)val) {}
+					NDouble(double val) : _d((mtfloat_t)val) {
+						this->type = _NDOUBLE;
+					}
 			};
-			/*! \class NComplex
+			/*! \class NComplexfind . -name '*.cc' -o -name '*.hh' | xargs wc -l
 				\brief SML Complex Representation
 
 				This is a lexical object that represents the Mt::objects::Complex type
@@ -73,8 +104,12 @@ namespace Mt {
 			class NComplex : public NExpression {
 				public:
 					Mt::objects::Complex _c;
-					NComplex(const std::string cplx) : _c(cplx) {}
-					NComplex(const char* cplx) : _c(cplx) {}
+					NComplex(const std::string cplx) : _c(cplx) {
+						this->type = _NCOMPLEX;
+					}
+					NComplex(const char* cplx) : _c(cplx) {
+						this->type = _NCOMPLEX;
+					}
 			};
 			/*! \class NIdentifier
 				\brief SML Lexical Identifier
@@ -87,7 +122,9 @@ namespace Mt {
 			class NIdentifier : public NExpression {
 				public:
 					std::string _name;
-					NIdentifier(const std::string& name) : _name(name) { }
+					NIdentifier(const std::string& name) : _name(name) {
+						this->type = _NIDENTIFIER;
+					}
 			};
 			/*! \class NVariableDeclaration
 				\brief SML Variable Declaration Representation
@@ -103,9 +140,13 @@ namespace Mt {
 					NIdentifier& _id;
 					NExpression* _assignmentExpr;
 					NVariableDeclaration(NIdentifier& id) :
-						_id(id) { }
+						_id(id) {
+							this->type = _NVARIABLEDECLARATION;
+					}
 					NVariableDeclaration(NIdentifier& id, NExpression *assignmentExpr) :
-						_id(id), _assignmentExpr(assignmentExpr) { }
+						_id(id), _assignmentExpr(assignmentExpr) {
+							this->type = _NVARIABLEDECLARATION;
+						}
 			};
 
 
@@ -128,8 +169,12 @@ namespace Mt {
 				public:
 					const NIdentifier& _id;
 					ExpressionList _arguments;
-					NMethodCall(const NIdentifier& id, ExpressionList& arguments) : _id(id), _arguments(arguments) { }
-					NMethodCall(const NIdentifier& id) : _id(id) { }
+					NMethodCall(const NIdentifier& id, ExpressionList& arguments) : _id(id), _arguments(arguments) { 
+						this->type = _NMETHODCALL;
+					}
+					NMethodCall(const NIdentifier& id) : _id(id) { 
+						this->type = _NMETHODCALL;
+					}
 			};
 			/*! \class NBinaryOperator
 				\brief SML Binary Operator Representation
@@ -146,7 +191,9 @@ namespace Mt {
 					int _op;
 					NExpression& _rhs;
 					NBinaryOperator(NExpression& lhs, int op, NExpression& rhs) :
-						_lhs(lhs), _op(op), _rhs(rhs) { }
+						_lhs(lhs), _op(op), _rhs(rhs) {
+							this->type = _NBINARYOPERATOR;
+					}
 			};
 			/*! \class NAssigmnet 
 				\brief SML Assignment Operation Representation
@@ -163,7 +210,9 @@ namespace Mt {
 					NIdentifier& _lhs;
 					NExpression& _rhs;
 					NAssignment(NIdentifier& lhs, NExpression& rhs) :
-						_lhs(lhs), _rhs(rhs) { }
+						_lhs(lhs), _rhs(rhs) {
+							this->type = _NASSIGNMENT;
+						}
 			};
 			/*! \class NBlock
 				\brief SML Scope Representation
@@ -173,7 +222,9 @@ namespace Mt {
 			class NBlock : public NExpression {
 				public:
 					StatementList statements;
-					NBlock() { }
+					NBlock() { 
+						this->type = _NBLOCK;
+					}
 			};
 			/*! \class NExpressionStatement
 				\brief SML Expression Statement Representation
@@ -185,7 +236,9 @@ namespace Mt {
 				public:
 					NExpression& _expression;
 					NExpressionStatement(NExpression& expression) :
-						_expression(expression) { }
+						_expression(expression) { 
+							this->type = _NEXPRESSIONSTATEMENT;
+					}
 			};
 			/*! \class NFunctionDeclaration
 				\brief SML Function Declaration Representation
@@ -205,7 +258,9 @@ namespace Mt {
 					NBlock& _block;
 					NFunctionDeclaration(const NIdentifier& id,
 							const VariableList& arguments, NBlock& block) :
-						_id(id), _arguments(arguments), _block(block) { }
+						_id(id), _arguments(arguments), _block(block) {
+							this->type = _NFUNCTIONDECLARATION;
+						}
 			};
 
 			class NListDeclaration : public NStatement {
@@ -215,7 +270,9 @@ namespace Mt {
 					NBlock& _block;
 					NListDeclaration(const NIdentifier& id,
 							const VariableList& arguments, NBlock& block) :
-						_id(id), _arguments(arguments), _block(block) { }
+						_id(id), _arguments(arguments), _block(block) {
+							this->type = _NLISTDECLARATION;
+						}
 			};
 		}
 	}
