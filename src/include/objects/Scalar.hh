@@ -23,6 +23,7 @@ namespace Mt {
 			Scalar(Scalar const& s);
 			Scalar(Scalar&& s);
 			~Scalar();
+			mtfloat_t GetInternal();
 			Scalar& operator=(Scalar const& rhs);
 			Scalar& operator=(Scalar& rhs);
 			Scalar& operator=(mtfloat_t const& rhs);

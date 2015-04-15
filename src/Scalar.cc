@@ -29,6 +29,10 @@ namespace Mt {
 		Scalar::~Scalar() {
 		
 		}
+		
+		mtfloat_t Scalar::GetInternal() {
+			return Internal;
+		}
 
 		/*!
 			The assignment operator, this should check for type so you cant assign a Mt::Complex to an Mt::Integer
