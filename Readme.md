@@ -18,7 +18,7 @@ Once you have everything, you can issue a `make` and it should build a debug bui
 
 To build the documentation, issue a `make docs` and it will build the docs for you.
 
-If you wish to enable CPU profiling, `make prof` will build the profiling library into the binary.
+If you wish to enable CPU profiling, `make perf` will build the profiling library into the binary.
 
 ## Modules
 

@@ -70,6 +70,10 @@ namespace Mt {
 			*/
 			bool ArgHasValue(std::string argument);
 			/*!
+				Checks to see if there is a setting that is set
+			*/
+			bool CfgHasValue(std::string setting);
+			/*!
 				Returns the value (if any) that is related to the argument (if any)
 			*/
 			std::string GetArgValue(std::string argument);

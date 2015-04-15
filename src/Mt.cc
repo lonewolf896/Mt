@@ -7,6 +7,10 @@
 	Main entry-point of the application
 */
 auto main(int argc, char* argv[], char* env[]) -> int {
+	// If we have profiling built into us, start 'er up.
+#if defined(CPU_PERF)
+	ProfilerStart("Mt.prof");
+#endif
 	// Check to see if the machine we are building on supports SSE
 #if defined(__SSE__) 
 	// Fix flush mode, gives us just a little bit better floating points
@@ -32,7 +36,7 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 	// Load the file
 	Mt::core::Config::GetInstance()->LoadFromFile();
 	// Load modules and such
-	if(Mt::core::Config::GetInstance()->ArgHasValue("module_dir")){
+	if(Mt::core::Config::GetInstance()->CfgHasValue("module_dir")){
 		Mt::core::ModuleEngine::GetInstance()->LoadAll(Mt::core::Config::GetInstance()->GetCfgValue("module_dir"));
 	}
 	// If the --rpc-server flag is passed we start up the server, dont drop into a REPL
@@ -64,10 +68,9 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 		Mt::frontend::REPL repl;
 		// Start the REPL up.
 		repl.Start();
-
 	}
 	// Assuming we reach this point naturally, lets use our one unified exit point.
-	raise(SIGTERM);
+	Term(SIGTERM);
 	return ERROR_SUCCESS;
 }
 
@@ -76,6 +79,10 @@ void Term(int Signal) {
 	std::cout << std::endl << "SIGTERM Caught, releasing resources" << std::endl;
 	// Unload the modules
 	Mt::core::ModuleEngine::GetInstance()->UnloadAll();
+	// stop the profiling
+#if defined(CPU_PERF)
+	ProfilerStop();
+#endif
 	// Die.
 	exit(0);
 }

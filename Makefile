@@ -17,9 +17,9 @@ CXX := g++ -Werror -fno-builtin
 CXX_DBG := clang++ -g -stdlib=libc++
 
 CFLAGS := -std=c++11 -O3 -Wall -Wextra -Wformat=2 -Wpedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-overflow=1 \
-	-Wformat-nonliteral -Wuninitialized -Werror=return-type -Werror=shadow -fstack-protector -Wformat-security -pthread -I$(SRCDIR)/include
+	-Wformat-nonliteral -Wuninitialized -Werror=return-type -Werror=shadow -fstack-protector -Wformat-security -msse2 -pthread -I$(SRCDIR)/include
 
-CFLAGS += -D'VERSION="$(VERSION)"'
+CFLAGS += -D'VERSION="$(VERSION)"' 
 
 
 LDFLAGS := -lprotobuf -pthread -ltcmalloc -lc++abi -lpthread -ldl 
@@ -37,10 +37,17 @@ qmath: LDFLAGS += -lquadmath
 qmath: CFLAGS += -D'_MT_USE_LIB_QUADMATH_'
 qmath: debug 
 
+perf: CFLAGS += -D'CPU_PERF'
 perf: LDFLAGS += -lprofiler
 perf: debug
 
-debug: CFLAGS += -DDEBUG
+vinfo: CFLAGS += -Rpass=loop-vectorize -Rpass-analysis=loop-vectorize
+vinfo: debug
+
+coverage: CFLAGS += --coverage
+coverage: debug
+
+debug: CFLAGS += -DDEBUG -g
 debug: CXX=$(CXX_DBG)
 debug: release
 
@@ -53,8 +60,6 @@ $(OBJS): $(SRCS)
 $(OBJDIR)/%.o: $(SRCDIR)/%.cc
 	@echo -e Building $(CYAN)$@$(WHITE) from $(CYAN)$<$(WHITE)
 	@$(CXX) $(CFLAGS) -o $@ -c $<
-
-prebuild: grammar protobuf
 
 protobuf:
 	@echo -e Compiling RPC Protocol Buffers
@@ -90,7 +95,7 @@ faux_module:
 .PHONY: clean
 clean: 
 	@echo -e Cleaning...
-	@rm -rf $(OBJS) $(TARGET) ./docs  $(OUTDIR)/modules/*.moe
+	@rm -rf Mt.prof $(OBJDIR)/*.o $(OBJDIR)/*.gcno $(OBJDIR)/*.gcda $(TARGET) ./docs  $(OUTDIR)/modules/*.moe
 
 .PHONY: cleangrammar
 cleangrammar:

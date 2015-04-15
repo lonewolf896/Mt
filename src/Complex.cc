@@ -28,12 +28,13 @@ namespace Mt {
 		Complex::Complex(Complex&& cplx) {
 			this->SetPair(cplx.GetPair());
 		}
-
 		Complex::Complex(std::string cplx) {
-			
+			// TODO, split #[+-]#i into # and [-+]#i
+
 		}
-		Complex::Complex(const char * cplx){
-			
+		// Chained constructor
+		Complex::Complex(const char * cplx) : Complex(std::string(cplx)) {
+			// Nothing to do boss...
 		}
 
 		// Destructor
@@ -88,7 +89,7 @@ namespace Mt {
 
 
 		Complex Complex::operator*(Complex& rhs) {
-
+#pragma message("Fix scalar and make this not horribly ugly")
 			Scalar a = rhs.partReal * this->partReal;
 			Scalar b = rhs.partImaginary * this->partImaginary;
 			Scalar c = rhs.partReal * this->partImaginary;
@@ -103,7 +104,7 @@ namespace Mt {
 		}
 
 		Complex Complex::operator/(Complex& rhs) {
-			#pragma Fix scalar and make this not horribly ugly
+#pragma message("Fix scalar and make this not horribly ugly")
 			Scalar a = rhs.partReal;
 			Scalar b = rhs.partImaginary;
 			Scalar c = rhs.partReal;

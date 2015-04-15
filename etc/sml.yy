@@ -12,21 +12,15 @@
 
 %{
 	#include <iostream>
-	// Rocking the C++ Lexer yo.
-	//#include <FlexLexer.h>
-
 	#include "core/lang/ASTObjs.hh"
 	#include "core/Types.hh"
-
-	Mt::core::lang::NBlock *rootScope;
-
 %}
 
 %locations
 %initial-action
 {
-    // initialize the initial location object
-    @$.begin.filename = @$.end.filename = &driver.streamname;
+	// initialize the initial location object
+	@$.begin.filename = @$.end.filename = &driver.streamname;
 };
 
 %union {
@@ -52,7 +46,7 @@
 
 %token END	     0
 %token <boolean> TTRUE TFALSE
-%token <string> TIDENTIFIER TDOUBLE TINTEGER TLIST TCOMPLEX
+%token <string> TIDENTIFIER TSCALAR TLIST TCOMPLEX
 %token <token>  TCEQ TEQUAL TASSIGN TNEQUAL TCLT TCLE TCGT TCGE
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT
 %token <token> TPLUS TMINUS TMUL TDIV TMOD TPEQUAL TMEQUAL TDEQUAL TMUEQUAL TMOEQUAL TPOW TROOT TSRO
@@ -85,7 +79,7 @@
 /*
 	A program as defined by a collection of statements
 */
-program : stmts { rootScope = $1; }
+program : stmts { driver.nblk = $1; }
 		;
 
 /*
@@ -110,12 +104,10 @@ block : TLBRACE stmts TRBRACE { $$ = $2; }
 
 /*
 	Numeric types (Mt::INumeric/Mt::IScalar)
-	Integer - Any whole, non-rational number
-	Double - Any number with a decimal place
+	Scalar - Any numeric that is not complex
 	Complex - Any complex number as represented by X[+-]Yi
 */
-numeric : TINTEGER { $$ = new Mt::core::lang::NInteger(atoi($1->c_str())); delete $1; }
-		| TDOUBLE { $$ = new Mt::core::lang::NDouble(atof($1->c_str())); delete $1; }
+numeric : TSCALAR { $$ = new Mt::core::lang::NScalar((mtfloat_t)atof($1->c_str())); delete $1; }
 		| TCOMPLEX { $$ = new Mt::core::lang::NComplex(*$1); delete $1; }
 		;
 
@@ -199,5 +191,5 @@ comparison : TCEQ | TNEQUAL | TCLT | TCGT | TCLE | TCGE
 %%
 
 void yy::SMLParser::error(const SMLParser::location_type& l, const std::string& m) {
-	driver.error(l, m);
+	driver.Error(l, m);
 }
