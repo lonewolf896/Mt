@@ -27,8 +27,8 @@ namespace Mt {
 
 				int GetRows() const;
 				int GetColumns() const;
-				List GetRow(int index);
-				List GetColumn(int index);
+				List<T> GetRow(int index);
+				List<T> GetColumn(int index);
 				T& GetAtLocation(int row, int column) const;
 				void SetAtLocation(int row, int column, T value);
 				void SetAll(T value);
@@ -85,16 +85,16 @@ namespace Mt {
 		}
 		
 		template<class T>
-		List Matrix<T>::GetRow(int index) {
-			List returnList;
+		List<T> Matrix<T>::GetRow(int index) {
+			List<T> returnList;
 			for (int i = 0; i < n; ++i)
 				returnList.Add(data[RowColumnToIndex(i, index)]);
 			return returnList;
 		}
 		
 		template<class T>
-		List Matrix<T>::GetColumn(int index) {
-			List returnList;
+		List<T> Matrix<T>::GetColumn(int index) {
+			List<T> returnList;
 			for (int i = 0; i < m; ++i)
 				returnList.Add(data[RowColumnToIndex(index, i)]);
 			return returnList;

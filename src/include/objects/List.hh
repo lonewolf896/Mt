@@ -15,13 +15,46 @@ namespace Mt {
 			\brief A collection of unordered non-unique objects
 
 		*/
+		template <class T>
 		class List : Mt::core::IMtObject {
-			public:
-				std::vector<Mt::core::IMtObject> elements;
-				List(void);
-				List(std::initializer_list<Mt::core::IMtObject>);
-				void Add(Mt::core::IMtObject value);
-			private:
-		};	
+		private:
+			std::vector<T> elements;
+		public:
+			List(void);
+			List(std::initializer_list<T>);
+			void Add(T value);
+			int GetSize() const;
+
+			T& operator[](int i);
+
+			friend std::ostream& operator<<(std::ostream& os, List<T>& list){
+				os << "\n[";
+				for(int i = 0; i < list.GetSize(); i++)
+					os << list[i] << ",\t";
+				os << "]\n";
+				return os;
+			}
+		};
+
+		template <class T>
+		List<T>::List(){}
+
+		template <class T>
+		List<T>::List(std::initializer_list<T>) {}
+
+		template <class T>
+		void List<T>::Add(T value) {
+			elements.push_back(value);
+		}
+
+		template <class T>
+		int List<T>::GetSize() const{
+			return elements.size();
+		}
+
+		template <class T>
+		T& List<T>::operator[](int i) {
+			return elements[i];
+		}
 	}
 }
