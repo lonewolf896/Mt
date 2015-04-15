@@ -11,7 +11,7 @@ namespace Mt{
 	namespace core {
 		namespace CoreMath{
 
-			Scalar CoreMath::Pow(Scalar input, Scalar powr){
+			Scalar Pow(Scalar input, Scalar powr){
 				Scalar result;
 
 				mtfloat_t x = pow(input.GetInternal(), powr.GetInternal());
@@ -20,12 +20,12 @@ namespace Mt{
 			}
 
 			//roots
-			Scalar CoreMath::Nrt(Scalar input, Scalar root){
+			Scalar Nrt(Scalar input, Scalar root){
 				Scalar s((mtfloat_t)1);
 				return Pow(input, (s/root));
 			}
 
-			Scalar CoreMath::Sqrt(Scalar input) {
+			Scalar Sqrt(Scalar input) {
 				Scalar s((mtfloat_t)2);
 				return Nrt(input,s);
 			}
@@ -34,36 +34,36 @@ namespace Mt{
 			//opp = opposite side
 			//hyp = hypotenuse
 			//adj = adjacent 
-			Scalar CoreMath::Sin(Scalar opp, Scalar hyp) {
+			Scalar Sin(Scalar opp, Scalar hyp) {
 				return hyp;
 			}
 
-			Scalar CoreMath::Cos(Scalar adj, Scalar hyp) {
+			Scalar Cos(Scalar adj, Scalar hyp) {
 				return hyp;
 			}
 
-			Scalar CoreMath::Tan(Scalar opp, Scalar adj) {
+			Scalar Tan(Scalar opp, Scalar adj) {
 				return adj;
 			}
 
-			Scalar CoreMath::Csc(Scalar hyp, Scalar opp) {
+			Scalar Csc(Scalar hyp, Scalar opp) {
 				return hyp;
 			}
 
-			Scalar CoreMath::Sec(Scalar hyp, Scalar adj) {
+			Scalar Sec(Scalar hyp, Scalar adj) {
 				return hyp;
 			}
 
-			Scalar CoreMath::Cot(Scalar adj, Scalar opp) {
+			Scalar Cot(Scalar adj, Scalar opp) {
 				return adj;
 			}
 
 			//logs
-			Scalar CoreMath::Ln(Scalar logable) {
+			Scalar Ln(Scalar logable) {
 				return logable;
 			}
 
-			Scalar CoreMath::Log(Scalar logable,Scalar base) {
+			Scalar Log(Scalar logable,Scalar base) {
 				return logable;
 			}
 

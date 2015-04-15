@@ -310,7 +310,15 @@ namespace Mt {
 					}
 					switch(statement->type) {
 						case _NVARIABLEDECLARATION: {
-							
+							auto vardec = dynamic_cast<NVariableDeclaration*>(statement);
+							if(this->debug_evaluation)
+								std::cout << "NVariableDeclaration with Identifier of \"" << vardec->_id._name << "\" " << std::endl;
+							if(vardec->_assignmentExpr == nullptr) {
+
+							} else {
+								GST[vardec->_id._name] = *this->ProcessExpression(vardec->_assignmentExpr, GST);
+								this->PrintResult(&GST[vardec->_id._name], rawInput);
+							}
 							break;
 						} case _NEXPRESSIONSTATEMENT: {
 							auto expr = dynamic_cast<NExpressionStatement*>(statement);
