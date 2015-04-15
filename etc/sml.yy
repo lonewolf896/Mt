@@ -110,6 +110,7 @@ block : TLBRACE stmts TRBRACE { $$ = $2; }
 numeric : TSCALAR { $$ = new Mt::core::lang::NScalar((mtfloat_t)atof($1->c_str())); delete $1; }
 		| TMINUS TSCALAR { $$ = new Mt::core::lang::NScalar(-(mtfloat_t)atof($2->c_str())); delete $2; }
 		| TCOMPLEX { $$ = new Mt::core::lang::NComplex(*$1); delete $1; }
+		| TMINUS TCOMPLEX { $$ = new Mt::core::lang::NComplex(*$2); delete $2; }
 		;
 
 /*
