@@ -50,6 +50,10 @@ namespace Mt {
 			bool operator<=(Scalar const& rhs);
 			bool operator<=(mtfloat_t const& rhs);
 
+			explicit operator mtfloat_t() const {
+				return this->Internal;
+			}
+
 			// Stream overloads
 			friend std::ostream& operator<<(std::ostream& os, const Scalar& sclr);
 
