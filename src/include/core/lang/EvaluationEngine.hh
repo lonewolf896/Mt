@@ -25,7 +25,11 @@ namespace Mt {
 				std::string GetTokenName(yy::SMLParser::token_type t);
 				Mt::core::IMtObject* ProcessExpression(NExpression* expr, std::map<std::string, Mt::core::IMtObject>& GST);
 				Mt::core::IMtObject* DoBinaryOperation(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs, yy::SMLParser::token_type oper, std::map<std::string, Mt::core::IMtObject>& GST);
+				
 				Mt::core::IMtObject* BinaryAdd(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs);
+				Mt::core::IMtObject* BinaryMinus(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs);		
+				Mt::core::IMtObject* BinaryMultiply(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs);
+				Mt::core::IMtObject* BinaryDivied(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs);
 
 				void PrintResult(Mt::core::IMtObject* res, std::string input);
 			public:

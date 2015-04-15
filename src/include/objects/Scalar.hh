@@ -26,15 +26,15 @@ namespace Mt {
 			Scalar& operator=(Scalar const& rhs);
 			Scalar& operator=(Scalar& rhs);
 			Scalar& operator=(mtfloat_t const& rhs);
-			Scalar operator+(Scalar& rhs);
-			Scalar operator+(mtfloat_t& rhs);
+			Scalar 	operator+(Scalar& rhs);
+			Scalar 	operator+(mtfloat_t& rhs);
 			Scalar& operator+=(Scalar const& rhs);
-			Scalar operator-(Scalar& rhs);
-			Scalar operator-(mtfloat_t& rhs);
-			Scalar operator*(Scalar& rhs);
-			Scalar operator*(mtfloat_t& rhs);
-			Scalar operator/(Scalar& rhs);
-			Scalar operator/(mtfloat_t& rhs);
+			Scalar 	operator-(Scalar& rhs);
+			Scalar 	operator-(mtfloat_t& rhs);
+			Scalar 	operator*(Scalar& rhs);
+			Scalar 	operator*(mtfloat_t& rhs);
+			Scalar 	operator/(Scalar& rhs);
+			Scalar 	operator/(mtfloat_t& rhs);
 			Scalar& operator++(int);
 			Scalar& operator--(int);
 			bool operator==(Scalar const& rhs);
@@ -49,10 +49,6 @@ namespace Mt {
 			bool operator>=(mtfloat_t const& rhs);
 			bool operator<=(Scalar const& rhs);
 			bool operator<=(mtfloat_t const& rhs);
-
-			explicit operator mtfloat_t() const {
-				return this->Internal;
-			}
 
 			// Stream overloads
 			friend std::ostream& operator<<(std::ostream& os, const Scalar& sclr);

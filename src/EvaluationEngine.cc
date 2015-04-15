@@ -143,18 +143,17 @@ namespace Mt {
 					case yy::SMLParser::token_type::TMINUS: {
 						if(this->debug_evaluation)
 							std::cout << "NBinaryOperation is subtraction." << std::endl;
-						break;
+						return this->BinaryMinus(lhs, rhs);
 					}
 					case yy::SMLParser::token_type::TMUL: {
 						if(this->debug_evaluation)
 							std::cout << "NBinaryOperation is multiplication." << std::endl;
-						break;
+						return this->BinaryMultiply(lhs, rhs);
 					}
 					case yy::SMLParser::token_type::TDIV: {
 						if(this->debug_evaluation)
 							std::cout << "NBinaryOperation is division." << std::endl;
-						break;
-						
+						return this->BinaryDivied(lhs, rhs);
 					}
 				}
 				return nullptr;
@@ -165,12 +164,17 @@ namespace Mt {
 					case Mt::core::TYPE::SCALAR: {
 						auto _lhs = dynamic_cast<Mt::objects::Scalar*>(lhs);
 						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
-						auto retval = ((*_lhs)+(*_rhs));
+						auto retval = new Mt::objects::Scalar((*_lhs)+(*_rhs));
 						if(this->debug_evaluation)
 							std::cout << "Addition result: " << retval << std::endl;
-						return &retval;
+						return retval;
 					} case Mt::core::TYPE::COMPLEX: {
-
+						auto _lhs = dynamic_cast<Mt::objects::Complex*>(lhs);
+						auto _rhs = dynamic_cast<Mt::objects::Complex*>(rhs);
+						auto retval = new Mt::objects::Complex((*_lhs)+(*_rhs));
+						if(this->debug_evaluation)
+							std::cout << "Addition result: " << retval << std::endl;
+						return retval;
 					} case Mt::core::TYPE::MATRIX: {
 
 					} case Mt::core::TYPE::SET: {
@@ -182,16 +186,98 @@ namespace Mt {
 				return nullptr;
 			}
 
+			Mt::core::IMtObject* EvaluationEngine::BinaryMinus(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs) {
+				switch(lhs->DerivedType) {
+					case Mt::core::TYPE::SCALAR: {
+						auto _lhs = dynamic_cast<Mt::objects::Scalar*>(lhs);
+						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
+						auto retval = new Mt::objects::Scalar((*_lhs)-(*_rhs));
+						if(this->debug_evaluation)
+							std::cout << "Subtraction result: " << retval << std::endl;
+						return retval;
+					} case Mt::core::TYPE::COMPLEX: {
+						auto _lhs = dynamic_cast<Mt::objects::Complex*>(lhs);
+						auto _rhs = dynamic_cast<Mt::objects::Complex*>(rhs);
+						auto retval = new Mt::objects::Complex((*_lhs)-(*_rhs));
+						if(this->debug_evaluation)
+							std::cout << "Subtraction result: " << retval << std::endl;
+						return retval;
+					} case Mt::core::TYPE::MATRIX: {
+
+					} case Mt::core::TYPE::SET: {
+
+					} case Mt::core::TYPE::LIST: {
+						break;
+					}
+				}
+				return nullptr;
+			}	
+
+			Mt::core::IMtObject* EvaluationEngine::BinaryMultiply(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs) {
+				switch(lhs->DerivedType) {
+					case Mt::core::TYPE::SCALAR: {
+						auto _lhs = dynamic_cast<Mt::objects::Scalar*>(lhs);
+						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
+						auto retval = new Mt::objects::Scalar((*_lhs)*(*_rhs));
+						if(this->debug_evaluation)
+							std::cout << "Multiplication result: " << retval << std::endl;
+						return retval;
+					} case Mt::core::TYPE::COMPLEX: {
+						auto _lhs = dynamic_cast<Mt::objects::Complex*>(lhs);
+						auto _rhs = dynamic_cast<Mt::objects::Complex*>(rhs);
+						auto retval = new Mt::objects::Complex((*_lhs)*(*_rhs));
+						if(this->debug_evaluation)
+							std::cout << "Multiplication result: " << retval << std::endl;
+						return retval;
+					} case Mt::core::TYPE::MATRIX: {
+
+					} case Mt::core::TYPE::SET: {
+
+					} case Mt::core::TYPE::LIST: {
+						break;
+					}
+				}
+				return nullptr;
+			}
+
+			Mt::core::IMtObject* EvaluationEngine::BinaryDivied(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs) {
+				switch(lhs->DerivedType) {
+					case Mt::core::TYPE::SCALAR: {
+						auto _lhs = dynamic_cast<Mt::objects::Scalar*>(lhs);
+						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
+						auto retval = new Mt::objects::Scalar((*_lhs)/(*_rhs));
+						if(this->debug_evaluation)
+							std::cout << "Division result: " << retval << std::endl;
+						return retval;
+					} case Mt::core::TYPE::COMPLEX: {
+						auto _lhs = dynamic_cast<Mt::objects::Complex*>(lhs);
+						auto _rhs = dynamic_cast<Mt::objects::Complex*>(rhs);
+						auto retval = new Mt::objects::Complex((*_lhs)/(*_rhs));
+						if(this->debug_evaluation)
+							std::cout << "Division result: " << retval << std::endl;
+						return retval;
+					} case Mt::core::TYPE::MATRIX: {
+
+					} case Mt::core::TYPE::SET: {
+
+					} case Mt::core::TYPE::LIST: {
+						break;
+					}
+				}
+				return nullptr;
+			}
 
 			void EvaluationEngine::PrintResult(Mt::core::IMtObject* res, std::string input) {
 				switch(res->DerivedType) {
 					case Mt::core::TYPE::SCALAR: {
 						auto _res = dynamic_cast<Mt::objects::Scalar*>(res);
 						std::cout << input << " = " << *_res << std::endl;
+						delete _res;
 						break;
 					} case Mt::core::TYPE::COMPLEX: {
 						auto _res = dynamic_cast<Mt::objects::Complex*>(res);
 						std::cout << input << " = " << *_res << std::endl;
+						delete _res;
 						break;
 					} case Mt::core::TYPE::MATRIX: {
 
@@ -243,8 +329,6 @@ namespace Mt {
 							std::cerr << "Unknown statement type: " << this->GetNameFromMagik(statement->type) << std::endl;
 					}
 				}
-		#pragma message("TODO: Properly evaluate AST")
-				std::cout << " " << rawInput << std::endl;
 			}
 		}
 	}
