@@ -64,6 +64,8 @@ auto main(int argc, char* argv[], char* env[]) -> int {
 			std::cout << quotes[rd() % 20] << std::endl << std::endl;
 		}
 	#endif
+
+		// TODO: RE-ENABLE
 		// Define a new REPL
 		Mt::frontend::REPL repl;
 		// Start the REPL up.

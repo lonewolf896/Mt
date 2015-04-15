@@ -5,15 +5,21 @@
 #include <iostream>
 namespace Mt {
 	namespace core {
+		enum TYPE {
+			SCALAR = 0,
+			COMPLEX = 1,
+			LIST = 2,
+			SET = 3,
+			MATRIX = 4,
+		};
 		/*! \class IMtObject
 			\brief Base Object for SML 
 
-			This is/was the planned base object for all SML related types, such as the Mt::Complex and Mt::Integer
-			
-		  \todo Implement some base logic
+			This is/was the planned base object for all SML related types, such as the Mt::Complex and Mt::Scalar
 		*/
 		class IMtObject {
 		public:
+			TYPE DerivedType;
 			virtual ~IMtObject(void) { }
 #if defined(__clang__)
 #pragma clang diagnostic push

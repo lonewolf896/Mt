@@ -23,9 +23,15 @@ namespace Mt {
 				bool debug_evaluation;
 				std::string GetNameFromMagik(MAGIK m);
 				std::string GetTokenName(yy::SMLParser::token_type t);
-				void ProcessExpressionStmnt(NExpressionStatement* expr, std::map<std::string, Mt::core::IMtObject>& GST);
-				void ProcessExpression(NExpression* expr, std::map<std::string, Mt::core::IMtObject>& GST);
+				Mt::core::IMtObject* ProcessExpression(NExpression* expr, std::map<std::string, Mt::core::IMtObject>& GST);
+				Mt::core::IMtObject* DoBinaryOperation(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs, yy::SMLParser::token_type oper, std::map<std::string, Mt::core::IMtObject>& GST);
+				
+				Mt::core::IMtObject* BinaryAdd(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs);
+				Mt::core::IMtObject* BinaryMinus(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs);		
+				Mt::core::IMtObject* BinaryMultiply(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs);
+				Mt::core::IMtObject* BinaryDivied(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs);
 
+				void PrintResult(Mt::core::IMtObject* res, std::string input);
 			public:
 				/*!
 					Create a new instance of the Evaluation Engine with defaults

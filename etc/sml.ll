@@ -1,6 +1,5 @@
 /*
 	sml.l - Simple Math Language (SML) flex lexer grammar
-
 */
 
 %{
@@ -58,9 +57,10 @@
 \n 						{ yylloc->lines(yyleng); yylloc->step(); }
 
 [a-zA-Z_][a-zA-Z0-9_]*	SAVE_TOKEN; return token::TIDENTIFIER;
+
 [0-9]+\.[0-9]*			SAVE_TOKEN; return token::TSCALAR;
 [0-9]+					SAVE_TOKEN; return token::TSCALAR;
-\<.+\>\n				SAVE_TOKEN;	return token::TLIST;
+
 [0-9]+[\+\-][0-9]+i 	SAVE_TOKEN; return token::TCOMPLEX;
 
 "="						return TOKEN(token::TEQUAL);
@@ -90,6 +90,7 @@
 "%"						return TOKEN(token::TMOD);
 "^"						return TOKEN(token::TPOW);
 "~"						return TOKEN(token::TROOT);
+
 .						std::cout << "Error: Unknown Token \"" <<  yytext << "\"" << std::endl; yyterminate();
 
 %%
