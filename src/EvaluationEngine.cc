@@ -101,13 +101,7 @@ namespace Mt {
 				}
 			}
 
-			void EvaluationEngine::ProcessExpressionStmnt(NExpressionStatement* expr, std::map<std::string, Mt::core::IMtObject>& GST) {
-				if(this->debug_evaluation)
-								std::cout << "Expression " << expr << " is of type " << this->GetNameFromMagik(expr->_expression.type) << std::endl;
-				this->ProcessExpression(&(expr->_expression), GST);
-			}
-
-			void EvaluationEngine::ProcessExpression(NExpression* expr, std::map<std::string, Mt::core::IMtObject>& GST) {
+			Mt::core::IMtObject* EvaluationEngine::ProcessExpression(NExpression* expr, std::map<std::string, Mt::core::IMtObject>& GST) {
 				switch(expr->type) {
 					case _NBLOCK: {
 						auto blk = dynamic_cast<NBlock*>(expr);
@@ -117,23 +111,95 @@ namespace Mt {
 						auto nbin = dynamic_cast<NBinaryOperator*>(expr);
 						if(this->debug_evaluation)
 							std::cout << "Binary Operation at " << nbin << " has operator of " << this->GetTokenName(static_cast<yy::SMLParser::token_type>(nbin->_op)) << std::endl;
-						this->ProcessExpression(&(nbin->_lhs), GST);
-						this->ProcessExpression(&(nbin->_rhs), GST);
-						break;
+						auto lhs = this->ProcessExpression(&(nbin->_lhs), GST);
+						auto rhs = this->ProcessExpression(&(nbin->_rhs), GST);
+						return this->DoBinaryOperation(rhs, lhs, static_cast<yy::SMLParser::token_type>(nbin->_op), GST);
 					} case _NMETHODCALL: {
-
+						break;
 					} case _NIDENTIFIER: {
-
+						if(this->debug_evaluation)
+					  		std::cout << "Expression at " << expr << " is a NIdentifier with value \"" << dynamic_cast<NIdentifier*>(expr)->_name << "\"" << std::endl;
 						break;
 					} case _NCOMPLEX: {
-
-						break;
+						if(this->debug_evaluation)
+					  		std::cout << "Expression at " << expr << " is a NComplex with value " << dynamic_cast<NComplex*>(expr)->_c << std::endl;
+						return &(dynamic_cast<NComplex*>(expr)->_c);
 					} case _NSCALAR: {
-					  	// Capture both of these, because they are both backed by Scalar
 					  	if(this->debug_evaluation)
 					  		std::cout << "Expression at " << expr << " is a NScalar with value " << dynamic_cast<NScalar*>(expr)->_s << std::endl;
-					  	break;
-					  }
+					  	return &(dynamic_cast<NScalar*>(expr)->_s);
+					}
+				}
+				return nullptr;
+			}
+
+			Mt::core::IMtObject* EvaluationEngine::DoBinaryOperation(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs, yy::SMLParser::token_type oper, std::map<std::string, Mt::core::IMtObject>& GST) {
+				switch(oper) {
+					case yy::SMLParser::token_type::TPLUS: {
+						if(this->debug_evaluation)
+							std::cout << "NBinaryOperation is addition." << std::endl;
+						return this->BinaryAdd(lhs, rhs);
+					}
+					case yy::SMLParser::token_type::TMINUS: {
+						if(this->debug_evaluation)
+							std::cout << "NBinaryOperation is subtraction." << std::endl;
+						break;
+					}
+					case yy::SMLParser::token_type::TMUL: {
+						if(this->debug_evaluation)
+							std::cout << "NBinaryOperation is multiplication." << std::endl;
+						break;
+					}
+					case yy::SMLParser::token_type::TDIV: {
+						if(this->debug_evaluation)
+							std::cout << "NBinaryOperation is division." << std::endl;
+						break;
+						
+					}
+				}
+				return nullptr;
+			}
+
+			Mt::core::IMtObject* EvaluationEngine::BinaryAdd(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs) {
+				switch(lhs->DerivedType) {
+					case Mt::core::TYPE::SCALAR: {
+						auto _lhs = dynamic_cast<Mt::objects::Scalar*>(lhs);
+						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
+						auto retval = ((*_lhs)+(*_rhs));
+						if(this->debug_evaluation)
+							std::cout << "Addition result: " << retval << std::endl;
+						return &retval;
+					} case Mt::core::TYPE::COMPLEX: {
+
+					} case Mt::core::TYPE::MATRIX: {
+
+					} case Mt::core::TYPE::SET: {
+
+					} case Mt::core::TYPE::LIST: {
+						break;
+					}
+				}
+				return nullptr;
+			}
+
+
+			void EvaluationEngine::PrintResult(Mt::core::IMtObject* res, std::string input) {
+				switch(res->DerivedType) {
+					case Mt::core::TYPE::SCALAR: {
+						auto _res = dynamic_cast<Mt::objects::Scalar*>(res);
+						std::cout << input << " = " << *_res << std::endl;
+						break;
+					} case Mt::core::TYPE::COMPLEX: {
+						auto _res = dynamic_cast<Mt::objects::Complex*>(res);
+						std::cout << input << " = " << *_res << std::endl;
+						break;
+					} case Mt::core::TYPE::MATRIX: {
+
+					} case Mt::core::TYPE::SET: {
+
+					} case Mt::core::TYPE::LIST: {
+						break;
+					}
 				}
 			}
 
@@ -162,7 +228,10 @@ namespace Mt {
 							break;
 						} case _NEXPRESSIONSTATEMENT: {
 							auto expr = dynamic_cast<NExpressionStatement*>(statement);
-							this->ProcessExpressionStmnt(expr, GST);
+							if(this->debug_evaluation)
+								std::cout << "Expression " << expr << " is of type " << this->GetNameFromMagik(expr->_expression.type) << std::endl;
+							auto res = this->ProcessExpression(&(expr->_expression), GST);
+							this->PrintResult(res, rawInput);
 							break;
 						} case _NFUNCTIONDECLARATION: {
 							
