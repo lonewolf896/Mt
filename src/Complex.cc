@@ -9,27 +9,33 @@ namespace Mt {
 		// Constructors
 		Complex::Complex(void) {
 			this->partReal = (this->partImaginary = 0.0l);
+			this->DerivedType = Mt::core::TYPE::COMPLEX;
 		}
 
 		Complex::Complex(std::pair<Mt::objects::Scalar, Mt::objects::Scalar>& parts) {
 			this->partReal = parts.first;
 			this->partImaginary = parts.second;
+			this->DerivedType = Mt::core::TYPE::COMPLEX;
 		}
 
 		Complex::Complex(Mt::objects::Scalar real, Mt::objects::Scalar i) {
 			this->partReal = real;
 			this->partImaginary = i;
+			this->DerivedType = Mt::core::TYPE::COMPLEX;
 		}
 
 		Complex::Complex(Complex& cplx){
 			this->SetPair(cplx.GetPair());
+			this->DerivedType = Mt::core::TYPE::COMPLEX;
 		}
 
 		Complex::Complex(Complex&& cplx) {
 			this->SetPair(cplx.GetPair());
+			this->DerivedType = Mt::core::TYPE::COMPLEX;
 		}
 		Complex::Complex(std::string cplx) {
 			// TODO, split #[+-]#i into # and [-+]#i
+			this->DerivedType = Mt::core::TYPE::COMPLEX;
 
 		}
 		// Chained constructor

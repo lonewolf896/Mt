@@ -53,6 +53,7 @@ namespace Mt {
 			m = 0;
 			n = 0;
 			data = nullptr;
+			this->DerivedType = Mt::core::TYPE::MATRIX;
 		}
 		
 		template<class T>
@@ -60,6 +61,7 @@ namespace Mt {
 			m = n;
 			this->n = n;
 			data = new T[n * n];
+			this->DerivedType = Mt::core::TYPE::MATRIX;
 		}
 		
 		template<class T>
@@ -67,6 +69,7 @@ namespace Mt {
 			this->m = m;
 			this->n = n;
 			data = new T[n * m];
+			this->DerivedType = Mt::core::TYPE::MATRIX;
 		}
 		
 		template<class T>

@@ -8,22 +8,27 @@ namespace Mt {
 	namespace objects {
 		Scalar::Scalar(){
 			Internal = 0;
+			this->DerivedType = Mt::core::TYPE::SCALAR;
 		}
 
 		Scalar::Scalar(mtfloat_t num){
 			Internal = num;
+			this->DerivedType = Mt::core::TYPE::SCALAR;
 		}
 
 		Scalar::Scalar(Scalar&& s){
 			Internal = s.Internal;
+			this->DerivedType = Mt::core::TYPE::SCALAR;
 		}
 
 		Scalar::Scalar(Scalar& s){
 			Internal = s.Internal;
+			this->DerivedType = Mt::core::TYPE::SCALAR;
 		}
 
 		Scalar::Scalar(Scalar const& s){
 			Internal = s.Internal;
+			this->DerivedType = Mt::core::TYPE::SCALAR;
 		}
 
 		Scalar::~Scalar() {
