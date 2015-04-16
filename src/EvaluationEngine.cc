@@ -245,14 +245,14 @@ namespace Mt {
 					case Mt::core::TYPE::SCALAR: {
 						auto _lhs = dynamic_cast<Mt::objects::Scalar*>(lhs);
 						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
-						auto retval = new Mt::objects::Scalar((*_lhs)/(*_rhs));
+						auto retval = new Mt::objects::Scalar((*_rhs)/(*_lhs));
 						if(this->debug_evaluation)
 							std::cout << "Division result: " << retval << std::endl;
 						return retval;
 					} case Mt::core::TYPE::COMPLEX: {
 						auto _lhs = dynamic_cast<Mt::objects::Complex*>(lhs);
 						auto _rhs = dynamic_cast<Mt::objects::Complex*>(rhs);
-						auto retval = new Mt::objects::Complex((*_lhs)/(*_rhs));
+						auto retval = new Mt::objects::Complex((*_rhs)/(*_lhs));
 						if(this->debug_evaluation)
 							std::cout << "Division result: " << retval << std::endl;
 						return retval;
