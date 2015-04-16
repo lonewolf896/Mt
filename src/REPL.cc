@@ -29,10 +29,49 @@ namespace Mt {
 			
 			else if (command == "help"){
 				std::cout << "exit     - it gets you out" << std::endl;
+				std::cout << "syntax   - gives you some basic syntax examples" << std::endl;
 #if defined(_DEBUG) || defined(DEBUG) 
 				std::cout << "dbg-sml  - toggles SML debugging" << std::endl;
 				std::cout << "dump-gst - prints out the GST" << std::endl;
 #endif
+			}
+
+			else if(command == "syntax"){
+				std::cout << "You can use basic arithmetic like such:" << std::endl;
+                                std::cout << "3 + 4 + -43 + 54 ( -65 % 3 )" << std::endl;
+                                std::cout << "" << std::endl;
+                                std::cout << "% is modulus" << std::endl;
+                                std::cout << "" << std::endl;
+                                std::cout << "Variable assignment is done as such:" << std::endl;
+                                std::cout << "A := 4 + 3" << std::endl;
+                                std::cout << "" << std::endl;
+                                std::cout << "Trig functions:" << std::endl;
+                                std::cout << "sin(x)" << std::endl;
+                                std::cout << "cos(x)" << std::endl;
+                                std::cout << "tan(x)" << std::endl;
+                                std::cout << "csc(x)" << std::endl;
+                                std::cout << "sec(x)" << std::endl;
+                                std::cout << "cot(x)" << std::endl;
+                                std::cout << "" << std::endl;
+                                std::cout << "To do powers" << std::endl;
+                                std::cout << "pow(X, Y) := Y^X" << std::endl;
+                                std::cout << "Takes Y to the X power" << std::endl;
+                                std::cout << "" << std::endl;
+                                std::cout << "Absolute Values are" << std::endl;
+                                std::cout << "abs(x)" << std::endl;
+                                std::cout << "" << std::endl;
+                                std::cout << "There are two functions for roots" << std::endl;
+                                std::cout << "sqrt(x)" << std::endl;
+                                std::cout << "will return the square root of x, while" << std::endl;
+                                std::cout << "nrt(x ,n)" << std::endl;
+                                std::cout << "will return the nth root of x" << std::endl;
+                                std::cout << "" << std::endl;
+                                std::cout << "Last but not least we have logs" << std::endl;
+                                std::cout << "ln(x)" << std::endl;
+                                std::cout << "will take the natural log of x" << std::endl;
+                                std::cout << "" << std::endl;
+                                std::cout << "log(x, n)" << std::endl;
+                                std::cout << "will return x to the base of n" << std::endl;
 			}
 #if defined(_DEBUG) || defined(DEBUG)
 			else if (command == "dbg-sml") {
