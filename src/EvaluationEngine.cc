@@ -113,7 +113,7 @@ namespace Mt {
 							std::cout << "Binary Operation at " << nbin << " has operator of " << this->GetTokenName(static_cast<yy::SMLParser::token_type>(nbin->_op)) << std::endl;
 						auto lhs = this->ProcessExpression(&(nbin->_lhs), GST);
 						auto rhs = this->ProcessExpression(&(nbin->_rhs), GST);
-						return this->DoBinaryOperation(rhs, lhs, static_cast<yy::SMLParser::token_type>(nbin->_op), GST);
+						return this->DoBinaryOperation(lhs, rhs, static_cast<yy::SMLParser::token_type>(nbin->_op), GST);
 					} case _NMETHODCALL: {
 						break;
 					} case _NIDENTIFIER: {
@@ -135,16 +135,6 @@ namespace Mt {
 
 			Mt::core::IMtObject* EvaluationEngine::DoBinaryOperation(Mt::core::IMtObject* lhs, Mt::core::IMtObject* rhs, yy::SMLParser::token_type oper, std::map<std::string, Mt::core::IMtObject>& GST) {
 				switch(oper) {
-					case yy::SMLParser::token_type::TPLUS: {
-						if(this->debug_evaluation)
-							std::cout << "NBinaryOperation is addition." << std::endl;
-						return this->BinaryAdd(lhs, rhs);
-					}
-					case yy::SMLParser::token_type::TMINUS: {
-						if(this->debug_evaluation)
-							std::cout << "NBinaryOperation is subtraction." << std::endl;
-						return this->BinaryMinus(lhs, rhs);
-					}
 					case yy::SMLParser::token_type::TMUL: {
 						if(this->debug_evaluation)
 							std::cout << "NBinaryOperation is multiplication." << std::endl;
@@ -154,6 +144,17 @@ namespace Mt {
 						if(this->debug_evaluation)
 							std::cout << "NBinaryOperation is division." << std::endl;
 						return this->BinaryDivied(lhs, rhs);
+					} case yy::SMLParser::token_type::TPLUS: {
+						if(this->debug_evaluation)
+							std::cout << "NBinaryOperation is addition." << std::endl;
+						return this->BinaryAdd(lhs, rhs);
+					} case yy::SMLParser::token_type::TMINUS: {
+						if(this->debug_evaluation)
+							std::cout << "NBinaryOperation is subtraction." << std::endl;
+						return this->BinaryMinus(lhs, rhs);
+					} default: {
+						std::cerr << "Error: Unknown binary operation " << this->GetTokenName(static_cast<yy::SMLParser::token_type>(oper)) << std::endl;
+						return nullptr;
 					}
 				}
 				return nullptr;
@@ -166,14 +167,14 @@ namespace Mt {
 						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
 						auto retval = new Mt::objects::Scalar((*_lhs)+(*_rhs));
 						if(this->debug_evaluation)
-							std::cout << "Addition result: " << retval << std::endl;
+							std::cout << "Addition result: " << *retval << std::endl;
 						return retval;
 					} case Mt::core::TYPE::COMPLEX: {
 						auto _lhs = dynamic_cast<Mt::objects::Complex*>(lhs);
 						auto _rhs = dynamic_cast<Mt::objects::Complex*>(rhs);
 						auto retval = new Mt::objects::Complex((*_lhs)+(*_rhs));
 						if(this->debug_evaluation)
-							std::cout << "Addition result: " << retval << std::endl;
+							std::cout << "Addition result: " << *retval << std::endl;
 						return retval;
 					} case Mt::core::TYPE::MATRIX: {
 
@@ -193,14 +194,14 @@ namespace Mt {
 						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
 						auto retval = new Mt::objects::Scalar((*_lhs)-(*_rhs));
 						if(this->debug_evaluation)
-							std::cout << "Subtraction result: " << retval << std::endl;
+							std::cout << "Subtraction result: " << *retval << std::endl;
 						return retval;
 					} case Mt::core::TYPE::COMPLEX: {
 						auto _lhs = dynamic_cast<Mt::objects::Complex*>(lhs);
 						auto _rhs = dynamic_cast<Mt::objects::Complex*>(rhs);
 						auto retval = new Mt::objects::Complex((*_lhs)-(*_rhs));
 						if(this->debug_evaluation)
-							std::cout << "Subtraction result: " << retval << std::endl;
+							std::cout << "Subtraction result: " << *retval << std::endl;
 						return retval;
 					} case Mt::core::TYPE::MATRIX: {
 
@@ -220,14 +221,14 @@ namespace Mt {
 						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
 						auto retval = new Mt::objects::Scalar((*_lhs)*(*_rhs));
 						if(this->debug_evaluation)
-							std::cout << "Multiplication result: " << retval << std::endl;
+							std::cout << "Multiplication result: " << *retval << std::endl;
 						return retval;
 					} case Mt::core::TYPE::COMPLEX: {
 						auto _lhs = dynamic_cast<Mt::objects::Complex*>(lhs);
 						auto _rhs = dynamic_cast<Mt::objects::Complex*>(rhs);
 						auto retval = new Mt::objects::Complex((*_lhs)*(*_rhs));
 						if(this->debug_evaluation)
-							std::cout << "Multiplication result: " << retval << std::endl;
+							std::cout << "Multiplication result: " << *retval << std::endl;
 						return retval;
 					} case Mt::core::TYPE::MATRIX: {
 
@@ -247,14 +248,14 @@ namespace Mt {
 						auto _rhs = dynamic_cast<Mt::objects::Scalar*>(rhs);
 						auto retval = new Mt::objects::Scalar((*_lhs)/(*_rhs));
 						if(this->debug_evaluation)
-							std::cout << "Division result: " << retval << std::endl;
+							std::cout << "Division result: " << *retval << std::endl;
 						return retval;
 					} case Mt::core::TYPE::COMPLEX: {
 						auto _lhs = dynamic_cast<Mt::objects::Complex*>(lhs);
 						auto _rhs = dynamic_cast<Mt::objects::Complex*>(rhs);
 						auto retval = new Mt::objects::Complex((*_lhs)/(*_rhs));
 						if(this->debug_evaluation)
-							std::cout << "Division result: " << retval << std::endl;
+							std::cout << "Division result: " << *retval << std::endl;
 						return retval;
 					} case Mt::core::TYPE::MATRIX: {
 
